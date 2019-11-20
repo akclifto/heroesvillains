@@ -34,6 +34,7 @@ dependencies {
 /////////////////////////////////////////////////////////////////////////
 
  checkstyle {
+     configFile(rootProject.file('config/checkstyle/checkstyle.xml'))
    // Keep checkstyle a little quieter
    ignoreFailures = true
    showViolations = false
