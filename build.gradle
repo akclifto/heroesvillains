@@ -6,6 +6,7 @@ plugins {
     id 'jacoco'
     id 'checkstyle'
  }
+
  sourceSets.main.java.srcDirs = ['src']
  application {
      mainClassName = 'main.Main'
