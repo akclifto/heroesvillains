@@ -3,27 +3,47 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class EarthTest {
 
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    private final PrintStream originalErr = System.err;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
     }
-
 
     @After
-    public void tearDown() throws Exception {
+    public void restoreStreams() {
+        System.setOut(originalOut);
+        System.setErr(originalErr);
     }
 
+
     @Test
-    public void EarthTest() {
+    public void outTest() {
+        System.out.print("hello");
+        assertEquals("hello", outContent.toString());
+    }
+    @Test
+    public void Earth_test_instance() {
         Earth e = new Earth();
         e.getInstance();
-        String s = "test";
-        System.out.println("test class");
-        assertEquals(s, "test");
+        String s = outContent.toString().trim();
+        assertEquals("Initial instance of Earth has been created.", s);
+        Earth dup = new Earth();
+        dup.getInstance();
+        s = outContent.toString().trim();
+        assertEquals("Earth has already been created.", s);
+
     }
 
 }

@@ -35,6 +35,10 @@ task printClasspath {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.5"
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 // Configure Checkstyle
