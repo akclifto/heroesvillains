@@ -2,7 +2,7 @@ package factory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 public class HotSpotFactory extends Factory {
 
@@ -15,41 +15,22 @@ public class HotSpotFactory extends Factory {
         //ctor
     }
 
-
     @Override
-    public LairBase createLair(boolean isHero) {
+    public LairBase createBase(String name) {
 
-        if (isHero) {
-            heroBase = new HeroBase();
-            //TODO set name of base
-            //TODO set pop to zero
-            bases.add(heroBase);
-            System.out.println("A new hero base has been added to the planet.");
-
-        } else {
-            villainLair = new VillainLair();
-            //TODO set name of lair
-            //TODO set pop to zero
-            lairs.add(villainLair);
-            System.out.println("A new villain lair has been added to the planet.");
-        }
-
-        return null;
-    }
-
-    @Override
-    public void addBonus() {
-
-        int rand = ThreadLocalRandom.current().nextInt(0, 6);
-        if (rand == 0) {
-
-        }
-        System.out.println();
+        heroBase = new HeroBase(name);
+        bases.add(heroBase);
+        System.out.println("A new hero base has been added to the planet.");
+        return heroBase;
 
     }
 
     @Override
-    public void addWeakness() {
-
+    public LairBase createLair(String name) {
+        villainLair = new VillainLair(name);
+        lairs.add(villainLair);
+        System.out.println("A new villain lair has been added to the planet.");
+        return villainLair;
     }
+
 }

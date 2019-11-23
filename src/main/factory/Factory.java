@@ -12,10 +12,10 @@ public abstract class Factory {
      * and add a Bonus attribute to it.
      */
 
-    public abstract LairBase createLair(boolean isHero);
+    public abstract LairBase createLair(String name);
 
-    public abstract void addBonus();
+    public abstract LairBase createBase(String name);
 
-    public abstract void addWeakness();
+
 
 }

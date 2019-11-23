@@ -2,14 +2,27 @@ package factory;
 
 public interface LairBase {
 
-    int fire = 2;
-    int earth = 2;
-    int wind = 2;
-    int ice = 2;
-    int shock = 2;
+    public void setElements();
+
+    public void setFire(int num);
+
+    public void setEarth(int num);
+
+    public void setWind(int num);
+
+    public void setIce(int num);
+
+    public void setShock(int num);
+
+    public String getName();
+
+    public int getPopulation();
 
     public void addDweller(String name);
 
     public void removeDweller(String name);
-    
+
+    public void addBonus();
+
+    public void addWeakness();
 }
