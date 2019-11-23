@@ -9,7 +9,7 @@ public class Earth {
         if (instance == null) {
             instance = new Earth();
             System.out.println("Initial instance of Earth has been created.");
-        } else if (instance != null) {
+        } else {
             System.out.println("Earth has already been created.");
         }
         return instance;
