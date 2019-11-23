@@ -4,7 +4,7 @@ public class Earth {
 
     private static Earth instance;
 
-    public static Earth getInstance() {
+    public static Earth getEarth() {
 
         if (instance == null) {
             instance = new Earth();
