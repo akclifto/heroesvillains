@@ -3,13 +3,14 @@ package factory;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class VillainLair implements LairBase {
 
     private String name;
-    private int pop;
+    private int pop = 0;
     private int popMax = 5;
     private int fire;
     private int earth;
@@ -19,8 +20,7 @@ public class VillainLair implements LairBase {
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
     private List<String> dwellerList = new ArrayList<>();
 
-    public VillainLair(String name) {
-        this.name = name;
+    public VillainLair() {
         this.pop = 0;
     }
 
@@ -32,7 +32,7 @@ public class VillainLair implements LairBase {
                 int rand = ThreadLocalRandom.current().nextInt(0, 3);
                 elementList.set(i, rand);
             }
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Element list is pointing to null.");
             e.printStackTrace();
         }
@@ -80,8 +80,23 @@ public class VillainLair implements LairBase {
     }
 
     @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
     public String getName() {
-        return null;
+
+        try {
+
+            return name;
+
+        } catch (Exception e) {
+
+            System.out.println("Name is null.");
+            e.printStackTrace();
+        }
+        return name;
     }
 
     @Override
@@ -103,20 +118,48 @@ public class VillainLair implements LairBase {
     @Override
     public void removeDweller(String name) {
 
+        dwellerList.remove(name);
+        System.out.println(name + " has been removed from the Lair.");
+        pop--;
+        if (pop <= 0) {
+            HotSpotFactory f = new HotSpotFactory();
+            f.removeLair(this);
+        }
+
     }
 
     @Override
     public void addBonus() {
 
-        int rand = ThreadLocalRandom.current().nextInt(0, 3);
-        if (rand == 0) {
-            int fire = elementList.get(0) + 2;
-            setFire(fire);
-        }
+        int randEle = ThreadLocalRandom.current().nextInt(0, 6);
+        int randBonus = ThreadLocalRandom.current().nextInt(0, 4);
+        elementList.set(randEle, randBonus);
+
     }
 
     @Override
     public void addWeakness() {
+
+        int randEle = ThreadLocalRandom.current().nextInt(0, 6);
+        int randWeak = ThreadLocalRandom.current().nextInt(0, 3);
+
+        if (elementList.get(randEle) == 0) {
+            System.out.println("No weakness applied.");
+
+        } else {
+
+            int temp = elementList.get(randEle) - randWeak;
+            if (temp <= 0) {
+                temp = 0;
+                System.out.println(elementList.get(randEle) + " has been set to " + temp);
+                elementList.set(randEle, temp);
+            } else {
+                elementList.set(randEle, temp);
+                System.out.println(elementList.get(randEle) + " has been set to " + temp);
+            }
+
+        }
+
 
     }
 }

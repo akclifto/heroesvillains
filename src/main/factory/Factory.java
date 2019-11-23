@@ -8,13 +8,16 @@ public abstract class Factory {
      * Date:  2019.11.23
      *
      * <p>Description: Abstract Factory class used for base methods for creating "hotspots",
-     * or Lairs and Bases for Villains and Heroes.  This file is used to create a Lair/Base
-     * and add a Bonus attribute to it.
+     * or Lairs and Bases for Villains and Heroes.  This file is used to create/remove a Lair/Base.
      */
 
-    public abstract LairBase createLair(String name);
+    public abstract LairBase createLair();
 
-    public abstract LairBase createBase(String name);
+    public abstract LairBase createBase();
+
+    public abstract void removeLair(LairBase object);
+
+    public abstract void removeBase(LairBase object);
 
 
 

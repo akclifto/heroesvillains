@@ -18,8 +18,8 @@ public class HeroBase implements LairBase {
     private List<String> dwellerList = new ArrayList<>();
 
 
-    public HeroBase(String name) {
-        this.name = name;
+    public HeroBase() {
+
         pop = 0;
 
     }
@@ -55,8 +55,23 @@ public class HeroBase implements LairBase {
     }
 
     @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
     public String getName() {
-        return null;
+
+        try {
+
+            return name;
+
+        } catch (Exception e) {
+
+            System.out.println("Name is null.");
+            e.printStackTrace();
+        }
+        return name;
     }
 
     @Override

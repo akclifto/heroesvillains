@@ -14,6 +14,8 @@ public interface LairBase {
 
     public void setShock(int num);
 
+    public void setName(String name);
+
     public String getName();
 
     public int getPopulation();
