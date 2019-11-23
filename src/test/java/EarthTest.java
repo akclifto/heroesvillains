@@ -1,10 +1,9 @@
-import main.factory.Earth;
+import factory.Earth;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -29,7 +28,6 @@ public class EarthTest {
 
     @Test
     public void Earth_test_instance() {
-
 
         Earth e = new Earth();
         e.getEarth();

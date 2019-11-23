@@ -83,8 +83,14 @@ jacocoTestReport {
  }
  // To generate an HTML report instead of XML
  tasks.withType(com.github.spotbugs.SpotBugsTask) {
+     sourceSets {
+         main {
+             java.srcDirs = ['src/main']
+         }
+     }
    reports {
      xml.enabled = false
      html.enabled = true
    }
+
  }
