@@ -1,3 +1,4 @@
+import decorator.DecoratorControl;
 import factory.FactoryControl;
 
 public class Main {
@@ -13,7 +14,9 @@ public class Main {
     public static void main(String[] args) {
 
         FactoryControl f = new FactoryControl();
+        DecoratorControl c = new DecoratorControl();
 
         f.run();
+        c.run();
     }
 }
