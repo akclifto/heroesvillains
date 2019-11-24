@@ -94,3 +94,15 @@ jacocoTestReport {
    }
 
  }
+
+
+// FatJar Creator
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'main.Main'
+    }
+
+    baseName = 'Heroes_and_Villains'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
