@@ -32,6 +32,8 @@ public class FactoryControl {
         System.out.println("Villain lair pop: " + villainLair.getPopulation());
         villainLair.removeDweller("Cornelius");
         System.out.println("Villain lair pop: " + villainLair.getPopulation());
+        heroBase.removeDweller("Jildon");
+        System.out.println("Hero base pop: " + heroBase.getPopulation());
 
 
     }

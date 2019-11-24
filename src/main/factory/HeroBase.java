@@ -16,11 +16,9 @@ public class HeroBase implements LairBase {
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
     private List<String> dwellerList = new ArrayList<>();
 
-
     public HeroBase() {
 
         setElements();
-
     }
 
     @Override
@@ -117,11 +115,16 @@ public class HeroBase implements LairBase {
         }
     }
 
+    @SuppressWarnings("UC_USELESS_OBJECT")
     @Override
     public void removeDweller(String name) {
 
-        dwellerList.remove(name);
-        System.out.println(name + " has been removed from the Base.");
+        if (!dwellerList.contains(name)) {
+            System.out.println("The following name does not appear in the Base: " + name);
+        } else {
+            dwellerList.remove(name);
+            System.out.println(name + " has been removed from the Lair.");
+        }
         if (dwellerList.size() == 0) {
             HotSpotFactory f = new HotSpotFactory();
             f.removeLair(this);
