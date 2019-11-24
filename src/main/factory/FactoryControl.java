@@ -11,6 +11,16 @@ public class FactoryControl {
     private VillainLair villainLair;
     private List<VillainLair> villainLairList = new ArrayList<>();
 
+    /**
+     * Method: Runs the factory design simulation
+     * Inputs: NA
+     * Returns: void
+     * Description: This method will run the factory design.  It will:
+     *  - create hotspots of Hero bases and Villain lairs.
+     *  - add elemental attributes to strengthen/weaken hero dwellers or villain dwellers.
+     *  - add dwellers to bases and lairs.
+     *  - create a new bases or lairs if size exceeds 5 dwellers.
+     */
     public void run() {
 
         //TODO build out controller proper

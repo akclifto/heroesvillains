@@ -1,6 +1,5 @@
 package factory;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -159,6 +158,13 @@ public class HeroBase implements LairBase {
         }
     }
 
+    /**
+     * Method: checks if the base is full.
+     * Inputs: NA
+     * Returns: true if the base reaches max capacity of 5. False otherwise.
+     * Description: This method checks if the base is full and will return
+     * false if it is not.
+     */
     public boolean isBaseFull() {
 
         if (dwellerList.size() == 5) {

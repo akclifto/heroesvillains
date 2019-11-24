@@ -160,6 +160,13 @@ public class VillainLair implements LairBase {
         }
     }
 
+    /**
+     * Method: checks if the lair is full.
+     * Inputs: NA
+     * Returns: true if the lair reaches max capacity of 5. False otherwise.
+     * Description: This method checks if the lair is full and will return
+     * false if it is not.
+     */
     public boolean isLairFull() {
 
         if (dwellerList.size() == 5) {
