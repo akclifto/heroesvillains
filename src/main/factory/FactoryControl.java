@@ -13,6 +13,8 @@ public class FactoryControl {
 
     public void run() {
 
+        //TODO build out controller proper
+
 
         System.out.println("Starting factory...");
         hot.createBase();
