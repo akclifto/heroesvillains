@@ -103,7 +103,7 @@ task fatJar(type: Jar) {
         attributes 'Main-Class': 'Main'
     }
 
-    baseName = 'Factory_fatJar'
+    baseName = 'akclifto_HeroesVillains'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }

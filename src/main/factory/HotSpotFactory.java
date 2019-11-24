@@ -10,6 +10,8 @@ public class HotSpotFactory extends Factory {
     private HeroBase heroBase;
     private List<VillainLair> lairs = new ArrayList<>();
     private List<HeroBase> bases = new ArrayList<>();
+    private HotSpot hotspot;
+
 
     public HotSpotFactory() {
         //ctor
@@ -23,6 +25,18 @@ public class HotSpotFactory extends Factory {
         return bases;
     }
 
+    public void initHotspot(String city) {
+
+        hotspot = new HotSpot(city);
+        System.out.println("A new hotspot has been created: " + city);
+        createBase();
+        createLair();
+    }
+
+
+
+
+
     @Override
     public LairBase createBase() {
 
@@ -30,7 +44,6 @@ public class HotSpotFactory extends Factory {
         bases.add(heroBase);
         System.out.println("A new hero base has been added to the planet.");
         return heroBase;
-
     }
 
     @Override
