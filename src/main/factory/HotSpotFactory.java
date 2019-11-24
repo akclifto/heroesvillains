@@ -11,6 +11,7 @@ public class HotSpotFactory extends Factory {
     private List<VillainLair> lairs = new ArrayList<>();
     private List<HeroBase> bases = new ArrayList<>();
     private HotSpot hotspot;
+    private List<HotSpot> hotspotList = new ArrayList<>();
 
 
     public HotSpotFactory() {
@@ -25,34 +26,42 @@ public class HotSpotFactory extends Factory {
         return bases;
     }
 
+    @Override
     public void initHotspot(String city) {
 
         hotspot = new HotSpot(city);
+        hotspotList.add(hotspot);
         System.out.println("A new hotspot has been created: " + city);
         createBase();
         createLair();
     }
 
+    @Override
+    public void createHotspot(String city) {
 
-
-
+        if ((hotspot.checkLair()) || (hotspot.checkBase())) {
+            hotspot = new HotSpot(city);
+            hotspotList.add(hotspot);
+        } else {
+            System.out.println(" Creating hotspot stopped.  "
+                    + "City does not contain one Lair and one Base.");
+        }
+    }
 
     @Override
-    public LairBase createBase() {
+    public void createBase() {
 
         heroBase = new HeroBase();
         bases.add(heroBase);
         System.out.println("A new hero base has been added to the planet.");
-        return heroBase;
     }
 
     @Override
-    public LairBase createLair() {
+    public void createLair() {
 
         villainLair = new VillainLair();
         lairs.add(villainLair);
         System.out.println("A new villain lair has been added to the planet.");
-        return villainLair;
     }
 
     @Override
