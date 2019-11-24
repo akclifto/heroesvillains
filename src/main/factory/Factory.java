@@ -14,8 +14,8 @@ public abstract class Factory {
      * Method: Creates a new lair in the simulation
      * Inputs: NA
      * Returns: new Lair.
-     * Description: This method add a new lair to the simulation, then puts it in a list to track all lairs
-     * in the game.
+     * Description: This method add a new lair to the simulation, then puts
+     * it in a list to track all lairs in the game.
      */
     public abstract LairBase createLair();
 
@@ -23,8 +23,8 @@ public abstract class Factory {
      * Method: Creates a new base in the simulation
      * Inputs: NA
      * Returns: new base.
-     * Description: This method add a new base to the simulation, then puts it in a list to track all bases
-     * in the game.
+     * Description: This method add a new base to the simulation, then puts
+     * it in a list to track all bases in the game.
      */
     public abstract LairBase createBase();
 
@@ -32,8 +32,8 @@ public abstract class Factory {
      * Method: Removes a lair from the game.
      * Inputs: object : LairBase
      * Returns: void
-     * Description: This method add a new base to the simulation, then puts it in a list to track all bases
-     * in the game.
+     * Description: This method add a new base to the simulation, then puts
+     * it in a list to track all bases in the game.
      */
     public abstract void removeLair(LairBase object);
 

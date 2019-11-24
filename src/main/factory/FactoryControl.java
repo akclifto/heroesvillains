@@ -40,7 +40,7 @@ public class FactoryControl {
         System.out.println(villainLair.getElementList());
 
         int num = 1;
-        for (int i = 0 ; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             if (heroBase.isBaseFull()) {
                 hot.createBase();
                 heroBaseList = hot.getBases();
