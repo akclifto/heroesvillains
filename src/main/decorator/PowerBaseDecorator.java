@@ -1,6 +1,8 @@
 package decorator;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * File: PowerBaseDecorator.java
@@ -13,14 +15,48 @@ import java.util.List;
  */
 public abstract  class PowerBaseDecorator implements SpawnSuper {
 
-    @Override
-    public void spawnHero() {
 
+    private Hero hero;
+    private Villain villain;
+    private List<Hero> spawnedHeroes = new ArrayList<>();
+    private List<Villain> spawnedVillains = new ArrayList<>();
+    private static int citizenHero = 0;
+
+    @Override
+    public void spawnHero(String name) {
+
+        this.hero = new Hero (name);
+        spawnedHeroes.add(this.hero);
+        System.out.println("A new Hero is born: " + name);
+        System.out.println(name + " does not have any special powers yet!");
+        if (randomCitizenHero()) {
+            System.out.println("A new citizen becomes a Hero! Citizen "
+                    + citizenHero + "is now a hero!");
+        }
     }
 
     @Override
-    public void spawnVillain() {
+    public void spawnVillain(String name) {
 
+    }
+
+    /**
+     * Method: Transforms a random citizen into Hero.
+     * Inputs: NA
+     * Returns: void
+     * Description: This method will create a new Hero from Random citizens.  This may
+     * occur when a new Hero is about to spawn, so a spawnHero method may spawn two
+     * heroes.
+     */
+    public boolean randomCitizenHero() {
+
+        int[] fib = {0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
+        int rand = ThreadLocalRandom.current().nextInt(0, 143);
+
+        for (int i : fib) {
+            return i == rand;
+        }
+        return false;
     }
 
     /**

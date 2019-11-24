@@ -8,7 +8,7 @@ package decorator;
  * <p>Description: Villain class to create Villains for the simulation.  This class extends
  * Concrete Power and will be used to modify Villains and spawn new Villains.
  */
-public class Villain extends ConcretePower {
+public class Villain extends ConcreteSuperPower {
 
     private String name;
     private int fire = 0;

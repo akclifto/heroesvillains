@@ -13,19 +13,19 @@ public interface SpawnSuper {
 
     /**
      * Method: Spawns a hero.
-     * Inputs: NA
+     * Inputs: name : String
      * Returns: void
      * Description: This method will spawn a hero.  Powers will be given in a separate class.
      */
-    public void spawnHero();
+    public void spawnHero(String name);
 
     /**
      * Method: Spawns a villain
-     * Inputs: NA
+     * Inputs: name : String
      * Returns: void
      * Description: This method will spawn a villain.  Powers will be given in a separate class.
      */
-    public void spawnVillain();
+    public void spawnVillain(String name);
 
 
 

@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * <p>Description: Class extends PowerBaseDecorator and will be used to add powers to
  * heroes and villains.  This class will be extended by the Hero and Villain classes.
  */
-public class ConcretePower extends PowerBaseDecorator {
+public class ConcreteSuperPower extends PowerBaseDecorator {
 
     @Override
     public void addPower(String name, int eleType, int amountPower) {

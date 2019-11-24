@@ -1,5 +1,11 @@
 package decorator;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * File: ConcreteSuper.java
  * Author:  Adam Clifton (akclifto@asu.edu)
@@ -10,21 +16,17 @@ package decorator;
  */
 public class ConcreteSuper implements SpawnSuper {
 
-
     public ConcreteSuper(){
         //ctor
     }
 
 
     @Override
-    public void spawnHero() {
-
-
-
+    public void spawnHero(String name) {
     }
 
     @Override
-    public void spawnVillain() {
-
+    public void spawnVillain(String name) {
     }
+
 }

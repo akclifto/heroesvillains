@@ -1,8 +1,8 @@
 package decorator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * File: Hero.java
@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * <p>Description: Hero classes to create Heroes for the simulation.  This class extends
  * Concrete Power and will be used to modify Heroes and spawn children.
  */
-public class Hero extends ConcretePower {
+public class Hero extends ConcreteSuperPower {
 
     private String name;
     private int fire = 0;
@@ -20,13 +20,14 @@ public class Hero extends ConcretePower {
     private int wind = 0;
     private int ice = 0;
     private int shock = 0;
-    private List<Integer> elementList = new ArrayList<>();
+    private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
     private List<Hero> heroList = new ArrayList<>();
 
 
-    public Hero (String name) {
+    public Hero(String name) {
 
         this.name = name;
+        setBaseElements(elementList, 0, 11);
 
     }
 
@@ -38,17 +39,9 @@ public class Hero extends ConcretePower {
         return heroList;
     }
 
-    public void setBaseElements() {
+    public List<Integer> getElementList() {
 
-        try {
-            for (int i = 0; i < elementList.size(); i++) {
-                int rand = ThreadLocalRandom.current().nextInt(0, 11);
-                elementList.set(i, rand);
-            }
-        } catch (NullPointerException e) {
-            System.out.println("Element list is pointing to null.");
-            e.printStackTrace();
-        }
+        return elementList;
     }
 
 }
