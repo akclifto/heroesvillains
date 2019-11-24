@@ -1,5 +1,6 @@
 package factory;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +17,7 @@ public class HeroBase implements LairBase {
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
     private List<String> dwellerList = new ArrayList<>();
 
+
     public HeroBase() {
 
         setElements();
@@ -26,7 +28,7 @@ public class HeroBase implements LairBase {
 
         try {
             for (int i = 0; i < elementList.size(); i++) {
-                int rand = ThreadLocalRandom.current().nextInt(0, 3);
+                int rand = ThreadLocalRandom.current().nextInt(0, 5);
                 elementList.set(i, rand);
             }
         } catch (NullPointerException e) {
@@ -103,11 +105,8 @@ public class HeroBase implements LairBase {
     @Override
     public void addDweller(String name) {
 
-        if (dwellerList.size() == 5) {
-            System.out.println("A new Base is being created.");
-            HotSpotFactory f = new HotSpotFactory();
-            f.createLair();
-            addDweller(name);
+        if (isBaseFull()) {
+            System.out.println(name + " was not added to the base.");
         } else {
             System.out.print(name + " has been added to the Base. ");
             System.out.println("The wall of light is growing brighter!");
@@ -115,7 +114,7 @@ public class HeroBase implements LairBase {
         }
     }
 
-    @SuppressWarnings("UC_USELESS_OBJECT")
+
     @Override
     public void removeDweller(String name) {
 
@@ -125,11 +124,6 @@ public class HeroBase implements LairBase {
             dwellerList.remove(name);
             System.out.println(name + " has been removed from the Lair.");
         }
-        if (dwellerList.size() == 0) {
-            HotSpotFactory f = new HotSpotFactory();
-            f.removeLair(this);
-        }
-
     }
 
     @Override
@@ -162,6 +156,16 @@ public class HeroBase implements LairBase {
                 elementList.set(randEle, temp);
                 System.out.println(elementList.get(randEle) + " has been set to " + temp);
             }
+        }
+    }
+
+    public boolean isBaseFull() {
+
+        if (dwellerList.size() == 5) {
+            System.out.println("Current base is full.");
+            return true;
+        } else {
+            return false;
         }
     }
 }

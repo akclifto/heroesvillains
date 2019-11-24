@@ -49,19 +49,9 @@ public class HotSpotFactory extends Factory {
     }
 
     @Override
-    public void removeBase(LairBase obj) {
+    public void removeBase(LairBase heroBase) {
 
-        bases.remove(obj);
+        bases.remove(heroBase);
     }
-
-    public HeroBase getHeroBase() {
-        return heroBase;
-    }
-
-    public VillainLair getVillainLair() {
-        return villainLair;
-    }
-
-
 
 }

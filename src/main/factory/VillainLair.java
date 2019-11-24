@@ -96,14 +96,19 @@ public class VillainLair implements LairBase {
         return dwellerList.size();
     }
 
+    public List<String> getDwellerList() {
+        return dwellerList;
+    }
+
+    public List<Integer> getElementList() {
+        return elementList;
+    }
+
     @Override
     public void addDweller(String name) {
 
-        if (dwellerList.size() == 5) {
-            System.out.println("A new Lair is being created.");
-            HotSpotFactory f = new HotSpotFactory();
-            f.createLair();
-            addDweller(name);
+        if (isLairFull()) {
+            System.out.println(name + " was not added to the Lair.");
         } else {
             System.out.print(name + " has been added to the Lair. ");
             System.out.println("The dark grip of evil expands!");
@@ -120,11 +125,6 @@ public class VillainLair implements LairBase {
             dwellerList.remove(name);
             System.out.println(name + " has been removed from the Lair.");
         }
-        if (dwellerList.size() == 0) {
-            HotSpotFactory f = new HotSpotFactory();
-            f.removeLair(this);
-        }
-
     }
 
     @Override
@@ -157,6 +157,16 @@ public class VillainLair implements LairBase {
                 System.out.println(elementList.get(randEle) + " has been set to " + temp);
             }
 
+        }
+    }
+
+    public boolean isLairFull() {
+
+        if (dwellerList.size() == 5) {
+            System.out.println("Current Lair is full.");
+            return true;
+        } else {
+            return false;
         }
     }
 
