@@ -27,6 +27,10 @@ public class HotSpot {
         return name;
     }
 
+    public List<LairBase> getHotspots() {
+        return hotspots;
+    }
+
     /**
      * Method: Adds a lair to a hotspot.
      * Inputs: lair : VillainLair

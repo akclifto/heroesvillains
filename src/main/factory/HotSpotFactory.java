@@ -49,12 +49,27 @@ public class HotSpotFactory extends Factory {
     @Override
     public void createHotspot(String city) {
 
-        if ((hotspot.checkLair()) || (hotspot.checkBase())) {
+        boolean needHotspot = false;
+
+        for (Object item : hotspot.getHotspots()) {
+
+            if (item instanceof HeroBase) {
+                needHotspot = true;
+            }
+            if (item instanceof VillainLair) {
+                needHotspot = true;
+            }
+        }
+        if (needHotspot) {
             hotspot = new HotSpot(city);
             hotspotList.add(hotspot);
+            System.out.println("Adding a new hotspot.");
+            System.out.println("Hotspot added: "
+                    + hotspotList.get(hotspotList.size() - 1).getName());
         } else {
-            System.out.println(" Creating hotspot stopped.  "
-                    + "City does not contain one Lair and one Base.");
+            System.out.print(city + " was not created! ");
+            System.out.println("The current city does not contain one Lair and one Base.");
+
         }
     }
 

@@ -29,7 +29,9 @@ public class FactoryControl {
         hot.initHotspot("Gotham");
         System.out.println();
         System.out.println();
-        System.out.println();
+        hot.createHotspot("Didldo");
+        hot.createHotspot("Freee");
+
 
         System.out.println("Starting factory...");
         hot.createBase();
