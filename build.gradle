@@ -88,7 +88,7 @@ jacocoTestReport {
              java.srcDirs = ['src/main']
          }
      }
-   reports {
+     reports {
      xml.enabled = false
      html.enabled = true
    }

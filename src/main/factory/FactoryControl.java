@@ -39,24 +39,15 @@ public class FactoryControl {
         System.out.println(heroBase.getElementList());
         System.out.println(villainLair.getElementList());
 
-
-        int num = 10;
-        while (num > 0) {
-
+        int num = 1;
+        for (int i = 0 ; i < 10; i++) {
             if (heroBase.isBaseFull()) {
                 hot.createBase();
-                break;
+                heroBaseList = hot.getBases();
+                heroBase = heroBaseList.get(heroBaseList.size() - 1);
             }
             System.out.println("adding dwellers to HeroBase.");
-            heroBase.addDweller("d1");
-            heroBase.addDweller("d2");
-            heroBase.addDweller("d3");
-            heroBase.addDweller("d4");
-            heroBase.addDweller("d5");
-            heroBase.addDweller("d6");
-        }
-        for (int i = 0 ; i < heroBase.getDwellerList().size(); i++) {
-            //
+            heroBase.addDweller("d" + String.valueOf(num++));
         }
 
 
