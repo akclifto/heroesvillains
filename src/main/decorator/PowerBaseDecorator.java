@@ -43,6 +43,15 @@ public abstract  class PowerBaseDecorator implements SpawnSuper {
     public abstract void absorbPower();
 
     /**
+     * Method: Sets base elements for Heroes and Villains.
+     * Inputs: list : List, min : int, max : int
+     * Returns: void
+     * Description: This method will set base attirbutes for both Heroes and Villains
+     * and allows the user to set custom min, max options for both.
+     */
+    public abstract void setBaseElements(List<Integer> list, int min, int max);
+
+    /**
      * Method: Find selected hero in a list.
      * Inputs: list : List
      * Returns: Hero

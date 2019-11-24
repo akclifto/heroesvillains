@@ -11,11 +11,11 @@ package decorator;
 public class Villain extends ConcretePower {
 
     private String name;
-    private int fire;
-    private int earth;
-    private int wind;
-    private int ice;
-    private int shock;
+    private int fire = 0;
+    private int earth = 0;
+    private int wind = 0;
+    private int ice = 0;
+    private int shock = 0;
 
 
     public Villain (String name) {

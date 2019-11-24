@@ -2,6 +2,7 @@ package decorator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * File: Hero.java
@@ -14,11 +15,12 @@ import java.util.List;
 public class Hero extends ConcretePower {
 
     private String name;
-    private int fire;
-    private int earth;
-    private int wind;
-    private int ice;
-    private int shock;
+    private int fire = 0;
+    private int earth = 0;
+    private int wind = 0;
+    private int ice = 0;
+    private int shock = 0;
+    private List<Integer> elementList = new ArrayList<>();
     private List<Hero> heroList = new ArrayList<>();
 
 
@@ -38,8 +40,15 @@ public class Hero extends ConcretePower {
 
     public void setBaseElements() {
 
-
+        try {
+            for (int i = 0; i < elementList.size(); i++) {
+                int rand = ThreadLocalRandom.current().nextInt(0, 11);
+                elementList.set(i, rand);
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Element list is pointing to null.");
+            e.printStackTrace();
+        }
     }
-
 
 }

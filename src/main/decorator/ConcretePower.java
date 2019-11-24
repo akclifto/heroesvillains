@@ -1,6 +1,7 @@
 package decorator;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * File: ConcretePower.java
@@ -24,6 +25,22 @@ public class ConcretePower extends PowerBaseDecorator {
     public void absorbPower() {
         //TODO
     }
+
+
+    @Override
+    public void setBaseElements(List<Integer> list, int min, int max) {
+
+        try {
+            for (int i = 0; i < list.size(); i++) {
+                int rand = ThreadLocalRandom.current().nextInt(min, max);
+                list.set(i, rand);
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Element list is pointing to null.");
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public Hero getHero(List<Hero> list, String name) {
@@ -50,6 +67,8 @@ public class ConcretePower extends PowerBaseDecorator {
         }
         return null;
     }
+
+
 
 
 }
