@@ -10,6 +10,7 @@ plugins {
  sourceSets.main.java.srcDirs = ['src']
  application {
      mainClassName = 'main.Main'
+     compileJava.options.encoding = 'UTF-8'
  }
 
 // In this section you declare where to find the dependencies of your project
@@ -102,7 +103,7 @@ task fatJar(type: Jar) {
         attributes 'Main-Class': 'main.Main'
     }
 
-    baseName = 'Heroes_and_Villains'
+    baseName = 'Factory_fatJar'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
