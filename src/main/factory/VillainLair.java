@@ -1,9 +1,7 @@
 package factory;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -21,7 +19,9 @@ public class VillainLair implements LairBase {
     private List<String> dwellerList = new ArrayList<>();
 
     public VillainLair() {
+
         this.pop = 0;
+        setElements();
     }
 
     @Override
@@ -41,8 +41,7 @@ public class VillainLair implements LairBase {
     @Override
     public void setFire(int num) {
 
-        int temp = fire + num;
-        this.fire = temp;
+        this.fire = fire + num;
         elementList.set(0, fire);
 
     }
@@ -50,32 +49,28 @@ public class VillainLair implements LairBase {
     @Override
     public void setEarth(int num) {
 
-        int temp = earth + num;
-        this.earth = temp;
+        this.earth = earth + num;
         elementList.set(1, earth);
     }
 
     @Override
     public void setWind(int num) {
 
-        int temp = wind + num;
-        this.wind = temp;
+        this.wind = wind + num;
         elementList.set(2, wind);
     }
 
     @Override
     public void setIce(int num) {
 
-        int temp = ice + num;
-        this.ice = temp;
+        this.ice = ice + num;
         elementList.set(3, ice);
     }
 
     @Override
     public void setShock(int num) {
 
-        int temp = shock + num;
-        this.shock = temp;
+        this.shock = shock + num;
         elementList.set(4, shock);
     }
 
@@ -159,7 +154,7 @@ public class VillainLair implements LairBase {
             }
 
         }
-
-
     }
+
+
 }

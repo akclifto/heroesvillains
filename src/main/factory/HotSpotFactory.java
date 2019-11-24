@@ -19,7 +19,6 @@ public class HotSpotFactory extends Factory {
     public LairBase createBase() {
 
         heroBase = new HeroBase();
-        heroBase.setElements();
         bases.add(heroBase);
         System.out.println("A new hero base has been added to the planet.");
         return heroBase;
@@ -27,27 +26,24 @@ public class HotSpotFactory extends Factory {
     }
 
     @Override
+    public LairBase createLair() {
+
+        villainLair = new VillainLair();
+        lairs.add(villainLair);
+        System.out.println("A new villain lair has been added to the planet.");
+        return villainLair;
+    }
+
+    @Override
     public void removeLair(LairBase obj) {
 
-
         lairs.remove(obj);
-
     }
 
     @Override
     public void removeBase(LairBase obj) {
 
         bases.remove(obj);
-    }
-
-    @Override
-    public LairBase createLair() {
-
-        villainLair = new VillainLair();
-        villainLair.setElements();
-        lairs.add(villainLair);
-        System.out.println("A new villain lair has been added to the planet.");
-        return villainLair;
     }
 
 }
