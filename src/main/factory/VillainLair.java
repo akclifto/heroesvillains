@@ -8,19 +8,16 @@ import java.util.concurrent.ThreadLocalRandom;
 public class VillainLair implements LairBase {
 
     private String name;
-    private int pop = 0;
-    private int popMax = 5;
-    private int fire;
-    private int earth;
-    private int wind;
-    private int ice;
-    private int shock;
+    private int fire = 0;
+    private int earth = 0;
+    private int wind = 0;
+    private int ice = 0;
+    private int shock = 0;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
     private List<String> dwellerList = new ArrayList<>();
 
     public VillainLair() {
 
-        this.pop = 0;
         setElements();
     }
 
@@ -96,16 +93,20 @@ public class VillainLair implements LairBase {
 
     @Override
     public int getPopulation() {
-        return 0;
+        return dwellerList.size();
     }
 
     @Override
     public void addDweller(String name) {
 
-        if (pop == popMax) {
+        if (dwellerList.size() == 5) {
+            System.out.println("A new Lair is being created.");
             HotSpotFactory f = new HotSpotFactory();
-            f.createBase();
+            f.createLair();
+            addDweller(name);
         } else {
+            System.out.print(name + " has been added to the Lair. ");
+            System.out.println("The dark grip of evil expands!");
             dwellerList.add(name);
         }
     }
@@ -115,8 +116,7 @@ public class VillainLair implements LairBase {
 
         dwellerList.remove(name);
         System.out.println(name + " has been removed from the Lair.");
-        pop--;
-        if (pop <= 0) {
+        if (dwellerList.size() == 0) {
             HotSpotFactory f = new HotSpotFactory();
             f.removeLair(this);
         }

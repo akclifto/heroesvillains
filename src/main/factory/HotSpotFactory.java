@@ -8,11 +8,19 @@ public class HotSpotFactory extends Factory {
 
     private VillainLair villainLair;
     private HeroBase heroBase;
-    private List<Object> lairs = new ArrayList<>();
-    private List<Object> bases = new ArrayList<>();
+    private List<VillainLair> lairs = new ArrayList<>();
+    private List<HeroBase> bases = new ArrayList<>();
 
     public HotSpotFactory() {
         //ctor
+    }
+
+    public List<VillainLair> getLairs() {
+        return lairs;
+    }
+
+    public List<HeroBase> getBases() {
+        return bases;
     }
 
     @Override
@@ -45,5 +53,15 @@ public class HotSpotFactory extends Factory {
 
         bases.remove(obj);
     }
+
+    public HeroBase getHeroBase() {
+        return heroBase;
+    }
+
+    public VillainLair getVillainLair() {
+        return villainLair;
+    }
+
+
 
 }

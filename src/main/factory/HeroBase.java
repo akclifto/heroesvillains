@@ -8,20 +8,17 @@ import java.util.concurrent.ThreadLocalRandom;
 public class HeroBase implements LairBase {
 
     private String name;
-    private int pop;
-    private int popMax = 5;
-    private int fire;
-    private int earth;
-    private int wind;
-    private int ice;
-    private int shock;
+    private int fire = 0;
+    private int earth = 0;
+    private int wind = 0;
+    private int ice = 0;
+    private int shock = 0;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
     private List<String> dwellerList = new ArrayList<>();
 
 
     public HeroBase() {
 
-        pop = 0;
         setElements();
 
     }
@@ -94,7 +91,7 @@ public class HeroBase implements LairBase {
 
     @Override
     public int getPopulation() {
-        return 0;
+        return dwellerList.size();
     }
 
     public List<String> getDwellerList() {
@@ -108,10 +105,14 @@ public class HeroBase implements LairBase {
     @Override
     public void addDweller(String name) {
 
-        if (pop == popMax) {
+        if (dwellerList.size() == 5) {
+            System.out.println("A new Base is being created.");
             HotSpotFactory f = new HotSpotFactory();
             f.createLair();
+            addDweller(name);
         } else {
+            System.out.print(name + " has been added to the Base. ");
+            System.out.println("The wall of light is growing brighter!");
             dwellerList.add(name);
         }
     }
@@ -121,8 +122,7 @@ public class HeroBase implements LairBase {
 
         dwellerList.remove(name);
         System.out.println(name + " has been removed from the Base.");
-        pop--;
-        if (pop <= 0) {
+        if (dwellerList.size() == 0) {
             HotSpotFactory f = new HotSpotFactory();
             f.removeLair(this);
         }
