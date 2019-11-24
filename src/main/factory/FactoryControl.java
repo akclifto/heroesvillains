@@ -11,6 +11,7 @@ public class FactoryControl {
     private VillainLair villainLair;
     private List<VillainLair> villainLairList = new ArrayList<>();
 
+
     /**
      * Method: Runs the factory design simulation
      * Inputs: NA
@@ -24,7 +25,11 @@ public class FactoryControl {
     public void run() {
 
         //TODO build out controller proper
-
+        System.out.println("Creating initial Hotspot...");
+        hot.initHotspot("Gotham");
+        System.out.println();
+        System.out.println();
+        System.out.println();
 
         System.out.println("Starting factory...");
         hot.createBase();

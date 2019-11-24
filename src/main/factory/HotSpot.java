@@ -23,6 +23,10 @@ public class HotSpot {
         cities.add(name);
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Method: Adds a lair to a hotspot.
      * Inputs: lair : VillainLair

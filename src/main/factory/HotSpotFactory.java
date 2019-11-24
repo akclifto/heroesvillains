@@ -32,8 +32,18 @@ public class HotSpotFactory extends Factory {
         hotspot = new HotSpot(city);
         hotspotList.add(hotspot);
         System.out.println("A new hotspot has been created: " + city);
-        createBase();
-        createLair();
+
+        heroBase = new HeroBase();
+        bases.add(heroBase);
+        hotspot.addBase(heroBase);
+        System.out.println("A new hero base has been added to "
+                + hotspotList.get(hotspotList.size() - 1).getName());
+
+        villainLair = new VillainLair();
+        lairs.add(villainLair);
+        hotspot.addLair(villainLair);
+        System.out.println("A new villain lair has been added to "
+                + hotspotList.get(hotspotList.size() - 1).getName());
     }
 
     @Override
@@ -51,18 +61,35 @@ public class HotSpotFactory extends Factory {
     @Override
     public void createBase() {
 
-        heroBase = new HeroBase();
-        bases.add(heroBase);
-        System.out.println("A new hero base has been added to the planet.");
+        HeroBase temp = bases.get(bases.size() - 1);
+        if (temp.isBaseFull()) {
+            heroBase = new HeroBase();
+            bases.add(heroBase);
+            hotspot.addBase(heroBase);
+            System.out.println("A new hero base has been added to "
+                    + hotspotList.get(hotspotList.size() - 1).getName());
+        } else {
+            System.out.println("Hero Base is not full.  No new Hero Base created.");
+            System.out.println("Hero Base contains " + heroBase.getPopulation() + " Heroes!");
+        }
     }
 
     @Override
     public void createLair() {
 
-        villainLair = new VillainLair();
-        lairs.add(villainLair);
-        System.out.println("A new villain lair has been added to the planet.");
+        VillainLair temp = lairs.get(lairs.size() - 1);
+        if (temp.isLairFull()) {
+            villainLair = new VillainLair();
+            lairs.add(villainLair);
+            hotspot.addLair(villainLair);
+            System.out.println("A new villain lair has been added to "
+                    + hotspotList.get(hotspotList.size() - 1).getName());
+        } else {
+            System.out.println("Villain Lair is not full.  No new Lair created.");
+            System.out.println("Villain Lair contains " + villainLair.getPopulation() + " Villains!");
+        }
     }
+
 
     @Override
     public void removeLair(LairBase obj) {
