@@ -106,7 +106,7 @@ public interface LairBase {
      * Inputs: NA
      * Returns: void
      * Description: Each base has a chance to receiving a weakened stat upon
-     * creation.  This method will add the weakness. 
+     * creation.  This method will add the weakness.
      */
     public void addWeakness();
 }
