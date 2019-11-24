@@ -86,7 +86,8 @@ public class HotSpotFactory extends Factory {
                     + hotspotList.get(hotspotList.size() - 1).getName());
         } else {
             System.out.println("Villain Lair is not full.  No new Lair created.");
-            System.out.println("Villain Lair contains " + villainLair.getPopulation() + " Villains!");
+            System.out.println("Villain Lair contains "
+                    + villainLair.getPopulation() + " Villains!");
         }
     }
 
