@@ -1,8 +1,7 @@
 package decorator;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 /**
  * File: PowerBaseDecorator.java
@@ -13,51 +12,22 @@ import java.util.concurrent.ThreadLocalRandom;
  * implements SpawnSuper and can spawn heroes and villains with varied powers.  ConcretePower
  * will inherit its methods to further build Hero and Villain classes.
  */
-public abstract  class PowerBaseDecorator implements SpawnSuper {
+public abstract class PowerBaseDecorator implements SpawnSuper {
 
+    /**Gets a list of all spawned Heroes. */
+    public abstract List<Hero> getSpawnedHeroes();
 
-    private Hero hero;
-    private Villain villain;
-    private List<Hero> spawnedHeroes = new ArrayList<>();
-    private List<Villain> spawnedVillains = new ArrayList<>();
-    private static int citizenHero = 0;
+    /**Gets a list of all spawned Villains. */
+    public abstract List<Villain> getSpawnedVillains();
 
-    @Override
-    public void spawnHero(String name) {
+    /**Passing spawnHero from interface class. */
+    public abstract void spawnHero(String name);
 
-        this.hero = new Hero (name);
-        spawnedHeroes.add(this.hero);
-        System.out.println("A new Hero is born: " + name);
-        System.out.println(name + " does not have any special powers yet!");
-        if (randomCitizenHero()) {
-            System.out.println("A new citizen becomes a Hero! Citizen "
-                    + citizenHero + "is now a hero!");
-        }
-    }
+    /**Passing spawnVillain from interface class. */
+    public abstract void spawnVillain(String name);
 
-    @Override
-    public void spawnVillain(String name) {
-
-    }
-
-    /**
-     * Method: Transforms a random citizen into Hero.
-     * Inputs: NA
-     * Returns: void
-     * Description: This method will create a new Hero from Random citizens.  This may
-     * occur when a new Hero is about to spawn, so a spawnHero method may spawn two
-     * heroes.
-     */
-    public boolean randomCitizenHero() {
-
-        int[] fib = {0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
-        int rand = ThreadLocalRandom.current().nextInt(0, 143);
-
-        for (int i : fib) {
-            return i == rand;
-        }
-        return false;
-    }
+    /**Passing randomCitizenHero from interface class. */
+    public abstract boolean randomCitizenHero();
 
     /**
      * Method: Add powers to hero or villain by name;

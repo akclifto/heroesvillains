@@ -16,8 +16,9 @@ public interface SpawnSuper {
      * Inputs: name : String
      * Returns: void
      * Description: This method will spawn a hero.  Powers will be given in a separate class.
+     * spawnHero will also have a chance to transform a citizen into a hero.
      */
-    public void spawnHero(String name);
+    void spawnHero(String name);
 
     /**
      * Method: Spawns a villain
@@ -25,7 +26,17 @@ public interface SpawnSuper {
      * Returns: void
      * Description: This method will spawn a villain.  Powers will be given in a separate class.
      */
-    public void spawnVillain(String name);
+    void spawnVillain(String name);
+
+    /**
+     * Method: Transforms a random citizen into Hero.
+     * Inputs: NA
+     * Returns: void
+     * Description: This method will create a new Hero from Random citizens.  This may
+     * occur when a new Hero is about to spawn, so a spawnHero method may spawn two
+     * heroes.
+     */
+    boolean randomCitizenHero();
 
 
 

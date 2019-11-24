@@ -29,4 +29,9 @@ public class ConcreteSuper implements SpawnSuper {
     public void spawnVillain(String name) {
     }
 
+    @Override
+    public boolean randomCitizenHero() {
+        return false;
+    }
+
 }

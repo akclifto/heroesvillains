@@ -1,5 +1,6 @@
 package decorator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,9 +14,65 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class ConcreteSuperPower extends PowerBaseDecorator {
 
+    private Hero hero;
+    private Villain villain;
+    private List<Hero> spawnedHeroes = new ArrayList<>();
+    private List<Villain> spawnedVillains = new ArrayList<>();
+    private static int citizenHero = 0;
+
+    @Override
+    public List<Hero> getSpawnedHeroes() {
+        return spawnedHeroes;
+    }
+
+    @Override
+    public List<Villain> getSpawnedVillains() {
+        return spawnedVillains;
+    }
+
+    @Override
+    public void spawnHero(String name) {
+
+        this.hero = new Hero (name);
+        spawnedHeroes.add(this.hero);
+        System.out.println("A new Hero is born: " + name);
+        System.out.println(name + " does not have any special powers yet!");
+
+        // chance to transform citizen to hero.
+        if (randomCitizenHero()) {
+            Hero newHero = new Hero("Citizen " + citizenHero);
+            spawnedHeroes.add(newHero);
+            System.out.println("A new citizen becomes a Hero! Citizen "
+                    + citizenHero + "is now a hero!");
+            citizenHero++;
+        } else {
+            System.out.println("The citizens did not heed the call to fight evil.");
+        }
+    }
+
+    @Override
+    public void spawnVillain(String name) {
+
+        this.villain = new Villain(name);
+        spawnedVillains.add(villain);
+        System.out.println("A new Villain has spawned!=: " + name);
+
+    }
+
+    @Override
+    public boolean randomCitizenHero() {
+
+        int[] fib = {0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
+        int rand = ThreadLocalRandom.current().nextInt(0, 143);
+
+        for (int i : fib) {
+            return i == rand;
+        }
+        return false;
+    }
+
     @Override
     public void addPower(String name, int eleType, int amountPower) {
-
 
 
 
