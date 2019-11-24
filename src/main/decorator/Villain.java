@@ -10,6 +10,22 @@ package decorator;
  */
 public class Villain extends ConcretePower {
 
-    //TODO
+    private String name;
+    private int fire;
+    private int earth;
+    private int wind;
+    private int ice;
+    private int shock;
+
+
+    public Villain (String name) {
+
+        this.name = name;
+
+    }
+
+    public String getName() {
+        return name;
+    }
 
 }

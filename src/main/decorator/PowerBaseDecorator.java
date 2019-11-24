@@ -1,5 +1,7 @@
 package decorator;
 
+import java.util.List;
+
 /**
  * File: PowerBaseDecorator.java
  * Author:  Adam Clifton (akclifto@asu.edu)
@@ -28,7 +30,7 @@ public abstract  class PowerBaseDecorator implements SpawnSuper {
      * Description: This method will set a power type to a hero or villain by name,
      * powertype and amount of power.
      */
-    public abstract void addPower(String name, int powerType, int amountPower);
+    public abstract void addPower(String name, int eleType, int amountPower);
 
     /**
      * Method: Absorb the power of another hero or villain.
@@ -39,4 +41,23 @@ public abstract  class PowerBaseDecorator implements SpawnSuper {
      * villains and heroes.
      */
     public abstract void absorbPower();
+
+    /**
+     * Method: Find selected hero in a list.
+     * Inputs: list : List
+     * Returns: Hero
+     * Description: This method will search through the list of created
+     * Hero to find a hero by their name.
+     */
+    public abstract Hero getHero(List<Hero> list, String name);
+
+    /**
+     * Method: Find selected villain in a list.
+     * Inputs: list : List
+     * Returns: Villain
+     * Description: This method will search through the list of created
+     * villains to find a hero by their name.
+     */
+    public abstract Villain getVillain(List<Villain> list, String name);
+
 }

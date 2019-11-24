@@ -1,5 +1,8 @@
 package decorator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * File: Hero.java
  * Author:  Adam Clifton (akclifto@asu.edu)
@@ -10,5 +13,33 @@ package decorator;
  */
 public class Hero extends ConcretePower {
 
-    //TODO
+    private String name;
+    private int fire;
+    private int earth;
+    private int wind;
+    private int ice;
+    private int shock;
+    private List<Hero> heroList = new ArrayList<>();
+
+
+    public Hero (String name) {
+
+        this.name = name;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Hero> getHeroList() {
+        return heroList;
+    }
+
+    public void setBaseElements() {
+
+
+    }
+
+
 }

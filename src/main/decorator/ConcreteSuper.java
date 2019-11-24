@@ -10,8 +10,16 @@ package decorator;
  */
 public class ConcreteSuper implements SpawnSuper {
 
+
+    public ConcreteSuper(){
+        //ctor
+    }
+
+
     @Override
     public void spawnHero() {
+
+
 
     }
 
