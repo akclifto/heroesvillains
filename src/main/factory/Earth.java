@@ -1,4 +1,4 @@
-package factory;
+package main.factory;
 
 /**
  * File: Earth.java

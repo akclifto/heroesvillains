@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 
 public class HeroBaseTest {
 
+
+
     @Test
     public void setElements() {
     }

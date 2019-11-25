@@ -1,4 +1,4 @@
-package factory;
+package main.factory;
 
 import java.util.ArrayList;
 import java.util.List;

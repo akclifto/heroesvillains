@@ -1,5 +1,9 @@
 package factory;
 
+import main.factory.HeroBase;
+import main.factory.HotSpot;
+import main.factory.LairBase;
+import main.factory.VillainLair;
 import org.junit.Test;
 
 import java.util.List;
