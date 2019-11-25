@@ -1,6 +1,6 @@
 package factory;
 
-import main.factory.HeroBase;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

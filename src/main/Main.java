@@ -1,8 +1,5 @@
-package main;
-
 import decorator.DecoratorControl;
-import main.factory.FactoryControl;
-
+import factory.FactoryControl;
 
 public class Main {
 

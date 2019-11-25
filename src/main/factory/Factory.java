@@ -1,4 +1,4 @@
-package main.factory;
+package factory;
 
 /**
  * File: Factory.java
