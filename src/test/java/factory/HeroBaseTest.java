@@ -128,14 +128,19 @@ public class HeroBaseTest {
         for (Integer list : checkList) {
             System.out.print(list + ", ");
         }
-        System.out.println();
-        assertNotEquals(checkList, bonusList);
+
+        for (int i = 0; i < checkList.size(); i++) {
+            if (checkList.get(i) != bonusList.get(i)){
+                assertNotSame(checkList.get(i), bonusList.get(i));
+            }
+        }
 
 
     }
 
     @Test
     public void addWeakness() {
+        
     }
 
     @Test

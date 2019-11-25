@@ -133,7 +133,6 @@ public class HeroBase implements LairBase {
         int bonus = elementList.get(randEle);
         bonus = bonus + randBonus;
         elementList.set(randEle, bonus);
-
     }
 
     @Override
