@@ -32,27 +32,33 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     public void createHero(String name) {
 
         if (spawnedHeroes.size() == 0) {
+
             hero = new Hero(name);
             spawnedHeroes.add(hero);
             System.out.println("The first Hero is born: " + name);
         } else {
+
             hero = new Hero();
-            int rand = ThreadLocalRandom.current().nextInt(0, spawnedHeroes.size() - 1);
+            int rand = ThreadLocalRandom.current().nextInt(0, spawnedHeroes.size());
             Hero temp = spawnedHeroes.get(rand);
             List<Integer> cloneList = absorbPower(temp, null);
             hero.replaceElementList(cloneList);
             hero.setName(name);
             hero.addToHeroList(hero);
+            spawnedHeroes.add(hero);
+            System.out.println("Another hero is born: " + name);
         }
 
         // chance to transform citizen to hero.
         if (randomCitizenHero()) {
+
             int tempNum = ThreadLocalRandom.current().nextInt(0, 100);
             Hero newHero = new Hero("Citizen " + tempNum);
             spawnedHeroes.add(newHero);
             System.out.println("A new citizen becomes a Hero! Citizen "
                     + tempNum + "is now a hero!");
         } else {
+
             System.out.println("The citizens did not heed the call to fight evil.");
         }
     }
@@ -60,9 +66,21 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     @Override
     public void spawnVillain(String name) {
 
-        Villain villain = new Villain(name);
-        spawnedVillains.add(villain);
-        System.out.println("A new Villain has spawned: " + name);
+        if (spawnedVillains.size() == 0) {
+
+            Villain villan = new Villain(name);
+            spawnedVillains.add(villan);
+            System.out.println("The first Villain has spawned: " + name);
+        } else {
+
+            Villain villain = new Villain(name);
+            int rand = ThreadLocalRandom.current().nextInt(0, spawnedVillains.size());
+            Villain temp = spawnedVillains.get(rand);
+            List<Integer> cloneList = absorbPower(null, temp);
+            villain.replaceElementList(cloneList);
+            spawnedVillains.add(villain);
+            System.out.println("A new Villain has spawned: " + name);
+        }
 
     }
 
