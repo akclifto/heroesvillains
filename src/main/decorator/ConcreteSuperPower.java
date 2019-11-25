@@ -1,6 +1,5 @@
 package decorator;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,7 +15,6 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ConcreteSuperPower extends PowerBaseDecorator {
 
     private Hero hero;
-    private Villain villain;
     private List<Hero> spawnedHeroes = new ArrayList<>();
     private List<Villain> spawnedVillains = new ArrayList<>();
 
@@ -34,16 +32,17 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     public void createHero(String name) {
 
         if (spawnedHeroes.size() == 0) {
-            this.hero = new Hero(name);
-            spawnedHeroes.add(this.hero);
+            hero = new Hero(name);
+            spawnedHeroes.add(hero);
             System.out.println("The first Hero is born: " + name);
         } else {
-            this.hero = new Hero();
+            hero = new Hero();
             int rand = ThreadLocalRandom.current().nextInt(0, spawnedHeroes.size() - 1);
             Hero temp = spawnedHeroes.get(rand);
             List<Integer> cloneList = absorbPower(temp, null);
             hero.replaceElementList(cloneList);
             hero.setName(name);
+            hero.addToHeroList(hero);
         }
 
         // chance to transform citizen to hero.
@@ -61,7 +60,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     @Override
     public void spawnVillain(String name) {
 
-        this.villain = new Villain(name);
+        Villain villain = new Villain(name);
         spawnedVillains.add(villain);
         System.out.println("A new Villain has spawned: " + name);
 
@@ -82,8 +81,23 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     @Override
     public void addPower(String name, int eleType, int amountPower) {
 
-    //TODO
+        try {
+            Hero tempHero = getHero(spawnedHeroes, name);
+            Villain tempVillain = getVillain(spawnedVillains, name);
 
+            if (tempHero != null) {
+                int element = tempHero.getElementList().get(eleType) + amountPower;
+                tempHero.getElementList().set(eleType, element);
+                System.out.println(amountPower + " was added to ");
+            } else if (tempVillain != null) {
+                int element = tempVillain.getElementList().get(eleType) + amountPower;
+                tempVillain.getElementList().set(eleType, element);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Name of hero or villain is not included in lists.");
+            e.printStackTrace();
+        }
 
     }
 
@@ -100,7 +114,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
                 return new ArrayList<>(hero.getElementList());
             }
         } catch (Exception e) {
-            System.out.println("Both hero and villain fields were null.");
+            System.out.println("Both hero and villain fields are null.");
             e.printStackTrace();
         }
         return null;
@@ -125,9 +139,9 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     @Override
     public Hero getHero(List<Hero> list, String name) {
 
-        for (Hero item : list) {
-            if (item.getName().equalsIgnoreCase(name)) {
-                return item;
+        for (Hero hero : list) {
+            if (hero.getName().equalsIgnoreCase(name)) {
+                return hero;
             } else {
                 System.out.println("Hero not found in the list.");
             }
@@ -138,17 +152,14 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     @Override
     public Villain getVillain(List<Villain> list, String name) {
 
-        for (Villain item : list) {
-            if (item.getName().equalsIgnoreCase(name)) {
-                return item;
+        for (Villain villain : list) {
+            if (villain.getName().equalsIgnoreCase(name)) {
+                return villain;
             } else {
                 System.out.println("Villain not found in the list.");
             }
         }
         return null;
     }
-
-
-
 
 }

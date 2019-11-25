@@ -59,6 +59,10 @@ public class Hero extends ConcreteSuperPower {
         return elementList;
     }
 
+    public void addToHeroList(Hero hero) {
+        heroList.add(hero);
+    }
+
     /**
      * Method: Replaces element list of a hero.
      * Inputs: list : List
