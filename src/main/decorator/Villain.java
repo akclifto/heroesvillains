@@ -1,5 +1,9 @@
 package decorator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * File: Villain.java
  * Author:  Adam Clifton (akclifto@asu.edu)
@@ -16,6 +20,8 @@ public class Villain extends ConcreteSuperPower {
     private int wind = 0;
     private int ice = 0;
     private int shock = 0;
+    private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
+    private List<Hero> villainList = new ArrayList<>();
 
 
     public Villain (String name) {
@@ -26,6 +32,21 @@ public class Villain extends ConcreteSuperPower {
 
     public String getName() {
         return name;
+    }
+
+    public List<Hero> getVillainList() {
+        return villainList;
+    }
+
+    public List<Integer> getElementList() {
+
+        return elementList;
+    }
+
+    public void replaceElementList(List<Integer> list) {
+
+        this.elementList = list;
+
     }
 
 }

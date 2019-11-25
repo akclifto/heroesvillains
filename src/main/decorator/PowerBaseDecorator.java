@@ -14,12 +14,6 @@ import java.util.List;
  */
 public abstract class PowerBaseDecorator implements SpawnSuper {
 
-    /**Gets a list of all spawned Heroes. */
-    public abstract List<Hero> getSpawnedHeroes();
-
-    /**Gets a list of all spawned Villains. */
-    public abstract List<Villain> getSpawnedVillains();
-
     /**Passing spawnHero from interface class. */
     public abstract void createHero(String name);
 
@@ -28,6 +22,12 @@ public abstract class PowerBaseDecorator implements SpawnSuper {
 
     /**Passing randomCitizenHero from interface class. */
     public abstract boolean randomCitizenHero();
+
+    /**Gets a list of all spawned Heroes. */
+    public abstract List<Hero> getSpawnedHeroes();
+
+    /**Gets a list of all spawned Villains. */
+    public abstract List<Villain> getSpawnedVillains();
 
     /**
      * Method: Add powers to hero or villain by name;
@@ -46,7 +46,7 @@ public abstract class PowerBaseDecorator implements SpawnSuper {
      * another hero or villain.  This will be used also to spawn children from both
      * villains and heroes.
      */
-    public abstract void absorbPower();
+    public abstract List<Integer> absorbPower(Hero hero, Villain villian);
 
     /**
      * Method: Sets base elements for Heroes and Villains.

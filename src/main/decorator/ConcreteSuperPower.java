@@ -1,5 +1,6 @@
 package decorator;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -18,7 +19,6 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     private Villain villain;
     private List<Hero> spawnedHeroes = new ArrayList<>();
     private List<Villain> spawnedVillains = new ArrayList<>();
-    private static int citizenHero = 0;
 
     @Override
     public List<Hero> getSpawnedHeroes() {
@@ -41,17 +41,18 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
             this.hero = new Hero();
             int rand = ThreadLocalRandom.current().nextInt(0, spawnedHeroes.size() - 1);
             Hero temp = spawnedHeroes.get(rand);
-            hero = temp;
+            List<Integer> cloneList = absorbPower(temp, null);
+            hero.replaceElementList(cloneList);
             hero.setName(name);
         }
 
         // chance to transform citizen to hero.
         if (randomCitizenHero()) {
-            Hero newHero = new Hero("Citizen " + citizenHero);
+            int tempNum = ThreadLocalRandom.current().nextInt(0, 100);
+            Hero newHero = new Hero("Citizen " + tempNum);
             spawnedHeroes.add(newHero);
             System.out.println("A new citizen becomes a Hero! Citizen "
-                    + citizenHero + "is now a hero!");
-            citizenHero++;
+                    + tempNum + "is now a hero!");
         } else {
             System.out.println("The citizens did not heed the call to fight evil.");
         }
@@ -87,8 +88,22 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     }
 
     @Override
-    public void absorbPower() {
-        //TODO
+    public List<Integer> absorbPower(Hero hero, Villain villain) {
+
+        try {
+            if (hero == null) {
+
+                return new ArrayList<>(villain.getElementList());
+
+            } else if (villain == null) {
+
+                return new ArrayList<>(hero.getElementList());
+            }
+        } catch (Exception e) {
+            System.out.println("Both hero and villain fields were null.");
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

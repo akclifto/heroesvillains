@@ -52,4 +52,9 @@ public class Hero extends ConcreteSuperPower {
         return elementList;
     }
 
+    public void replaceElementList(List<Integer> list) {
+
+        this.elementList = list;
+
+    }
 }
