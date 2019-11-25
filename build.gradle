@@ -1,3 +1,4 @@
+import com.github.spotbugs.SpotBugsTask
 
 plugins {
     id "com.github.spotbugs" version "2.0.1"
@@ -30,7 +31,7 @@ dependencies {
 // Default test path is src/test/java
  test {
      useJUnit()
-     maxHeapSize('1G')
+     maxHeapSize('4G')
  }
 
 task printClasspath {
@@ -84,12 +85,12 @@ jacocoTestReport {
    toolVersion = '4.0.0-beta4'
  }
  // To generate an HTML report instead of XML
- tasks.withType(com.github.spotbugs.SpotBugsTask) {
+ tasks.withType(SpotBugsTask) {
 //     sourceSets {
 //         main {
 //             java.srcDirs = ['src/main']
 //         }
-//     }
+
      reports {
      xml.enabled = false
      html.enabled = true
