@@ -151,11 +151,13 @@ public class HeroBase implements LairBase {
             int temp = elementList.get(randEle) - randWeak;
             if (temp <= 0) {
                 temp = 0;
-                System.out.println(elementList.get(randEle) + " has been set to " + temp);
+                System.out.println("Element value of " + elementList.get(randEle)
+                        + " has been set to " + temp);
                 elementList.set(randEle, temp);
             } else {
                 elementList.set(randEle, temp);
-                System.out.println(elementList.get(randEle) + " has been set to " + temp);
+                System.out.println("Element value of " + elementList.get(randEle)
+                        + " has been set to " + temp);
             }
         }
     }

@@ -80,11 +80,8 @@ public class VillainLair implements LairBase {
     public String getName() {
 
         try {
-
             return name;
-
         } catch (Exception e) {
-
             System.out.println("Name is null.");
             e.printStackTrace();
         }

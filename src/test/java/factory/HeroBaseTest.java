@@ -24,6 +24,7 @@ public class HeroBaseTest {
         for (Integer list : testList) {
             System.out.print(list + ", ");
         }
+        System.out.println();
         assertEquals(5, base.getElementList().size());
         base.getElementList().replaceAll(null);
         exc.expect(NullPointerException.class);
@@ -134,16 +135,28 @@ public class HeroBaseTest {
                 assertNotSame(checkList.get(i), bonusList.get(i));
             }
         }
-
-
     }
 
     @Test
     public void addWeakness() {
-        
+
+        base = new HeroBase();
+        List<Integer> baseList = base.getElementList();
+        for (Integer list : baseList) {
+            System.out.print(list + ", ");
+        }
+        System.out.println();
+        base.addWeakness();
+        List<Integer> weakList = base.getElementList();
+        for (Integer list : weakList) {
+            System.out.print(list + ", ");
+        }
+
+        for (int i = 0; i < weakList.size(); i++) {
+            if (weakList.get(i) != baseList.get(i)){
+                assertNotSame(weakList.get(i), baseList.get(i));
+            }
+        }
     }
 
-    @Test
-    public void isBaseFull() {
-    }
 }
