@@ -1,7 +1,5 @@
 package decorator;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class DecoratorControl {
 
@@ -19,15 +17,10 @@ public class DecoratorControl {
      */
     public void run() {
 
-        System.out.println("Nothing in the decorator yet!");
-
-        int fire = 4;
-        int ice = 2;
-        int water = 0;
-        int shock = 7;
-        List<Integer> elements = Arrays.asList(fire, ice, water, shock);
-
-        System.out.println(elements.get(3).toString());
+        System.out.println();
+        System.out.println("-----------------------------------------------");
+        System.out.println("Starting the Decorator simulation...");
+        System.out.println("-----------------------------------------------");
 
 
     }

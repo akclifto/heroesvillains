@@ -75,4 +75,5 @@ public class Hero extends ConcreteSuperPower {
         this.elementList = list;
 
     }
+
 }
