@@ -3,6 +3,7 @@ package decorator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * File: Villain.java
@@ -21,12 +22,20 @@ public class Villain extends ConcreteSuperPower {
     private int ice = 0;
     private int shock = 0;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
-    private List<Hero> villainList = new ArrayList<>();
+    private List<Villain> villainList = new ArrayList<>();
 
-
-    public Villain (String name) {
+    /**
+     * Method: Constructor method
+     * Inputs: name : String
+     * Returns: NA
+     * Description: Constructor to set the name and base elements of a villain.
+     */
+    public Villain(String name) {
 
         this.name = name;
+        int maxBound = ThreadLocalRandom.current().nextInt(2, 11);
+        setBaseElements(elementList, 0, maxBound);
+        villainList.add(this);
 
     }
 
@@ -34,7 +43,7 @@ public class Villain extends ConcreteSuperPower {
         return name;
     }
 
-    public List<Hero> getVillainList() {
+    public List<Villain> getVillainList() {
         return villainList;
     }
 
@@ -43,6 +52,13 @@ public class Villain extends ConcreteSuperPower {
         return elementList;
     }
 
+    /**
+     * Method: Replaces element list of a villain.
+     * Inputs: list : List
+     * Returns: void
+     * Description: This method will replace the list of an existing villain's current
+     * list.  It is used when a new villain spawns, cloning the powers of its parents.
+     */
     public void replaceElementList(List<Integer> list) {
 
         this.elementList = list;

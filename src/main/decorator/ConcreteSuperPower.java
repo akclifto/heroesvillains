@@ -82,7 +82,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     @Override
     public void addPower(String name, int eleType, int amountPower) {
 
-
+    //TODO
 
 
     }

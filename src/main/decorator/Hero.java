@@ -28,10 +28,17 @@ public class Hero extends ConcreteSuperPower {
         //ctor for all born heroes other than the first.
     }
 
+    /**
+     * Method: Constructor method
+     * Inputs: name : String
+     * Returns: NA
+     * Description: Constructor to set the name and base elements of a hero.
+     */
     public Hero(String name) {
 
         this.name = name;
         setBaseElements(elementList, 0, 11);
+        heroList.add(this);
 
     }
 
@@ -52,6 +59,13 @@ public class Hero extends ConcreteSuperPower {
         return elementList;
     }
 
+    /**
+     * Method: Replaces element list of a hero.
+     * Inputs: list : List
+     * Returns: void
+     * Description: This method will replace the list of an existing hero's current
+     * list.  It is used when a new hero is born, cloning the powers of its parents.
+     */
     public void replaceElementList(List<Integer> list) {
 
         this.elementList = list;
