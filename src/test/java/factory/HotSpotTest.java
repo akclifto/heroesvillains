@@ -2,7 +2,6 @@ package factory;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -15,12 +14,13 @@ public class HotSpotTest {
 
 
     @Test
-    public void addLair() {
+    public void addLairAndCheckLair() {
 
         hotspot.addLair(lair);
         List<LairBase> lairs = hotspot.getHotspots();
         assertEquals(lair, lairs.get(0));
-
+        String s = "testSpot";
+        assertEquals(s, hotspot.getName());
         hotspot.addLair(lair);
         lairs = hotspot.getHotspots();
         int size = 1;
@@ -29,7 +29,7 @@ public class HotSpotTest {
     }
 
     @Test
-    public void addBase() {
+    public void addBaseAndCheckBase() {
 
         hotspot.addBase(base);
         List<LairBase> bases = hotspot.getHotspots();
@@ -39,15 +39,6 @@ public class HotSpotTest {
         bases = hotspot.getHotspots();
         int size = 1;
         assertEquals(size, bases.size());
-
-
     }
 
-    @Test
-    public void checkLair() {
-    }
-
-    @Test
-    public void checkBase() {
-    }
 }
