@@ -21,7 +21,7 @@ public abstract class PowerBaseDecorator implements SpawnSuper {
     public abstract List<Villain> getSpawnedVillains();
 
     /**Passing spawnHero from interface class. */
-    public abstract void spawnHero(String name);
+    public abstract void createHero(String name);
 
     /**Passing spawnVillain from interface class. */
     public abstract void spawnVillain(String name);

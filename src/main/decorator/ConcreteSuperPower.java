@@ -31,12 +31,19 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     }
 
     @Override
-    public void spawnHero(String name) {
+    public void createHero(String name) {
 
-        this.hero = new Hero (name);
-        spawnedHeroes.add(this.hero);
-        System.out.println("A new Hero is born: " + name);
-        System.out.println(name + " does not have any special powers yet!");
+        if (spawnedHeroes.size() == 0) {
+            this.hero = new Hero(name);
+            spawnedHeroes.add(this.hero);
+            System.out.println("The first Hero is born: " + name);
+        } else {
+            this.hero = new Hero();
+            int rand = ThreadLocalRandom.current().nextInt(0, spawnedHeroes.size() - 1);
+            Hero temp = spawnedHeroes.get(rand);
+            hero = temp;
+            hero.setName(name);
+        }
 
         // chance to transform citizen to hero.
         if (randomCitizenHero()) {
@@ -55,7 +62,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
 
         this.villain = new Villain(name);
         spawnedVillains.add(villain);
-        System.out.println("A new Villain has spawned!=: " + name);
+        System.out.println("A new Villain has spawned: " + name);
 
     }
 
@@ -73,6 +80,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
 
     @Override
     public void addPower(String name, int eleType, int amountPower) {
+
 
 
 

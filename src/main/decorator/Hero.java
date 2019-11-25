@@ -24,11 +24,19 @@ public class Hero extends ConcreteSuperPower {
     private List<Hero> heroList = new ArrayList<>();
 
 
+    public Hero() {
+        //ctor for all born heroes other than the first.
+    }
+
     public Hero(String name) {
 
         this.name = name;
         setBaseElements(elementList, 0, 11);
 
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {

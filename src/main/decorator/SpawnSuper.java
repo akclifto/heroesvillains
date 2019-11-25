@@ -15,10 +15,10 @@ public interface SpawnSuper {
      * Method: Spawns a hero.
      * Inputs: name : String
      * Returns: void
-     * Description: This method will spawn a hero.  Powers will be given in a separate class.
-     * spawnHero will also have a chance to transform a citizen into a hero.
+     * Description: This method will spawn a hero.  Powers will be given from the parent Hero.
+     * createHero will also have a chance to transform a citizen into a hero.
      */
-    void spawnHero(String name);
+    void createHero(String name);
 
     /**
      * Method: Spawns a villain
