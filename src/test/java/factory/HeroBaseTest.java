@@ -99,7 +99,6 @@ public class HeroBaseTest {
     public void removeDweller() {
 
         base = new HeroBase();
-        base = new HeroBase();
         base.addDweller("D 1");
         base.addDweller("D 2");
         base.addDweller("D 3");
@@ -116,6 +115,23 @@ public class HeroBaseTest {
 
     @Test
     public void addBonus() {
+
+        base = new HeroBase();
+        List<Integer> bonusList = base.getElementList();
+        for (Integer list : bonusList) {
+            System.out.print(list + ", ");
+
+        }
+        System.out.println();
+        base.addBonus();
+        List<Integer> checkList = base.getElementList();
+        for (Integer list : checkList) {
+            System.out.print(list + ", ");
+        }
+        System.out.println();
+        assertNotEquals(checkList, bonusList);
+
+
     }
 
     @Test

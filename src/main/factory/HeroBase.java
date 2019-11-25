@@ -128,17 +128,20 @@ public class HeroBase implements LairBase {
     @Override
     public void addBonus() {
 
-        int randEle = ThreadLocalRandom.current().nextInt(0, 6);
+        int randEle = ThreadLocalRandom.current().nextInt(0, 5);
         int randBonus = ThreadLocalRandom.current().nextInt(0, 4);
-        elementList.set(randEle, randBonus);
+        int bonus = elementList.get(randEle);
+        bonus = bonus + randBonus;
+        elementList.set(randEle, bonus);
 
     }
 
     @Override
     public void addWeakness() {
 
-        int randEle = ThreadLocalRandom.current().nextInt(0, 6);
+        int randEle = ThreadLocalRandom.current().nextInt(0, 5);
         int randWeak = ThreadLocalRandom.current().nextInt(0, 4);
+
 
         if (elementList.get(randEle) == 0) {
             System.out.println(elementList.get(randEle) + " is set to zero.");
