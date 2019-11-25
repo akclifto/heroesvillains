@@ -19,6 +19,8 @@ public class HeroBaseTest {
     public void setElements() {
 
         base = new HeroBase();
+        base.setName("TestLair");
+        assertEquals("TestLair", base.getName());
         base.setElements();
         List<Integer> testList = base.getElementList();
         for (Integer list : testList) {

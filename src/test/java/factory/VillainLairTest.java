@@ -20,6 +20,8 @@ public class VillainLairTest {
     public void setElements() {
 
         lair = new VillainLair();
+        lair.setName("TestLair");
+        assertEquals("TestLair", lair.getName());
         lair.setElements();
         List<Integer> testList = lair.getElementList();
         for (Integer list : testList) {

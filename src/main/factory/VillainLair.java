@@ -127,19 +127,22 @@ public class VillainLair implements LairBase {
     @Override
     public void addBonus() {
 
-        int randEle = ThreadLocalRandom.current().nextInt(0, 6);
+        int randEle = ThreadLocalRandom.current().nextInt(0, 5);
         int randBonus = ThreadLocalRandom.current().nextInt(0, 4);
-        elementList.set(randEle, randBonus);
+        int bonus = elementList.get(randEle);
+        bonus = bonus + randBonus;
+        elementList.set(randEle, bonus);
 
     }
 
     @Override
     public void addWeakness() {
 
-        int randEle = ThreadLocalRandom.current().nextInt(0, 6);
+        int randEle = ThreadLocalRandom.current().nextInt(0, 5);
         int randWeak = ThreadLocalRandom.current().nextInt(0, 3);
 
         if (elementList.get(randEle) == 0) {
+            System.out.println(elementList.get(randEle) + " is set to zero.");
             System.out.println("No weakness applied.");
 
         } else {
@@ -147,11 +150,13 @@ public class VillainLair implements LairBase {
             int temp = elementList.get(randEle) - randWeak;
             if (temp <= 0) {
                 temp = 0;
-                System.out.println(elementList.get(randEle) + " has been set to " + temp);
+                System.out.println("Element value of " + elementList.get(randEle)
+                        + " has been set to " + temp);
                 elementList.set(randEle, temp);
             } else {
                 elementList.set(randEle, temp);
-                System.out.println(elementList.get(randEle) + " has been set to " + temp);
+                System.out.println("Element value of " + elementList.get(randEle)
+                        + " has been set to " + temp);
             }
 
         }
