@@ -71,11 +71,8 @@ public class HotSpot {
     public boolean checkLair() {
 
         for (Object item : hotspots) {
-            if (item instanceof VillainLair) {
-                return true;
-            } else {
-                return false;
-            }
+
+            return (item instanceof VillainLair);
         }
         return false;
     }
@@ -90,11 +87,7 @@ public class HotSpot {
     public boolean checkBase() {
 
         for (Object item : hotspots) {
-            if (item instanceof VillainLair) {
-                return true;
-            } else {
-                return false;
-            }
+             return (item instanceof HeroBase);
         }
         return false;
     }
