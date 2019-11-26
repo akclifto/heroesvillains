@@ -1,6 +1,7 @@
 package factory;
 
 
+import decorator.Hero;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -143,6 +144,9 @@ public class HeroBaseTest {
     public void addWeakness() {
 
         base = new HeroBase();
+        HeroBase baseTest = new HeroBase();
+        baseTest.addWeakness();
+        baseTest.addWeakness();
         List<Integer> baseList = base.getElementList();
         for (Integer list : baseList) {
             System.out.print(list + ", ");

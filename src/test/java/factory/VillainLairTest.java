@@ -144,6 +144,9 @@ public class VillainLairTest {
     public void addWeakness() {
 
         lair = new VillainLair();
+        VillainLair testLair = new VillainLair();
+        testLair.addWeakness();
+        testLair.addWeakness();
         List<Integer> lairList = lair.getElementList();
         for (Integer list : lairList) {
             System.out.print(list + ", ");
@@ -160,5 +163,8 @@ public class VillainLairTest {
                 assertNotSame(weakList.get(i), lairList.get(i));
             }
         }
+
+
+
     }
 }
