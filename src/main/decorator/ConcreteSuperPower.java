@@ -104,11 +104,16 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
             Villain tempVillain = getVillain(spawnedVillains, name);
 
             if (tempHero != null) {
-                int element = tempHero.getElementList().get(eleType) + amountPower;
+                int element = tempHero.getElementList().get(eleType);
+                System.out.println("Element value: " + element);
+                System.out.println(amountPower + " was added to " + element);
+                element = element + amountPower;
                 tempHero.getElementList().set(eleType, element);
-                System.out.println(amountPower + " was added to ");
             } else if (tempVillain != null) {
-                int element = tempVillain.getElementList().get(eleType) + amountPower;
+                int element = tempVillain.getElementList().get(eleType);
+                System.out.println("Element value: " + element);
+                System.out.println(amountPower + " was added to " + element);
+                element = element + amountPower;
                 tempVillain.getElementList().set(eleType, element);
             }
 
