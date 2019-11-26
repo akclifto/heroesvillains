@@ -88,7 +88,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     public boolean randomCitizenHero() {
 
         int[] fib = {0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89};
-        int rand = ThreadLocalRandom.current().nextInt(0, 143);
+        int rand = ThreadLocalRandom.current().nextInt(0, 90);
 
         for (int i : fib) {
             return i == rand;
