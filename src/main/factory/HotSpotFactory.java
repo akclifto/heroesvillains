@@ -1,6 +1,9 @@
 package factory;
 
 
+import decorator.Hero;
+import decorator.Villain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,14 @@ public class HotSpotFactory extends Factory {
 
     public List<HotSpot> getHotspotList() {
         return hotspotList;
+    }
+
+    public HeroBase getHeroBase () {
+        return heroBase;
+    }
+
+    public VillainLair getVillainLair() {
+        return villainLair;
     }
 
     @Override

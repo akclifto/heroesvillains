@@ -44,8 +44,10 @@ public class HotSpotFactoryTest {
         factory.createHotspot("TestCity");
         assertEquals("TestCity",
                 factory.getHotspotList().get(0).getName());
+
         factory.createHotspot("Test 1");
         assertEquals(2, factory.getHotspotList().size());
+
         factory.createHotspot("Test 2");
         assertNotEquals(3, factory.getHotspotList().size());
 
@@ -55,11 +57,12 @@ public class HotSpotFactoryTest {
     @Test
     public void createBase() {
 
-        HeroBase base = new HeroBase();
         factory = new HotSpotFactory();
         factory.initHotspot("TestCity");
+        HeroBase base = factory.getHeroBase();
         factory.createBase();
-        assertEquals(1, factory.getBases().size());;
+        assertEquals(1, factory.getBases().size());
+
         base.addDweller("H 1");
         base.addDweller("H 2");
         base.addDweller("H 3");
@@ -67,6 +70,7 @@ public class HotSpotFactoryTest {
         base.addDweller("H 5");
         base.addDweller("H 6");
         factory.createBase();
+        System.out.println("Number of Bases: " + factory.getBases().size());
         assertEquals(2, factory.getBases().size());
 
 
@@ -75,10 +79,29 @@ public class HotSpotFactoryTest {
 
     @Test
     public void createLair() {
+
+        factory = new HotSpotFactory();
+        factory.initHotspot("TestCity");
+        VillainLair lair = factory.getVillainLair();
+        factory.createLair();
+        assertEquals(1, factory.getLairs().size());
+
+        lair.addDweller("H 1");
+        lair.addDweller("H 2");
+        lair.addDweller("H 3");
+        lair.addDweller("H 4");
+        lair.addDweller("H 5");
+        lair.addDweller("H 6");
+        factory.createLair();
+        System.out.println("Number of Bases: " + factory.getLairs().size());
+        assertEquals(2, factory.getLairs().size());
+
     }
 
     @Test
     public void removeLair() {
+        
+
     }
 
     @Test
