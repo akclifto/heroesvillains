@@ -83,7 +83,7 @@ public class ConcreteSuperPowerTest {
         assertTrue(notSpawned >= 50);
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void addPower() {
 
         conc = new ConcreteSuperPower();
@@ -106,7 +106,10 @@ public class ConcreteSuperPowerTest {
         System.out.println("Old Fire: " + villEle);
         System.out.println("New Fire: " + newVillEle.get(0));
         assertTrue(newVillEle.get(0) > villEle);
-
+        System.out.println();
+        
+        conc.addPower(null, 0, 99);
+        assertThat(conc.getVillain(conc.getSpawnedVillains(), "FakeName"), null);
     }
 
     @Test

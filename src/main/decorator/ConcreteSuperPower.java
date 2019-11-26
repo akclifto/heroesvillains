@@ -115,10 +115,10 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
                 System.out.println(amountPower + " was added to " + element);
                 element = element + amountPower;
                 tempVillain.getElementList().set(eleType, element);
+            } else {
+                System.out.println("Name of hero or villain is not included in lists.");
             }
-
         } catch (Exception e) {
-            System.out.println("Name of hero or villain is not included in lists.");
             e.printStackTrace();
         }
 
@@ -136,7 +136,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
 
                 return new ArrayList<>(hero.getElementList());
             }
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             System.out.println("Both hero and villain fields are null.");
             e.printStackTrace();
         }
