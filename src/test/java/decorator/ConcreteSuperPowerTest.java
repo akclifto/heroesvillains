@@ -145,13 +145,19 @@ public class ConcreteSuperPowerTest {
 
     @Test
     public void setBaseElements() {
+
+        conc = new ConcreteSuperPower();
+        Hero hero = new Hero();
+        List<Integer> oldList = hero.getElementList();
+        conc.getSpawnedHeroes().add(hero);
+        conc.setBaseElements(conc.getSpawnedHeroes().get(0).getElementList(), 0, 10);
+        List<Integer> newList = conc.getSpawnedHeroes().get(0).getElementList();
+        for (int i = 0; i < newList.size(); i++) {
+            if (!newList.get(i).equals(oldList.get(i))){
+                assertNotSame(newList.get(i), oldList.get(i));
+            }
+        }
+
     }
 
-    @Test
-    public void getHero() {
-    }
-
-    @Test
-    public void getVillain() {
-    }
 }
