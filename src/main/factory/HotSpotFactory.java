@@ -27,6 +27,10 @@ public class HotSpotFactory extends Factory {
         return bases;
     }
 
+    public List<HotSpot> getHotspotList() {
+        return hotspotList;
+    }
+
     @Override
     public void initHotspot(String city) {
 
@@ -51,6 +55,10 @@ public class HotSpotFactory extends Factory {
     public void createHotspot(String city) {
 
         boolean needHotspot = false;
+
+        if (hotspotList.size() == 0) {
+            initHotspot(city);
+        }
 
         for (Object item : hotspot.getHotspots()) {
 
