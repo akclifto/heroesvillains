@@ -2,12 +2,25 @@ package decorator;
 
 import org.junit.Test;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static org.junit.Assert.*;
 
 public class ConcreteSuperPowerTest {
 
     private ConcreteSuperPower conc;
 
+    @Test
+    public void run() {
+        DecoratorControl decoratorTest = new DecoratorControl();
+        AtomicBoolean isExecuted = new AtomicBoolean();
+        isExecuted.set(false);
+        while(!isExecuted.get()) {
+            decoratorTest.run();
+            isExecuted.set(true);
+        }
+        assertTrue(isExecuted.get());
+    }
 
     @Test
     public void getSpawnedHeroes() {
