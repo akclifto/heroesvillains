@@ -107,13 +107,40 @@ public class ConcreteSuperPowerTest {
         System.out.println("New Fire: " + newVillEle.get(0));
         assertTrue(newVillEle.get(0) > villEle);
         System.out.println();
-        
+
         conc.addPower(null, 0, 99);
         assertThat(conc.getVillain(conc.getSpawnedVillains(), "FakeName"), null);
     }
 
-    @Test
+    @Test //(expected = NullPointerException.class)
     public void absorbPower() {
+
+        conc = new ConcreteSuperPower();
+        conc.createHero("Test Hero");
+        conc.spawnVillain("Test Villain");
+        Hero hero = conc.getSpawnedHeroes().get(0);
+        List<Integer> oldList = hero.getElementList();
+        List<Integer> newList = conc.absorbPower(conc.getSpawnedHeroes().get(0), null);
+        for (int i = 0; i < newList.size(); i++) {
+            if (!newList.get(i).equals(oldList.get(i))){
+                assertNotSame(newList.get(i), oldList.get(i));
+            }
+        }
+
+        Villain villain = conc.getSpawnedVillains().get(0);
+        List<Integer> oldVill = villain.getElementList();
+        List<Integer> newVill = conc.absorbPower(null, conc.getSpawnedVillains().get(0));
+        for (int i = 0; i < newVill.size(); i++) {
+            if (!newVill.get(i).equals(oldVill.get(i))){
+                assertNotSame(newVill.get(i), oldVill.get(i));
+            }
+        }
+
+//        exc.expect(NullPointerException.class.);
+//        exc.expectMessage("Both hero and villain fields are null.");
+//        conc.absorbPower(null, null);
+
+
     }
 
     @Test
