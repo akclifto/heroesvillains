@@ -134,7 +134,7 @@ public class HeroBaseTest {
         }
 
         for (int i = 0; i < checkList.size(); i++) {
-            if (checkList.get(i) != bonusList.get(i)){
+            if (checkList.get(i).equals(bonusList.get(i))){
                 assertNotSame(checkList.get(i), bonusList.get(i));
             }
         }
@@ -159,7 +159,7 @@ public class HeroBaseTest {
         }
 
         for (int i = 0; i < weakList.size(); i++) {
-            if (weakList.get(i) != baseList.get(i)){
+            if (!weakList.get(i).equals(baseList.get(i))){
                 assertNotSame(weakList.get(i), baseList.get(i));
             }
         }
