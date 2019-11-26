@@ -15,7 +15,7 @@ public class HotSpotFactoryTest {
         FactoryControl factoryTest = new FactoryControl();
         AtomicBoolean isExecuted = new AtomicBoolean();
         isExecuted.set(false);
-        while(isExecuted.get() == false){
+        while(!isExecuted.get()) {
             factoryTest.run();
             isExecuted.set(true);
         }
