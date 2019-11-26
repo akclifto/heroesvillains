@@ -2,11 +2,26 @@ package factory;
 
 import org.junit.Test;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static org.junit.Assert.*;
 
 public class HotSpotFactoryTest {
 
     HotSpotFactory factory;
+
+    @Test
+    public void run() {
+        FactoryControl factoryTest = new FactoryControl();
+        AtomicBoolean isExecuted = new AtomicBoolean();
+        isExecuted.set(false);
+        while(isExecuted.get() == false){
+            factoryTest.run();
+            isExecuted.set(true);
+        }
+        assertTrue(isExecuted.get());
+    }
+
 
     @Test
     public void getLairs() {
