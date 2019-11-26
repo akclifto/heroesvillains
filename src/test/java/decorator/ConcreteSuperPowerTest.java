@@ -13,8 +13,6 @@ public class ConcreteSuperPowerTest {
 
     private ConcreteSuperPower conc;
 
-    @Rule
-    public ExpectedException exc = ExpectedException.none();
 
     @Test
     public void run() {
