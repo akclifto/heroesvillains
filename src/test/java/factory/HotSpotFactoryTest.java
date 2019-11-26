@@ -95,16 +95,27 @@ public class HotSpotFactoryTest {
         factory.createLair();
         System.out.println("Number of Bases: " + factory.getLairs().size());
         assertEquals(2, factory.getLairs().size());
-
     }
 
     @Test
     public void removeLair() {
-        
+
+        factory = new HotSpotFactory();
+        factory.initHotspot("TestCity");
+        VillainLair lair = factory.getLairs().get(0);
+        factory.removeLair(lair);
+        assertEquals(0, factory.getLairs().size());
 
     }
 
     @Test
     public void removeBase() {
+
+        factory = new HotSpotFactory();
+        factory.initHotspot("TestCity");
+        HeroBase base = factory.getBases().get(0);
+        factory.removeBase(base);
+        assertEquals(0, factory.getBases().size());
+
     }
 }
