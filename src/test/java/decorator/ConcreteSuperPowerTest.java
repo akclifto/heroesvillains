@@ -6,8 +6,17 @@ import static org.junit.Assert.*;
 
 public class ConcreteSuperPowerTest {
 
+    private ConcreteSuperPower conc;
+
+
     @Test
     public void getSpawnedHeroes() {
+
+        conc = new ConcreteSuperPower();
+        conc.createHero("Hero 1");
+        assertEquals(1, conc.getSpawnedHeroes().size());
+
+
     }
 
     @Test
