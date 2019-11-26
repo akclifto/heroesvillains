@@ -22,7 +22,7 @@ public class Villain extends ConcreteSuperPower {
     private int ice = 0;
     private int shock = 0;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
-    private List<Villain> villainList = new ArrayList<>();
+
 
     /**
      * Method: Constructor method
@@ -35,16 +35,12 @@ public class Villain extends ConcreteSuperPower {
         this.name = name;
         int maxBound = ThreadLocalRandom.current().nextInt(2, 11);
         setBaseElements(elementList, 0, maxBound);
-        villainList.add(this);
+
 
     }
 
     public String getName() {
         return name;
-    }
-
-    public List<Villain> getVillainList() {
-        return villainList;
     }
 
     public List<Integer> getElementList() {
