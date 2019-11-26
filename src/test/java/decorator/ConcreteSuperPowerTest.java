@@ -28,12 +28,14 @@ public class ConcreteSuperPowerTest {
         conc = new ConcreteSuperPower();
         conc.createHero("Hero 1");
         assertEquals(1, conc.getSpawnedHeroes().size());
-
-
     }
 
     @Test
     public void getSpawnedVillains() {
+
+        conc = new ConcreteSuperPower();
+        conc.spawnVillain("Hero 1");
+        assertEquals(1, conc.getSpawnedVillains().size());
     }
 
     @Test
