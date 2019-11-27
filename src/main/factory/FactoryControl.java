@@ -24,16 +24,16 @@ public class FactoryControl {
      */
     public void run() {
 
-        //TODO build out controller proper
+        System.out.println("----------------------------------------------------");
+        System.out.println("Starting factory...");
+        System.out.println("----------------------------------------------------");
         System.out.println("Creating initial Hotspot...");
         hot.initHotspot("Gotham");
         System.out.println();
         System.out.println();
-        hot.createHotspot("Didldo");
-        hot.createHotspot("Freee");
-
-
-        System.out.println("Starting factory...");
+        hot.createHotspot("Shamus");
+        hot.createHotspot("Rommo");
+        System.out.println("Creating bases and lairs...");
         hot.createBase();
         hot.createLair();
         heroBaseList = hot.getBases();
@@ -43,20 +43,21 @@ public class FactoryControl {
         villainLair = villainLairList.get(0);
 
         heroBase.addDweller("DumbleDore");
-
         System.out.println("Hero base pop: " + heroBase.getPopulation());
         System.out.println("Villain lair pop: " + villainLair.getPopulation());
-
         villainLair.addDweller("Bilbo");
         villainLair.addDweller("Cornelius");
+        System.out.println("Hero base pop: " + heroBase.getPopulation());
         System.out.println("Villain lair pop: " + villainLair.getPopulation());
         villainLair.removeDweller("Cornelius");
+        System.out.println("Hero base pop: " + heroBase.getPopulation());
         System.out.println("Villain lair pop: " + villainLair.getPopulation());
         heroBase.removeDweller("Jildon");
         System.out.println("Hero base pop: " + heroBase.getPopulation());
+        System.out.println("Villain lair pop: " + villainLair.getPopulation());
 
-        System.out.println(heroBase.getElementList());
-        System.out.println(villainLair.getElementList());
+        System.out.println("Hero base element list: " + heroBase.getElementList());
+        System.out.println("Villain lair element list: " + villainLair.getElementList());
 
         int num = 1;
         for (int i = 0; i < 10; i++) {
@@ -64,14 +65,28 @@ public class FactoryControl {
                 hot.createBase();
                 heroBaseList = hot.getBases();
                 heroBase = heroBaseList.get(heroBaseList.size() - 1);
+                System.out.println("Hero base element list: " + heroBase.getElementList());
             }
             System.out.println("adding dwellers to HeroBase.");
-            heroBase.addDweller("d" + String.valueOf(num++));
+            heroBase.addDweller("H " + num++);
+        }
+
+        int vill = 1;
+        for (int i = 0; i < 10; i++) {
+            if (villainLair.isLairFull()) {
+                hot.createLair();
+                villainLairList = hot.getLairs();
+                villainLair = villainLairList.get(villainLairList.size() - 1);
+                System.out.println("Villain lair element list: " + villainLair.getElementList());
+            }
+            System.out.println("adding dwellers to HeroBase.");
+            villainLair.addDweller("V " + vill++);
         }
 
 
-
-
+        System.out.println();
+        System.out.println("Concluding Factory Method...");
+        System.out.println();
     }
 
 }
