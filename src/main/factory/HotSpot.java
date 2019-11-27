@@ -87,7 +87,7 @@ public class HotSpot {
     public boolean checkBase() {
 
         for (Object item : hotspots) {
-             return (item instanceof HeroBase);
+            return (item instanceof HeroBase);
         }
         return false;
     }

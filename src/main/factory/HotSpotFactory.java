@@ -1,9 +1,5 @@
 package factory;
 
-
-import decorator.Hero;
-import decorator.Villain;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +30,7 @@ public class HotSpotFactory extends Factory {
         return hotspotList;
     }
 
-    public HeroBase getHeroBase () {
+    public HeroBase getHeroBase() {
         return heroBase;
     }
 
@@ -98,6 +94,7 @@ public class HotSpotFactory extends Factory {
 
         HeroBase temp = bases.get(bases.size() - 1);
         if (temp.isBaseFull()) {
+            createHotspot("AutoHotspot");
             heroBase = new HeroBase();
             bases.add(heroBase);
             hotspot.addBase(heroBase);
@@ -114,6 +111,7 @@ public class HotSpotFactory extends Factory {
 
         VillainLair temp = lairs.get(lairs.size() - 1);
         if (temp.isLairFull()) {
+            createHotspot("AutoHotspot");
             villainLair = new VillainLair();
             lairs.add(villainLair);
             hotspot.addLair(villainLair);
