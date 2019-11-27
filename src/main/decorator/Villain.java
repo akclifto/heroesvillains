@@ -33,10 +33,8 @@ public class Villain extends ConcreteSuperPower {
     public Villain(String name) {
 
         this.name = name;
-        int maxBound = ThreadLocalRandom.current().nextInt(2, 11);
+        int maxBound = ThreadLocalRandom.current().nextInt(4, 9);
         setBaseElements(elementList, 0, maxBound);
-
-
     }
 
     public String getName() {

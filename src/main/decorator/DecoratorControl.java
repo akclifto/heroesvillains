@@ -1,16 +1,8 @@
 package decorator;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class DecoratorControl {
 
     private ConcreteSuperPower conc = new ConcreteSuperPower();
-    private Hero hero;
-    private Villain villain;
-    private List<Hero> heroList = new ArrayList<>();
-    private List<Villain> villainList = new ArrayList<>();
 
     /**
      * Method: Runs the decorator design simulation
@@ -31,21 +23,57 @@ public class DecoratorControl {
         System.out.println("Starting the Decorator simulation...");
         System.out.println("-----------------------------------------------");
 
-        conc.createHero("Thor");
-        conc.spawnVillain("Loki");
 
+        conc.createHero("Thor");
+        System.out.println("Citizen have a chance to become heroes!");
+        System.out.println();
+        conc.spawnVillain("Loki");
+        System.out.println();
+
+        System.out.println("Heroes spawn with more power than villains.");
+        System.out.println("Both heroes and villains inherit powers from their parent.");
         conc.createHero("Freya");
+        System.out.println();
         conc.spawnVillain("Astrid");
 
+        System.out.println();
+        System.out.println("Heroes and Villains can gain power!");
         System.out.println("Hero " + conc.getSpawnedHeroes().get(1).getName()
-                + " gains power.");
-        conc.addPower("Freya", );
+                + " gains Earthen power!");
+        System.out.println("Current earth power: "
+                + conc.getSpawnedHeroes().get(1).getElementList().get(1));
+        conc.addPower("Freya", 1, 5);
+        System.out.println( conc.getSpawnedHeroes().get(1).getName()
+                + "'s New earth power: "
+                + conc.getSpawnedHeroes().get(1).getElementList().get(1));
 
+        System.out.println();
+        System.out.println("Villain " + conc.getSpawnedVillains().get(1).getName()
+                + " gains Fire power!");
+        System.out.println("Current fire power: "
+                + conc.getSpawnedVillains().get(1).getElementList().get(0));
+        conc.addPower("Astrid", 0, 5);
+        System.out.println( conc.getSpawnedVillains().get(1).getName()
+                + "'s New earth power: "
+                + conc.getSpawnedVillains().get(1).getElementList().get(0));
+        System.out.println();
+        System.out.println("Heroes are born to, and villains spawn from, a random parent");
+        conc.createHero("Hrothgar");
+        System.out.println();
+        conc.createHero("Solveig");
+        System.out.println();
+        conc.createHero("Gorm");
 
+        System.out.println();
+        conc.spawnVillain("Sigrid");
+        System.out.println();
+        conc.spawnVillain("Bjorn");
+        System.out.println();
+        conc.spawnVillain("Halfdan");
 
-
-
-
+        System.out.println();
+        System.out.println("Concluding Decorator simulation...");
+        System.out.println();
     }
 
 }

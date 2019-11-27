@@ -131,7 +131,8 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
             } else if (tempVillain != null) {
                 int element = tempVillain.getElementList().get(eleType);
                 System.out.println("Element value: " + element);
-                System.out.println(amountPower + " was added to " + element);
+                System.out.println("new value of " + amountPower
+                        + " was added to " + element);
                 element = element + amountPower;
                 tempVillain.getElementList().set(eleType, element);
             } else {
@@ -183,11 +184,11 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
 
         for (Hero hero : list) {
             if (hero.getName().equalsIgnoreCase(name)) {
+                System.out.println(name + " was found amongst the heroes.");
                 return hero;
-            } else {
-                System.out.println("Hero not found in the list.");
             }
         }
+        System.out.println("Hero not found in the list.");
         return null;
     }
 
@@ -196,11 +197,11 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
 
         for (Villain villain : list) {
             if (villain.getName().equalsIgnoreCase(name)) {
+                System.out.println(name + " was found amongst the villains.");
                 return villain;
-            } else {
-                System.out.println("Villain not found in the list.");
             }
         }
+        System.out.println("Villain not found in the list.");
         return null;
     }
 
