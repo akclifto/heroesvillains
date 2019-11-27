@@ -25,7 +25,7 @@ public class FactoryControl {
     public void run() {
 
         System.out.println("----------------------------------------------------");
-        System.out.println("Starting factory...");
+        System.out.println("Starting the Factory simulation...");
         System.out.println("----------------------------------------------------");
         System.out.println("Creating initial Hotspot...");
         hot.initHotspot("Gotham");
@@ -85,8 +85,7 @@ public class FactoryControl {
 
 
         System.out.println();
-        System.out.println("Concluding Factory Method...");
-        System.out.println();
+        System.out.println("Concluding Factory simulation...");
     }
 
 }

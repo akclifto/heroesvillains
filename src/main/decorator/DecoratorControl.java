@@ -1,7 +1,16 @@
 package decorator;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DecoratorControl {
+
+    private ConcreteSuperPower conc = new ConcreteSuperPower();
+    private Hero hero;
+    private Villain villain;
+    private List<Hero> heroList = new ArrayList<>();
+    private List<Villain> villainList = new ArrayList<>();
 
     /**
      * Method: Runs the decorator design simulation
@@ -21,6 +30,20 @@ public class DecoratorControl {
         System.out.println("-----------------------------------------------");
         System.out.println("Starting the Decorator simulation...");
         System.out.println("-----------------------------------------------");
+
+        conc.createHero("Thor");
+        conc.spawnVillain("Loki");
+
+        conc.createHero("Freya");
+        conc.spawnVillain("Astrid");
+
+        System.out.println("Hero " + conc.getSpawnedHeroes().get(1).getName()
+                + " gains power.");
+        conc.addPower("Freya", );
+
+
+
+
 
 
     }

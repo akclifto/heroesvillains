@@ -14,7 +14,6 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class ConcreteSuperPower extends PowerBaseDecorator {
 
-    private Hero hero;
     private List<Hero> spawnedHeroes = new ArrayList<>();
     private List<Villain> spawnedVillains = new ArrayList<>();
 
@@ -32,13 +31,12 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
     public void createHero(String name) {
 
         if (spawnedHeroes.size() == 0) {
-
-            hero = new Hero(name);
+            Hero hero = new Hero(name);
             spawnedHeroes.add(hero);
             System.out.println("The first Hero is born: " + name);
         } else {
 
-            hero = new Hero();
+            Hero hero = new Hero();
             int rand = ThreadLocalRandom.current().nextInt(0, spawnedHeroes.size());
             Hero temp = spawnedHeroes.get(rand);
             List<Integer> cloneList = absorbPower(temp, null);
@@ -46,19 +44,27 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
             hero.setName(name);
             hero.addToHeroList(hero);
             spawnedHeroes.add(hero);
-            System.out.println("Another hero is born: " + name);
+            System.out.println("Another hero is born: " + name + ". Parent: " + temp.getName());
+            hero.absorbPower(temp, null);
+            System.out.print(temp.getName() + "'s power values: ");
+            for (Integer index : temp.getElementList())    {
+                System.out.print(index + ", ");
+            }
+            System.out.println("\n" + name + " inherits her power from " + temp.getName());
+            System.out.print(name + "'s power values: ");
+            for (Integer index : hero.getElementList())    {
+                System.out.print(index + ", ");
+            }
+            System.out.println();
         }
-
-        // chance to transform citizen to hero.
+        //chance to transform normal citizen.
         if (randomCitizenHero()) {
-
             int tempNum = ThreadLocalRandom.current().nextInt(0, 100);
             Hero newHero = new Hero("Citizen " + tempNum);
             spawnedHeroes.add(newHero);
             System.out.println("A new citizen becomes a Hero! Citizen "
                     + tempNum + " is now a hero!");
         } else {
-
             System.out.println("The citizens did not heed the call to fight evil.");
         }
     }
@@ -68,8 +74,8 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
 
         if (spawnedVillains.size() == 0) {
 
-            Villain villan = new Villain(name);
-            spawnedVillains.add(villan);
+            Villain villain = new Villain(name);
+            spawnedVillains.add(villain);
             System.out.println("The first Villain has spawned: " + name);
         } else {
 
@@ -79,7 +85,20 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
             List<Integer> cloneList = absorbPower(null, temp);
             villain.replaceElementList(cloneList);
             spawnedVillains.add(villain);
-            System.out.println("A new Villain has spawned: " + name);
+            System.out.println("A new Villain has spawned: " + name
+                    + ", spawned from: " + temp.getName());
+            villain.absorbPower(null, temp);
+            System.out.print(temp.getName() + "'s power values: ");
+            for (Integer index : temp.getElementList())    {
+                System.out.print(index + ", ");
+            }
+            System.out.println("\n" + name + " inherits her power from " + temp.getName());
+            System.out.print(name + "'s power values: ");
+            for (Integer index : villain.getElementList())    {
+                System.out.print(index + ", ");
+            }
+            System.out.println();
+
         }
 
     }
