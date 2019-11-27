@@ -1,10 +1,11 @@
 package factory;
 
-import org.junit.Test;
-
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
+
 
 public class HotSpotFactoryTest {
 
@@ -15,7 +16,7 @@ public class HotSpotFactoryTest {
         FactoryControl factoryTest = new FactoryControl();
         AtomicBoolean isExecuted = new AtomicBoolean();
         isExecuted.set(false);
-        while(!isExecuted.get()) {
+        while (!isExecuted.get()) {
             factoryTest.run();
             isExecuted.set(true);
         }
@@ -87,7 +88,6 @@ public class HotSpotFactoryTest {
         factory.createBase();
         System.out.println("Number of Bases: " + factory.getBases().size());
         assertEquals(2, factory.getBases().size());
-
 
 
     }

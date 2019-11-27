@@ -16,7 +16,7 @@ public class VillainLairTest {
     @Rule
     public ExpectedException exc = ExpectedException.none();
 
-    @Test (expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void setElements() {
 
         lair = new VillainLair();
@@ -134,7 +134,7 @@ public class VillainLairTest {
         }
 
         for (int i = 0; i < checkList.size(); i++) {
-            if (checkList.get(i) != bonusList.get(i)){
+            if (!checkList.get(i).equals(bonusList.get(i))) {
                 assertNotSame(checkList.get(i), bonusList.get(i));
             }
         }
@@ -159,11 +159,10 @@ public class VillainLairTest {
         }
 
         for (int i = 0; i < weakList.size(); i++) {
-            if (weakList.get(i) != lairList.get(i)){
+            if (!weakList.get(i).equals(lairList.get(i))) {
                 assertNotSame(weakList.get(i), lairList.get(i));
             }
         }
-
 
 
     }

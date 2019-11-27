@@ -1,13 +1,13 @@
 package factory;
 
+import java.util.List;
 
-import decorator.Hero;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import java.util.List;
 
 import static org.junit.Assert.*;
+
 
 public class HeroBaseTest {
 
@@ -16,7 +16,7 @@ public class HeroBaseTest {
     @Rule
     public ExpectedException exc = ExpectedException.none();
 
-    @Test (expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void setElements() {
 
         base = new HeroBase();
@@ -134,7 +134,7 @@ public class HeroBaseTest {
         }
 
         for (int i = 0; i < checkList.size(); i++) {
-            if (!checkList.get(i).equals(bonusList.get(i))){
+            if (!checkList.get(i).equals(bonusList.get(i))) {
                 assertNotSame(checkList.get(i), bonusList.get(i));
             }
         }
@@ -159,7 +159,7 @@ public class HeroBaseTest {
         }
 
         for (int i = 0; i < weakList.size(); i++) {
-            if (!weakList.get(i).equals(baseList.get(i))){
+            if (!weakList.get(i).equals(baseList.get(i))) {
                 assertNotSame(weakList.get(i), baseList.get(i));
             }
         }

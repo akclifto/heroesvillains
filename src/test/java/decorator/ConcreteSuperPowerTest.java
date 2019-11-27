@@ -1,13 +1,14 @@
 package decorator;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 public class ConcreteSuperPowerTest {
 
@@ -19,7 +20,7 @@ public class ConcreteSuperPowerTest {
         DecoratorControl decoratorTest = new DecoratorControl();
         AtomicBoolean isExecuted = new AtomicBoolean();
         isExecuted.set(false);
-        while(!isExecuted.get()) {
+        while (!isExecuted.get()) {
             decoratorTest.run();
             isExecuted.set(true);
         }
@@ -52,7 +53,8 @@ public class ConcreteSuperPowerTest {
         assertEquals("Hero 2", conc.getSpawnedHeroes().get(1).getName());
 
         int spawnedRandomCitizen = 0;
-        for (int i = 0 ; i < 300 ; i++) {
+
+        for (int i = 0; i < 300; i++) {
             conc.createHero("Name");
         }
         for (Hero name : conc.getSpawnedHeroes()) {
@@ -93,7 +95,7 @@ public class ConcreteSuperPowerTest {
         assertTrue(notSpawned >= 50);
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void addPower() {
 
         conc = new ConcreteSuperPower();
@@ -101,7 +103,7 @@ public class ConcreteSuperPowerTest {
         conc.createHero("Hero 2");
         List<Integer> eleList = conc.getSpawnedHeroes().get(0).getElementList();
         int ele = eleList.get(3);
-        conc.addPower("Hero 1", 3, 4 );
+        conc.addPower("Hero 1", 3, 4);
         List<Integer> newList = conc.getSpawnedHeroes().get(0).getElementList();
         System.out.println("Old Ice: " + ele);
         System.out.println("New Ice: " + newList.get(3));
@@ -111,7 +113,7 @@ public class ConcreteSuperPowerTest {
         conc.spawnVillain("Villain 2");
         List<Integer> villList = conc.getSpawnedVillains().get(1).getElementList();
         int villEle = villList.get(0);
-        conc.addPower("Villain 2", 0, 4 );
+        conc.addPower("Villain 2", 0, 4);
         List<Integer> newVillEle = conc.getSpawnedVillains().get(1).getElementList();
         System.out.println("Old Fire: " + villEle);
         System.out.println("New Fire: " + newVillEle.get(0));
@@ -132,7 +134,7 @@ public class ConcreteSuperPowerTest {
         List<Integer> oldList = hero.getElementList();
         List<Integer> newList = conc.absorbPower(conc.getSpawnedHeroes().get(0), null);
         for (int i = 0; i < newList.size(); i++) {
-            if (!newList.get(i).equals(oldList.get(i))){
+            if (!newList.get(i).equals(oldList.get(i))) {
                 assertNotSame(newList.get(i), oldList.get(i));
             }
         }
@@ -141,16 +143,13 @@ public class ConcreteSuperPowerTest {
         List<Integer> oldVill = villain.getElementList();
         List<Integer> newVill = conc.absorbPower(null, conc.getSpawnedVillains().get(0));
         for (int i = 0; i < newVill.size(); i++) {
-            if (!newVill.get(i).equals(oldVill.get(i))){
+            if (!newVill.get(i).equals(oldVill.get(i))) {
                 assertNotSame(newVill.get(i), oldVill.get(i));
             }
         }
-
 //        exc.expect(NullPointerException.class.);
 //        exc.expectMessage("Both hero and villain fields are null.");
 //        conc.absorbPower(null, null);
-
-
     }
 
     @Test
@@ -163,7 +162,7 @@ public class ConcreteSuperPowerTest {
         conc.setBaseElements(conc.getSpawnedHeroes().get(0).getElementList(), 0, 10);
         List<Integer> newList = conc.getSpawnedHeroes().get(0).getElementList();
         for (int i = 0; i < newList.size(); i++) {
-            if (!newList.get(i).equals(oldList.get(i))){
+            if (!newList.get(i).equals(oldList.get(i))) {
                 assertNotSame(newList.get(i), oldList.get(i));
             }
         }
