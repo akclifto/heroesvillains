@@ -50,6 +50,18 @@ public class ConcreteSuperPowerTest {
         conc.createHero("Hero 2");
         assertEquals(2, conc.getSpawnedHeroes().size());
         assertEquals("Hero 2", conc.getSpawnedHeroes().get(1).getName());
+
+        int spawnedRandomCitizen = 0;
+        for (int i = 0 ; i < 300 ; i++) {
+            conc.createHero("Name");
+        }
+        for (Hero name : conc.getSpawnedHeroes()) {
+            if (name.getName().contains("Citizen ")) {
+                spawnedRandomCitizen++;
+            }
+        }
+        System.out.println("Spawned random citizens: " + spawnedRandomCitizen);
+        assertTrue(spawnedRandomCitizen >= 1);
     }
 
     @Test

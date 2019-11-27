@@ -56,7 +56,7 @@ public class ConcreteSuperPower extends PowerBaseDecorator {
             Hero newHero = new Hero("Citizen " + tempNum);
             spawnedHeroes.add(newHero);
             System.out.println("A new citizen becomes a Hero! Citizen "
-                    + tempNum + "is now a hero!");
+                    + tempNum + " is now a hero!");
         } else {
 
             System.out.println("The citizens did not heed the call to fight evil.");
