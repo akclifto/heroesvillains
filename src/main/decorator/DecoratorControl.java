@@ -9,12 +9,12 @@ public class DecoratorControl {
      * Inputs: NA
      * Returns: void
      * Description: This method will run the factory design.  It will:
-     *  - spawn heroes and villains.
-     *  - give heroes and villains powers.
-     *  - allows heroes and villains to spawn children.
-     *  - give chance of random normal person to become a hero.
-     *  - create a new bases or lairs if size exceeds 5 dwellers.
-     *  - balance villain powers with hero powers.
+     * - spawn heroes and villains.
+     * - give heroes and villains powers.
+     * - allows heroes and villains to spawn children.
+     * - give chance of random normal person to become a hero.
+     * - create a new bases or lairs if size exceeds 5 dwellers.
+     * - balance villain powers with hero powers.
      */
     public void run() {
 
@@ -30,7 +30,7 @@ public class DecoratorControl {
         conc.spawnVillain("Loki");
         System.out.println();
 
-        System.out.println("Heroes spawn with more power than villains.");
+        System.out.println("Heroes spawn with more power than villains!");
         System.out.println("Both heroes and villains inherit powers from their parent.");
         conc.createHero("Freya");
         System.out.println();
@@ -43,7 +43,7 @@ public class DecoratorControl {
         System.out.println("Current earth power: "
                 + conc.getSpawnedHeroes().get(1).getElementList().get(1));
         conc.addPower("Freya", 1, 5);
-        System.out.println( conc.getSpawnedHeroes().get(1).getName()
+        System.out.println(conc.getSpawnedHeroes().get(1).getName()
                 + "'s New earth power: "
                 + conc.getSpawnedHeroes().get(1).getElementList().get(1));
 
@@ -53,11 +53,11 @@ public class DecoratorControl {
         System.out.println("Current fire power: "
                 + conc.getSpawnedVillains().get(1).getElementList().get(0));
         conc.addPower("Astrid", 0, 5);
-        System.out.println( conc.getSpawnedVillains().get(1).getName()
+        System.out.println(conc.getSpawnedVillains().get(1).getName()
                 + "'s New earth power: "
                 + conc.getSpawnedVillains().get(1).getElementList().get(0));
         System.out.println();
-        System.out.println("Heroes are born to, and villains spawn from, a random parent");
+        System.out.println("Heroes are born to, and villains spawn from, a random parent!");
         conc.createHero("Hrothgar");
         System.out.println();
         conc.createHero("Solveig");

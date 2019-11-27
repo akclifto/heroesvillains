@@ -94,7 +94,7 @@ public class HotSpotFactory extends Factory {
 
         HeroBase temp = bases.get(bases.size() - 1);
         if (temp.isBaseFull()) {
-            createHotspot("AutoBase");
+            createHotspot("AutoHotspot");
             heroBase = new HeroBase();
             bases.add(heroBase);
             hotspot.addBase(heroBase);
@@ -111,7 +111,7 @@ public class HotSpotFactory extends Factory {
 
         VillainLair temp = lairs.get(lairs.size() - 1);
         if (temp.isLairFull()) {
-            createHotspot("AutoLair");
+            createHotspot("AutoHotspot");
             villainLair = new VillainLair();
             lairs.add(villainLair);
             hotspot.addLair(villainLair);
