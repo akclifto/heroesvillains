@@ -30,13 +30,10 @@ public class MediatorControl {
         System.out.println("Starting the Mediator simulation...");
         System.out.println("----------------------------------------------------");
 
-        Hero hero1 = new Hero(med, "Hero");
-        med.setHero(hero1);
-        Villain villain1 = new Villain(med, "Villain");
-        med.setVillain(villain1);
+        //TODO need to initiate move
+ //       hero1.send(2, false, false);
+        med.initialize();
 
-        hero1.send(2, false, false);
-        villain1.send(9, false, false);
 
     }
 

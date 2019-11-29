@@ -1,7 +1,8 @@
 package mediator;
 
-
-import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * File: ConcreteMediator.java
@@ -15,7 +16,10 @@ public class ConcreteMediator implements MediatorBase {
 
     private Hero hero;
     private Villain villain;
-    private int move = 0;
+    private int heroCount = 0;
+    private int villainCount = 0;
+    private List<Hero> heroList = new ArrayList<>();
+    private List<Villain> villainList = new ArrayList<>();
 
 
     public void setHero(Hero hero) {
@@ -32,6 +36,14 @@ public class ConcreteMediator implements MediatorBase {
 
     public Villain getVillain() {
         return villain;
+    }
+
+    public List<Hero> getHeroList() {
+        return heroList;
+    }
+
+    public List<Villain> getVillainList() {
+        return villainList;
     }
 
 
@@ -68,6 +80,48 @@ public class ConcreteMediator implements MediatorBase {
         } catch (Exception e)  {
             System.out.println("Message was not sent properly.");
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize() {
+
+        for(int i = 0; i < 10; i++) {
+
+            hero = new Hero(this, "Hero " + heroCount++);
+            System.out.print("Hero " + heroCount + " created. ");
+            heroList.add(hero);
+
+            villain = new Villain(this, "Villain " + villainCount++);
+            System.out.println("Villain " + villainCount + " created.");
+            villainList.add(villain);
+        }
+
+        System.out.println("Total Heroes: " + heroList.size());
+        System.out.println("Total Villains: " + villainList.size());
+
+
+    }
+
+    /**
+     * Method: Initiates the start of the simulation.
+     * Inputs: NA
+     * Returns: void
+     * Description: This method creates base heroes and villains, and
+     * chooses one side to initiate combat at random.
+     */
+    @Override
+    public void initiateRandom() {
+
+        int firstMove = ThreadLocalRandom.current().nextInt(0,11);
+        firstMove = firstMove % 2;
+
+        if (firstMove == 1) {
+            System.out.println("The Hero makes the first move.");
+            hero.receive(0, false, false);
+        } else {
+            System.out.println("The villain makes the first move.");
+            villain.receive(0, false, false);
         }
     }
 

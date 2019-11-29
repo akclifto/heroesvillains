@@ -24,13 +24,11 @@ public class Hero extends CombatBase {
     private int health = 100;
     private int heroMove = 0;
     private List<Integer> ElementList = Arrays.asList(fire, earth, wind, ice, shock);
-    private List<Hero> heroList = new ArrayList<>();
 
     public Hero(MediatorBase mediator, String name) {
         super(mediator);
         this.name = name;
         setBaseElements(ElementList);
-        heroList.add(this);
     }
 
     @Override
@@ -38,9 +36,6 @@ public class Hero extends CombatBase {
         return name;
     }
 
-    public List<Hero> getHeroList() {
-        return heroList;
-    }
 
     public int getMove() {
         if (heroMove == 0) {
@@ -64,6 +59,7 @@ public class Hero extends CombatBase {
             System.out.println("Element list is pointing to null.");
         }
     }
+
 
     /**
      * Method: Receives Message from mediator

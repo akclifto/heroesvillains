@@ -65,6 +65,7 @@ public class Villain extends CombatBase {
         }
     }
 
+
     /**
      * Method: Receives Message from mediator
      * Inputs: NA

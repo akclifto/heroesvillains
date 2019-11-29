@@ -22,4 +22,22 @@ public interface MediatorBase {
      */
     public void sendMessage(CombatBase caller, int move);
 
+    /**
+     * Method: Initialize heroes and villains for simulation
+     * Inputs: NA
+     * Returns: void
+     * Description: This method creates heroes and villains automatically to start
+     * the simulation.
+     */
+    public void initialize();
+
+    /**
+     * Method: Initiates the start of the simulation.
+     * Inputs: NA
+     * Returns: void
+     * Description: This method creates base heroes and villains, and
+     * chooses one side to initiate combat at random.
+     */
+    public void initiateRandom();
+
 }
