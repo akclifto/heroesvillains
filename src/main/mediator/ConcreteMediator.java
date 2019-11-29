@@ -17,5 +17,20 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void sendMessage(CombatBase caller) {
 
+        boolean isResting = false;
+        boolean isDead = false;
+        
+        try {
+            if (caller == hero) {
+                hero.receive();
+            }
+            if (caller == villain) {
+                villain.receive();
+            }
+        } catch (Exception e)  {
+            System.out.println("Message was not sent properly.");
+            e.printStackTrace();
+        }
+
     }
 }
