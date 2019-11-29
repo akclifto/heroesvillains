@@ -1,6 +1,7 @@
 
 import decorator.DecoratorControl;
 import factory.FactoryControl;
+import mediator.MediatorControl;
 
 public class Main {
 
@@ -16,8 +17,11 @@ public class Main {
 
         FactoryControl f = new FactoryControl();
         DecoratorControl c = new DecoratorControl();
+        MediatorControl m = new MediatorControl();
 
         f.run();
         c.run();
+        m.run();
+
     }
 }
