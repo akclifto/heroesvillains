@@ -23,12 +23,20 @@ public class Hero extends CombatBase {
     private int shock = 0;
     private int health = 100;
     private List<Integer> ElementList = Arrays.asList(fire, earth, wind, ice, shock);
-    private List<decorator.Hero> heroList = new ArrayList<>();
+    private List<Hero> heroList = new ArrayList<>();
     private boolean isResting = false;
     private boolean isDead = false;
 
-    public Hero(MediatorBase mediator) {
+    public Hero(MediatorBase mediator, String name) {
         super(mediator);
+        this.name = name;
+        setBaseElements(ElementList);
+        heroList.add(this);
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     /**
@@ -38,7 +46,7 @@ public class Hero extends CombatBase {
      * Description: This method will receive information from the mediator related
      * to combat between villain and hero.
      */
-    public void receive() {
+    public void receive(String move, boolean isResting, boolean isDead) {
         //TODO
     }
 
@@ -49,7 +57,7 @@ public class Hero extends CombatBase {
      * Description: This method will send information to the mediator related
      * to the combat between villain and hero.
      */
-    public void send() {
+    public void send(String move, boolean isResting, boolean isDead) {
         //TODO
     }
 

@@ -13,16 +13,15 @@ public class ConcreteMediator implements MediatorBase {
 
     private Hero hero;
     private Villain villain;
+    private boolean isResting = false;
+    private boolean isDead = false;
 
     @Override
     public void sendMessage(CombatBase caller) {
 
-        boolean isResting;
-        boolean isDead;
-
         try {
             if (caller == hero) {
-                hero.receive();
+                hero.receive(isResting, isDead);
             }
             if (caller == villain) {
                 villain.receive();
@@ -31,6 +30,19 @@ public class ConcreteMediator implements MediatorBase {
             System.out.println("Message was not sent properly.");
             e.printStackTrace();
         }
+    }
 
+    @Override
+    public void getMessage(CombatBase caller, boolean isResting, boolean isDead) {
+
+        try{
+            if(caller == hero) {
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Message was not received properly.");
+            e.printStackTrace();
+        }
     }
 }

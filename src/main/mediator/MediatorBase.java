@@ -22,4 +22,13 @@ public interface MediatorBase {
      */
     public void sendMessage(CombatBase caller);
 
+    /**
+     * Method: Relays messages to the Mediator
+     * Inputs: caller : CombatBase, isResting : boolean, isDead : boolean
+     * Returns: void
+     * Description: This method relays information from the CombatBase to the
+     * mediator regarding the villain and hero objects.
+     */
+    public void getMessage(CombatBase caller, boolean isResting, boolean isDead);
+
 }

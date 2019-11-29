@@ -17,4 +17,12 @@ public abstract class CombatBase {
         this.mediator = mediator;
     }
 
+
+    /**
+     * Method: Relays messages to the Mediator
+     * Inputs: NA
+     * Returns: void
+     * Description: Gets the name of the hero or villains and passes to mediator.
+     */
+    public abstract String getName();
 }

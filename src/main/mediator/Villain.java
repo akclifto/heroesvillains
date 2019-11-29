@@ -15,6 +15,11 @@ public class Villain extends CombatBase {
         super(mediator);
     }
 
+    @Override
+    public String getName() {
+        return null;
+    }
+
 
     /**
      * Method: Receives Message from mediator
