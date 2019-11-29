@@ -11,6 +11,8 @@ package mediator;
  */
 public class MediatorControl {
 
+    private ConcreteMediator med = new ConcreteMediator();
+
     /**
      * Method: Runs the factory design simulation
      * Inputs: NA
@@ -27,9 +29,15 @@ public class MediatorControl {
         System.out.println("----------------------------------------------------");
         System.out.println("Starting the Mediator simulation...");
         System.out.println("----------------------------------------------------");
-        System.out.println("\nNothing here yet!");
+
+        Hero hero1 = new Hero(med, "Hero");
+        med.setHero(hero1);
+        Villain villain1 = new Villain(med, "Villain");
+        med.setVillain(villain1);
+
+        hero1.send(2, false, false);
+        villain1.send(9, false, false);
 
     }
-
 
 }

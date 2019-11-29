@@ -22,10 +22,9 @@ public class Hero extends CombatBase {
     private int ice = 0;
     private int shock = 0;
     private int health = 100;
+    private int heroMove = 0;
     private List<Integer> ElementList = Arrays.asList(fire, earth, wind, ice, shock);
     private List<Hero> heroList = new ArrayList<>();
-    private boolean isResting = false;
-    private boolean isDead = false;
 
     public Hero(MediatorBase mediator, String name) {
         super(mediator);
@@ -39,41 +38,22 @@ public class Hero extends CombatBase {
         return name;
     }
 
-    /**
-     * Method: Receives Message from mediator
-     * Inputs: NA
-     * Returns: void
-     * Description: This method will receive information from the mediator related
-     * to combat between villain and hero.
-     */
-    public void receive(int move, boolean isResting, boolean isDead) {
-        //TODO receive me, deduct damage, check resting/dead, send new move
+    public List<Hero> getHeroList() {
+        return heroList;
     }
 
-    /**
-     * Method: Sends messages to the Mediator
-     * Inputs: NA
-     * Returns: void
-     * Description: This method will send information to the mediator related
-     * to the combat between villain and hero.
-     */
-    public void send(int move, boolean isResting, boolean isDead) {
-        //TODO
-        System.out.println("Hero is sending combat message.");
-        mediator.sendMessage(villain, move, isResting, isDead);
+    public int getMove() {
+        if (heroMove == 0) {
+            //TODO set random hero move
+        }
+        return heroMove;
     }
 
-    /**
-     * Method: Sets base elements for Heroes and Villains.
-     * Inputs: list : List, min : int, max : int
-     * Returns: void
-     * Description: This method will set base attirbutes for both Heroes and Villains
-     * and allows the user to set custom min, max options for both.
-     */
+    @Override
     public void setBaseElements(List<Integer> list) {
 
-        int min = ThreadLocalRandom.current().nextInt(0, 2);
-        int max = ThreadLocalRandom.current().nextInt(2, 11);
+        int min = ThreadLocalRandom.current().nextInt(0, 3);
+        int max = ThreadLocalRandom.current().nextInt(3, 12);
 
         try {
             for (int i = 0; i < list.size(); i++) {
@@ -84,6 +64,40 @@ public class Hero extends CombatBase {
             System.out.println("Element list is pointing to null.");
         }
     }
+
+    /**
+     * Method: Receives Message from mediator
+     * Inputs: NA
+     * Returns: void
+     * Description: This method will receive information from the mediator related
+     * to combat between villain and hero.
+     */
+    public void receive(int move, boolean isResting, boolean isDead) {
+        //TODO receive me, deduct damage, check resting/dead, send new move
+
+        System.out.println("Hero received message");
+        System.out.println("Move; " + move );
+        System.out.println("is Villain resting: " + isResting);
+        System.out.println("is Villain dead: " + isDead);
+        //TODO set hero move
+        heroMove = 2;
+        send(getMove(), false, false);
+    }
+
+    /**
+     * Method: Sends messages to the Mediator
+     * Inputs: move : int, isResting : boolean, isDead : booleans
+     * Returns: void
+     * Description: This method will send information to the mediator related
+     * to the combat between villain and hero.
+     */
+    public void send(int move, boolean isResting, boolean isDead) {
+
+        System.out.println("Hero is sending combat message.");
+        mediator.sendMessage(this, move);
+    }
+
+
 
     public boolean isResting() {
         //TODO if just fought, need to rest, will have to use a tick or something

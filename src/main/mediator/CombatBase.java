@@ -1,6 +1,8 @@
 package mediator;
 
 
+import java.util.List;
+
 /**
  * File: CombatBase.java
  * Author:  Adam Clifton (akclifto@asu.edu)
@@ -25,5 +27,14 @@ public abstract class CombatBase {
      * Description: Gets the name of the hero or villains and passes to mediator.
      */
     public abstract String getName();
+
+    /**
+     * Method: Sets base elements for Heroes and Villains.
+     * Inputs: list : List, min : int, max : int
+     * Returns: void
+     * Description: This method will set base attirbutes for both Heroes and Villains
+     * and allows the user to set custom min, max options for both.
+     */
+    public abstract void setBaseElements(List<Integer> list);
 
 }
