@@ -33,6 +33,7 @@ public class MediatorControl {
         //TODO need to initiate move
  //       hero1.send(2, false, false);
         med.initialize();
+        med.initiateRandom();
 
 
     }

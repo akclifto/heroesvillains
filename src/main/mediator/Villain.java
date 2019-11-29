@@ -76,9 +76,9 @@ public class Villain extends CombatBase {
     public void receive(int move, boolean isResting, boolean isDead) {
         //TODO receive me, deduct damage, check resting/dead, send new move
         System.out.println("Villain received message");
-        System.out.println("Move; " + move );
-        System.out.println("is Villain resting: " + isResting);
-        System.out.println("is Villain dead: " + isDead);
+        System.out.print("Move: " + move + ". ");
+        System.out.print("Is Hero resting? " + isResting + ". ");
+        System.out.println("Is Hero dead? " + isDead);
         //TODO
         villainMove = 9;
         send(9, false, false);

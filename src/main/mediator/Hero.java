@@ -72,9 +72,9 @@ public class Hero extends CombatBase {
         //TODO receive me, deduct damage, check resting/dead, send new move
 
         System.out.println("Hero received message");
-        System.out.println("Move: " + move );
-        System.out.println("is Villain resting: " + isResting);
-        System.out.println("is Villain dead: " + isDead);
+        System.out.print("Move: " + move + ". ");
+        System.out.print("Is Villain resting? " + isResting + ". ");
+        System.out.println("Is Villain dead? " + isDead);
         //TODO set hero move
         heroMove = 2;
         send(getMove(), false, false);

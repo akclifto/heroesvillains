@@ -52,7 +52,7 @@ public class ConcreteMediator implements MediatorBase {
 
         try {
             if (caller == hero) {
-                System.out.println("Mediator received message.");
+                System.out.print("Mediator received message. ");
                 if (hero.isDead()) {
                     System.out.println("Hero has been slain");
                     villain.receive(move, false, true);
@@ -65,7 +65,7 @@ public class ConcreteMediator implements MediatorBase {
                 }
             }
             if (caller == villain) {
-                System.out.println("Mediator received message.");
+                System.out.print("Mediator received message. ");
                 if (villain.isDead()) {
                     System.out.println("Villain has been slain.");
                     hero.receive(move, false, true);
