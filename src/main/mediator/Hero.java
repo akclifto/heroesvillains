@@ -46,8 +46,8 @@ public class Hero extends CombatBase {
      * Description: This method will receive information from the mediator related
      * to combat between villain and hero.
      */
-    public void receive(String move, boolean isResting, boolean isDead) {
-        //TODO
+    public void receive(int move, boolean isResting, boolean isDead) {
+        //TODO receive me, deduct damage, check resting/dead, send new move
     }
 
     /**
@@ -57,8 +57,10 @@ public class Hero extends CombatBase {
      * Description: This method will send information to the mediator related
      * to the combat between villain and hero.
      */
-    public void send(String move, boolean isResting, boolean isDead) {
+    public void send(int move, boolean isResting, boolean isDead) {
         //TODO
+        System.out.println("Hero is sending combat message.");
+        mediator.sendMessage(villain, move, isResting, isDead);
     }
 
     /**
@@ -80,11 +82,17 @@ public class Hero extends CombatBase {
             }
         } catch (NullPointerException e) {
             System.out.println("Element list is pointing to null.");
-            e.printStackTrace();
         }
     }
 
+    public boolean isResting() {
+        //TODO if just fought, need to rest, will have to use a tick or something
+        return false;
+    }
 
+    public boolean isDead() {
+        return health <= 0;
+    }
 
 
 

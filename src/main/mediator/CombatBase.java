@@ -25,4 +25,5 @@ public abstract class CombatBase {
      * Description: Gets the name of the hero or villains and passes to mediator.
      */
     public abstract String getName();
+
 }
