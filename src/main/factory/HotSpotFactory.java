@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+/**
+ * File: HotSportFactory.java
+ * Author:  Adam Clifton (akclifto@asu.edu)
+ * Date:  2019.11.29
+ *
+ * <p>Description: This class will create and manage the Hero bases and Villain lairs.
+ */
 public class HotSpotFactory extends Factory {
 
     private VillainLair villainLair;

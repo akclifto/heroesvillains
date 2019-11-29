@@ -11,6 +11,9 @@ package mediator;
  */
 public class ConcreteMediator implements MediatorBase {
 
+    private Hero hero;
+    private Villain villain;
+
     @Override
     public void sendMessage(CombatBase caller) {
 

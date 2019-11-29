@@ -5,6 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+
+/**
+ * File: HeroBase.java
+ * Author:  Adam Clifton (akclifto@asu.edu)
+ * Date:  2019.11.29
+ *
+ * <p>Description: This class will contain all the Hero bases created during the
+ * simulation and all of its attributes.
+ */
 public class HeroBase implements LairBase {
 
     private String name;

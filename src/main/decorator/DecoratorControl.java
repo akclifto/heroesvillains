@@ -1,5 +1,13 @@
 package decorator;
 
+
+/**
+ * File: DecoratorControl.java
+ * Author:  Adam Clifton (akclifto@asu.edu)
+ * Date:  2019.11.29
+ *
+ * <p>Description: This class will run the decorator design simulation.
+ */
 public class DecoratorControl {
 
     private ConcreteSuperPower conc = new ConcreteSuperPower();

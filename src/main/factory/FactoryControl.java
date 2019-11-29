@@ -3,6 +3,14 @@ package factory;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * File: FactoryControl.java
+ * Author:  Adam Clifton (akclifto@asu.edu)
+ * Date:  2019.11.29
+ *
+ * <p>Description: This is the control class that will run the factory simulation.
+ */
 public class FactoryControl {
 
     private HotSpotFactory hot = new HotSpotFactory();
