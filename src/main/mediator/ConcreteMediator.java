@@ -17,9 +17,9 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void sendMessage(CombatBase caller) {
 
-        boolean isResting = false;
-        boolean isDead = false;
-        
+        boolean isResting;
+        boolean isDead;
+
         try {
             if (caller == hero) {
                 hero.receive();
