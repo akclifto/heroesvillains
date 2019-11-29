@@ -1,5 +1,14 @@
 package mediator;
 
+
+/**
+ * File: MediatorControl.java
+ * Author:  Adam Clifton (akclifto@asu.edu)
+ * Date:  2019.11.29
+ *
+ * <p>Description: This is the control class that will run the Mediator design
+ * simulation.
+ */
 public class MediatorControl {
 
     /**
