@@ -52,30 +52,10 @@ public class ConcreteMediator implements MediatorBase {
 
         try {
             if (caller == hero) {
-                System.out.print("Mediator received message. ");
-                if (hero.isDead()) {
-                    System.out.println("Hero has been slain");
-                    villain.receive(move, false, true);
-                } else if (hero.isResting()) {
-                    System.out.println("Hero is resting.");
-                    villain.receive(move, true, false);
-                } else {
-                    System.out.println("Mediator sends move to villain");
-                    villain.receive(move, false, false);
-                }
+                villainReceive(move);
             }
             if (caller == villain) {
-                System.out.print("Mediator received message. ");
-                if (villain.isDead()) {
-                    System.out.println("Villain has been slain.");
-                    hero.receive(move, false, true);
-                } else if (villain.isResting()) {
-                    System.out.println("Villain is resting.");
-                    hero.receive(move, true, false);
-                } else {
-                    System.out.println("Mediator sends move to Hero.");
-                    hero.receive(move, false, false);
-                }
+                heroReceive(move);
             }
         } catch (Exception e)  {
             System.out.println("Message was not sent properly.");
@@ -125,4 +105,45 @@ public class ConcreteMediator implements MediatorBase {
         }
     }
 
+
+    /**
+     * Method: Sends villain message from hero.
+     * Inputs: NA
+     * Returns: void
+     * Description: Helper method used in sendMessage to send message to villain.
+     */
+    private void villainReceive(int move) {
+
+        System.out.print("Mediator received message. ");
+        if (hero.isDead()) {
+            System.out.println("Hero has been slain");
+            villain.receive(move, false, true);
+        } else if (hero.isResting()) {
+            System.out.println("Hero is resting.");
+            villain.receive(move, true, false);
+        } else {
+            System.out.println("Mediator sends move to villain");
+            villain.receive(move, false, false);
+        }
+    }
+
+    /**
+     * Method: Sends hero message from villain.
+     * Inputs: NA
+     * Returns: void
+     * Description: Helper method used in sendMessage to send message to hero.
+     */
+    private void heroReceive(int move) {
+        System.out.print("Mediator received message. ");
+        if (villain.isDead()) {
+            System.out.println("Villain has been slain.");
+            hero.receive(move, false, true);
+        } else if (villain.isResting()) {
+            System.out.println("Villain is resting.");
+            hero.receive(move, true, false);
+        } else {
+            System.out.println("Mediator sends move to Hero.");
+            hero.receive(move, false, false);
+        }
+    }
 }
