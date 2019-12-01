@@ -74,6 +74,16 @@ public class ConcreteMediatorTest {
         med.setVillain(villain);
 
         hero.send(99);
+        assertEquals(0, med.getVillainList().size());
+        Villain villain2 =  new Villain(med, "Villain 2");
+        med.setVillain(villain2);
+        med.getVillainList().add(villain2);
+        villain2.send(99);
+        assertEquals(0, med.getHeroList().size());
+
+        Hero hero2 = new Hero(med, "Hero 2");
+        hero.send(1);
+        assertEquals();
 
 
     }

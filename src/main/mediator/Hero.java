@@ -194,10 +194,9 @@ public class Hero extends CombatBase {
      */
     public void receive(int move, boolean isResting, boolean isDead) {
 
-        System.out.print(name + " received message. ");
-        System.out.print("Move chosen: " + move + ". ");
-        System.out.print("Is Villain resting? " + isResting + ". ");
-        System.out.println("Is Villain dead? " + isDead);
+//        System.out.print("Move chosen: " + move + ". ");
+//        System.out.print("Is Villain resting? " + isResting + ". ");
+//        System.out.println("Is Villain dead? " + isDead);
 
         if (isDead) {
             System.out.println("The Villain has been defeated! ");
@@ -225,7 +224,6 @@ public class Hero extends CombatBase {
      */
     public void send(int move) {
 
-        System.out.println(name + " is sending combat message.");
         mediator.sendMessage(this, move);
     }
 

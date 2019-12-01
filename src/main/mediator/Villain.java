@@ -195,9 +195,9 @@ public class Villain extends CombatBase {
      */
     public void receive(int move, boolean isResting, boolean isDead) {
 
-        System.out.print("Move: " + move + ". ");
-        System.out.print("Is Hero resting? " + isResting + ". ");
-        System.out.println("Is Hero dead? " + isDead);
+//        System.out.print("Move: " + move + ". ");
+//        System.out.print("Is Hero resting? " + isResting + ". ");
+//        System.out.println("Is Hero dead? " + isDead);
 
         if (isDead) {
             System.out.print("The Hero has been defeated! ");

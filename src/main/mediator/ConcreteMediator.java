@@ -157,6 +157,13 @@ public class ConcreteMediator implements MediatorBase {
         }
     }
 
+    /**
+     * Method: Check the battle state to continue with a new battle..
+     * Inputs: NA
+     * Returns: boolean
+     * Description: Checks the state of battle. If either hero or villain list is
+     * empty, returns false; otherwise returns true.
+     */
     private boolean checkBattleState() {
 
         return villainList.size() != 0 && heroList.size() != 0;
@@ -211,12 +218,12 @@ public class ConcreteMediator implements MediatorBase {
                     + " removed from the list.");
             villainList.remove(selectedVillain);
             if (villainList.size() == 0) {
+
                 sendMessage(hero, -1);
                 return;
             }
         }
         if (caller == hero) {
-
             if (inRest == -1) {
 
                 inRest = villainList.indexOf(villain);
@@ -251,7 +258,6 @@ public class ConcreteMediator implements MediatorBase {
      */
     private void villainReceive(int move) {
 
-        System.out.print("Mediator received message. ");
         if (hero.isDead()) {
             System.out.println("Hero has been slain!");
             villain.receive(move, false, true);
@@ -259,7 +265,6 @@ public class ConcreteMediator implements MediatorBase {
             System.out.println("Hero is resting!");
             villain.receive(move, true, false);
         } else {
-            System.out.println("Mediator sends move to villain.");
             villain.receive(move, false, false);
         }
     }
@@ -271,15 +276,13 @@ public class ConcreteMediator implements MediatorBase {
      * Description: Helper method used in sendMessage to send message to hero.
      */
     private void heroReceive(int move) {
-//        System.out.print("Mediator received message. ");
         if (villain.isDead()) {
-//            System.out.println("Villain has been slain!");
+            System.out.println("Villain has been slain!");
             hero.receive(move, false, true);
         } else if (villain.isResting()) {
-//            System.out.println("Villain is resting!");
+            System.out.println("Villain is resting!");
             hero.receive(move, true, false);
         } else {
-//            System.out.println("Mediator sends move to Hero.");
             hero.receive(move, false, false);
         }
     }
