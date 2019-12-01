@@ -1,5 +1,6 @@
 package mediator;
 
+import com.sun.tools.javac.Main;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import java.util.ArrayList;
@@ -54,32 +55,42 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void sendMessage(CombatBase caller, int move) {
 
-        if (move == 99 && caller == hero) {
+        try {
+            if (move == 99 && caller == hero) {
 
-            removeFromList(villain);
-            System.out.println();
-            System.out.println("A new battle begins...");
-            newBattle();
+                removeFromList(villain);
+                System.out.println();
+                System.out.println("A new battle begins...");
+                newBattle();
 
-        } else if (move == 99 && caller == villain) {
+            } else if (move == 99 && caller == villain) {
 
-            removeFromList(hero);
-            System.out.println();
-            System.out.println("A new battle begins...");
-            newBattle();
+                removeFromList(hero);
+                System.out.println();
+                System.out.println("A new battle begins...");
+                newBattle();
 
-        } else {
-            try {
-                if (caller == hero) {
-                    villainReceive(move);
-                }
-                if (caller == villain) {
-                    heroReceive(move);
-                }
-            } catch (Exception e) {
-                System.out.println("Message was not sent properly.");
-                e.printStackTrace();
+            } else if (move == -1 && caller == hero) {
+
+                System.out.println("All of the villains have been defeated. "
+                        + "THE AGE OF LIGHT GRACES THE LAND! ");
+
+            } else if (move == -1 && caller == villain) {
+
+                System.out.println("All of the heroes have been defeated. "
+                        + "THE AGE OF DARKNESS FALLS UPON THE LAND! ");
+
+
+            } else if (caller == hero) {
+
+                villainReceive(move);
+            } else if (caller == villain) {
+
+                heroReceive(move);
             }
+        } catch (Exception e) {
+            System.out.println("Message was not sent properly.");
+            e.printStackTrace();
         }
     }
 
@@ -150,8 +161,7 @@ public class ConcreteMediator implements MediatorBase {
      */
     private int getRandomHero() {
 
-        int randHero = ThreadLocalRandom.current().nextInt(0, heroList.size());
-        return randHero;
+        return ThreadLocalRandom.current().nextInt(0, heroList.size());
     }
 
     /**
@@ -162,8 +172,7 @@ public class ConcreteMediator implements MediatorBase {
      */
     private int getRandomVillain() {
 
-        int randVIllain = ThreadLocalRandom.current().nextInt(0, villainList.size());
-        return randVIllain;
+        return ThreadLocalRandom.current().nextInt(0, villainList.size());
     }
 
 
@@ -176,10 +185,13 @@ public class ConcreteMediator implements MediatorBase {
     private void removeFromList(CombatBase caller) {
 
         if (caller == villain) {
+
             if (inRest == -1) {
+
                 inRest = heroList.indexOf(hero);
                 System.out.println(heroList.get(selectedHero).getName() + " is now resting.");
             } else {
+
                 Hero hero = heroList.get(selectedHero);
                 hero.setResting();
                 inRest = selectedHero;
@@ -189,32 +201,35 @@ public class ConcreteMediator implements MediatorBase {
                     + " removed from the list.");
             villainList.remove(selectedVillain);
             if (villainList.size() == 0) {
-                System.out.println("All of the villains have been defeated. "
-                        + "THE AGE OF LIGHT GRACES THE LAND! ");
-                end();
+                sendMessage(hero, -1);
+                return;
             }
         }
         if (caller == hero) {
+
             if (inRest == -1) {
+
                 inRest = villainList.indexOf(villain);
                 System.out.println(villainList.get(selectedVillain).getName() + " is now resting.");
             } else {
+
                 Villain vill = villainList.get(selectedVillain);
                 vill.setResting();
                 inRest = selectedVillain;
                 System.out.println(villainList.get(inRest).getName() + " is now resting.");
             }
-
-            System.out.println(heroList.get(selectedHero).getName() + " removed from the list.");
+            System.out.println(heroList.get(selectedHero).getName()
+                    + " removed from the list.");
             heroList.remove(selectedHero);
             if (heroList.size() == 0) {
-                System.out.println("All of the heroes have been defeated. "
-                        + "THE AGE OF DARKNESS FALLS UPON THE LAND! ");
-                end();
+
+                sendMessage(villain, -1);
+                return;
             }
         }
         System.out.println("Villains have " + villainList.size() + " remaining.");
         System.out.println("Heroes have " + heroList.size() + " remaining.");
+
 
     }
 
@@ -259,18 +274,4 @@ public class ConcreteMediator implements MediatorBase {
         }
     }
 
-
-    /**
-     * Method: Ends the simulation.
-     * Inputs: NA
-     * Returns: void
-     * Description: Ends the simulation when all heroes or villains are defeated.
-     */
-    @SuppressFBWarnings
-    private void end() {
-
-        System.out.println();
-        System.out.println("End of Mediator Simulation....");
-        System.exit(0);
-    }
 }
