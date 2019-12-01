@@ -27,9 +27,9 @@ public class DecoratorControl {
     public void run() {
 
         System.out.println();
-        System.out.println("-----------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
         System.out.println("Starting the Decorator simulation...");
-        System.out.println("-----------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
 
 
         conc.createHero("Thor");

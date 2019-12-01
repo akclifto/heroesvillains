@@ -25,9 +25,9 @@ public class MediatorControl implements Runnable {
      */
     public void run() {
 
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
         System.out.println("Starting the Mediator simulation...");
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
 
         med.initialize();
         med.initiateRandom();

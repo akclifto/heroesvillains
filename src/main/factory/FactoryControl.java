@@ -31,9 +31,9 @@ public class FactoryControl {
      */
     public void run() {
 
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
         System.out.println("Starting the Factory simulation...");
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
         System.out.println();
         System.out.println("The initial hotspot automatically creates a hero base "
                 + "and villain lair!");

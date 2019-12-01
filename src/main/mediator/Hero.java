@@ -23,7 +23,7 @@ public class Hero extends CombatBase {
     private int shock = 0;
     private int health;
     private int strength;
-    boolean resting = false;
+    private boolean resting = false;
     private int restTick;
     private int villainSlain;
     private int heroMove = -1;
@@ -58,6 +58,11 @@ public class Hero extends CombatBase {
 
     public int getStrength() {
         return strength;
+    }
+
+    public void setResting() {
+        this.resting = false;
+        health = 100;
     }
 
 
@@ -187,7 +192,7 @@ public class Hero extends CombatBase {
 
 
     /**
-     * Method: Receives Message from mediator
+     * Method: Receives Message from mediator.
      * Inputs: NA
      * Returns: void
      * Description: This method will receive information from the mediator related
@@ -222,7 +227,7 @@ public class Hero extends CombatBase {
     }
 
     /**
-     * Method: Sends messages to the Mediator
+     * Method: Sends messages to the Mediator.
      * Inputs: move : int, isResting : boolean, isDead : booleans
      * Returns: void
      * Description: This method will send information to the mediator related
@@ -236,22 +241,7 @@ public class Hero extends CombatBase {
 
     @Override
     public boolean isResting() {
-
-        if (resting) {
-            if (restTick == 0) {
-                restTick = 1;
-                return true;
-            } else if (restTick == 10) {
-                health = 100;
-                restTick = 0;
-                resting = false;
-                return false;
-            } else {
-                restTick = restTick + 1;
-            }
-            System.out.println(name + "'s time spent in rest: " + restTick);
-        }
-        return false;
+        return resting;
     }
 
     @Override
@@ -262,7 +252,7 @@ public class Hero extends CombatBase {
     @Override
     public void consumePower() {
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             int rand = ThreadLocalRandom.current().nextInt(0, elementList.size());
             elementList.set(rand, elementList.get(rand) + 4);
         }

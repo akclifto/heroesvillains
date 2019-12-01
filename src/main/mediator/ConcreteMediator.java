@@ -23,6 +23,7 @@ public class ConcreteMediator implements MediatorBase {
     private int villainCount = 0;
     private int selectedHero;
     private int selectedVillain;
+    private int inRest = -1;
     private List<Hero> heroList = new ArrayList<>();
     private List<Villain> villainList = new ArrayList<>();
 
@@ -56,15 +57,20 @@ public class ConcreteMediator implements MediatorBase {
 
         if (move == 99 && caller == hero) {
 
+            inRest = heroList.indexOf(selectedHero);
             removeFromList(villain);
             System.out.println();
             System.out.println("A new battle begins...");
             newBattle();
+
         } else if (move == 99 && caller == villain) {
+
+            inRest = villainList.indexOf(selectedVillain);
             removeFromList(hero);
             System.out.println();
             System.out.println("A new battle begins...");
             newBattle();
+
         } else {
             try {
                 if (caller == hero) {
@@ -114,7 +120,7 @@ public class ConcreteMediator implements MediatorBase {
             System.out.println("The Hero makes the first move.");
             hero.receive(0, false, false);
         } else {
-            System.out.println("The villain makes the first move.");
+            System.out.println("The Villain makes the first move.");
             villain.receive(0, false, false);
         }
     }
@@ -122,8 +128,9 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void newBattle() {
 
-        int randVillain = ThreadLocalRandom.current().nextInt(0, villainList.size());
-        int randHero = ThreadLocalRandom.current().nextInt(0, heroList.size());
+        int randHero = getRandomHero();
+        int randVillain = getRandomVillain();
+
         setHero(heroList.get(randHero));
         setVillain(villainList.get(randVillain));
         selectedHero = randHero;
@@ -131,16 +138,56 @@ public class ConcreteMediator implements MediatorBase {
         initiateRandom();
     }
 
+    /**
+     * Method: Get a random hero from the list of heroes.
+     * Inputs: NA
+     * Returns: void
+     * Description: Gets a random hero from the list of heroes.  Checks to make sure
+     *
+     */
+    private int getRandomHero() {
+
+        int randHero = ThreadLocalRandom.current().nextInt(0, heroList.size());
+        if (heroList.get(randHero).isResting()) {
+            randHero = ThreadLocalRandom.current().nextInt(0, heroList.size());
+        }
+        return randHero;
+    }
+
+    /**
+     * Method: Get a random villain from the list of heroes.
+     * Inputs: NA
+     * Returns: void
+     * Description: Gets a random villain from the list of villains.  Checks to make sure
+     *
+     */
+    private int getRandomVillain() {
+
+        int randVIllain = ThreadLocalRandom.current().nextInt(0, villainList.size());
+        if (villainList.get(randVIllain).isResting()) {
+            randVIllain = ThreadLocalRandom.current().nextInt(0, villainList.size());
+        }
+        return randVIllain;
+    }
+
 
     /**
      * Method: Removes villain or hero from list.
      * Inputs: caller : CombatBase
-     * Returns: NA
+     * Returns: void
      * Description: Removes a villain or hero from the list, then check if all are defeated.
      */
     private void removeFromList(CombatBase caller) {
 
         if (caller == villain) {
+            if (inRest == -1){
+                inRest = heroList.indexOf(selectedHero);
+            } else {
+                Hero hero = heroList.get(inRest);
+                hero.setResting();
+                inRest = heroList.indexOf(selectedHero);
+            }
+
             villainList.remove(selectedVillain);
             if (villainList.size() == 0) {
                 System.out.println("All of the villains have been defeated. "
@@ -149,6 +196,13 @@ public class ConcreteMediator implements MediatorBase {
             }
         }
         if (caller == hero) {
+            if (inRest == -1) {
+                inRest = villainList.indexOf(selectedVillain);
+            } else {
+                Villain villain = villainList.get(inRest);
+                villain.setResting();
+                inRest = villainList.indexOf(selectedVillain);
+            }
             heroList.remove(selectedHero);
             if (heroList.size() == 0) {
                 System.out.println("All of the heroes have been defeated. "
@@ -202,13 +256,18 @@ public class ConcreteMediator implements MediatorBase {
         }
     }
 
+
+    /**
+     * Method: Ends the simulation.
+     * Inputs: NA
+     * Returns: void
+     * Description: Ends the simulation when all heroes or villains are defeated.
+     */
     @SuppressFBWarnings
     private void end() {
 
         System.out.println();
         System.out.println("End of Mediator Simulation....");
         System.exit(0);
-
     }
-
 }

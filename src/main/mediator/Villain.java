@@ -22,7 +22,7 @@ public class Villain extends CombatBase {
     private int shock = 0;
     private int health;
     private int strength;
-    boolean resting = false;
+    private boolean resting = false;
     private int restTick;
     private int heroSlain;
     private int villainMove = -1;
@@ -58,6 +58,11 @@ public class Villain extends CombatBase {
 
     public int getStrength() {
         return strength;
+    }
+
+    public void setResting() {
+        this.resting = false;
+        health = 100;
     }
 
     @Override
@@ -194,7 +199,7 @@ public class Villain extends CombatBase {
      */
     public void receive(int move, boolean isResting, boolean isDead) {
 
-        System.out.println("Villain received message");
+        System.out.print(name + " received message. ");
         System.out.print("Move: " + move + ". ");
         System.out.print("Is Hero resting? " + isResting + ". ");
         System.out.println("Is Hero dead? " + isDead);
@@ -234,22 +239,7 @@ public class Villain extends CombatBase {
 
     @Override
     public boolean isResting() {
-
-        if (resting) {
-            if (restTick == 0) {
-                restTick = 1;
-                return true;
-            } else if (restTick == 8) {
-                health = 100;
-                restTick = 0;
-                resting = false;
-                return false;
-            } else {
-                restTick = restTick + 1;
-            }
-        }
-        System.out.println(name + "'s time spent in rest: " + restTick);
-        return false;
+            return resting;
     }
 
     public boolean isDead() {
