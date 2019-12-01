@@ -33,6 +33,7 @@ public class MediatorControl implements Runnable {
         System.out.println("Move 1 = physical attack.");
         System.out.println("Move 2 = elemental attack.");
         System.out.println("Move 3 = defensive stance.");
+        System.out.println();
 
 
         med.initialize();

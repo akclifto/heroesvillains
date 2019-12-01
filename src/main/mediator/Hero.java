@@ -114,7 +114,7 @@ public class Hero extends CombatBase {
         int hit = 0;
 
         if (move <= 0 || move == 3) {
-            System.out.println(name + " takes no damage.");
+            System.out.println(name + " takes no damage!");
         }
         if (move == 1) {
             hit = physicalAttack();
