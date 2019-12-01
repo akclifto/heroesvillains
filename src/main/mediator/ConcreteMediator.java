@@ -186,7 +186,8 @@ public class ConcreteMediator implements MediatorBase {
                 inRest = selectedHero;
                 System.out.println(heroList.get(inRest).getName() + " is now resting.");
             }
-            System.out.println(villainList.get(selectedVillain).getName() + " removed from the list.");
+            System.out.println(villainList.get(selectedVillain).getName()
+                    + " removed from the list.");
             villainList.remove(selectedVillain);
             if (villainList.size() == 0) {
                 System.out.println("All of the villains have been defeated. "
@@ -246,15 +247,15 @@ public class ConcreteMediator implements MediatorBase {
      * Description: Helper method used in sendMessage to send message to hero.
      */
     private void heroReceive(int move) {
-        System.out.print("Mediator received message. ");
+//        System.out.print("Mediator received message. ");
         if (villain.isDead()) {
-            System.out.println("Villain has been slain!");
+//            System.out.println("Villain has been slain!");
             hero.receive(move, false, true);
         } else if (villain.isResting()) {
-            System.out.println("Villain is resting!");
+//            System.out.println("Villain is resting!");
             hero.receive(move, true, false);
         } else {
-            System.out.println("Mediator sends move to Hero.");
+//            System.out.println("Mediator sends move to Hero.");
             hero.receive(move, false, false);
         }
     }

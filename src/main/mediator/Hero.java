@@ -258,7 +258,8 @@ public class Hero extends CombatBase {
 
         int bonusStrength = ThreadLocalRandom.current().nextInt(1, 3);
         if (bonusStrength == 2) {
-            System.out.print(name + " gained physical strength! Current strength: " + getStrength());
+            System.out.print(name + " gained physical strength! Current strength: "
+                    + getStrength());
             System.out.print(". 7 strength added. ");
             strength = strength + 7;
             System.out.println(name + "'s strength is now " + getStrength());

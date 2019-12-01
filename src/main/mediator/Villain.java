@@ -198,7 +198,7 @@ public class Villain extends CombatBase {
      */
     public void receive(int move, boolean isResting, boolean isDead) {
 
-        System.out.print(name + " received message. ");
+//        System.out.print(name + " received message. ");
         System.out.print("Move: " + move + ". ");
         System.out.print("Is Hero resting? " + isResting + ". ");
         System.out.println("Is Hero dead? " + isDead);
@@ -231,7 +231,7 @@ public class Villain extends CombatBase {
      */
     public void send(int move) {
 
-        System.out.println(name + " is sending combat message.");
+//        System.out.println(name + " is sending combat message.");
         mediator.sendMessage(this, move);
     }
 
@@ -256,7 +256,8 @@ public class Villain extends CombatBase {
 
         int bonusStrength = ThreadLocalRandom.current().nextInt(1, 3);
         if (bonusStrength == 1) {
-            System.out.print(name + " gained physical strength! Current strength: " + getStrength());
+            System.out.print(name + " gained physical strength! Current strength: "
+                    + getStrength());
             System.out.print(". 3 strength added. ");
             strength = strength + 3;
             System.out.println(name + "'s strength is now " + getStrength());
