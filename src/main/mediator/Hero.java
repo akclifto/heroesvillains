@@ -23,7 +23,6 @@ public class Hero extends CombatBase {
     private int health;
     private int strength;
     private boolean resting = false;
-    private int villainSlain;
     private int heroMove = -1;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
 
@@ -37,9 +36,7 @@ public class Hero extends CombatBase {
         super(mediator);
         this.name = name;
         setBaseElements(elementList);
-
         health = 100;
-        villainSlain = 0;
         strength = ThreadLocalRandom.current().nextInt(3, 12);
     }
 
@@ -206,15 +203,11 @@ public class Hero extends CombatBase {
             System.out.println("The Villain has been defeated! ");
             resting = true;
             consumePower();
-            villainSlain = villainSlain + 1;
-            System.out.println(name + " has defeated " + villainSlain + " villains!");
             send(99);
 
         } else if (isResting) {
             System.out.println("The Villain was defeated while resting! ");
             consumePower();
-            villainSlain = villainSlain + 1;
-            System.out.println(name + " has defeated " + villainSlain + " villains!");
             send(99);
 
         } else {

@@ -23,7 +23,6 @@ public class Villain extends CombatBase {
     private int health;
     private int strength;
     private boolean resting = false;
-    private int heroSlain;
     private int villainMove = -1;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
 
@@ -38,9 +37,7 @@ public class Villain extends CombatBase {
         super(mediator);
         this.name = name;
         setBaseElements(elementList);
-
         health = 100;
-        heroSlain = 0;
         strength = ThreadLocalRandom.current().nextInt(0, 9);
     }
 
