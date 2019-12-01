@@ -86,7 +86,35 @@ public abstract class CombatBase {
      */
     public abstract boolean criticalHitChance();
 
+    /**
+     * Method: Check if the hero or villain is resting.
+     * Inputs: NA
+     * Returns: boolean
+     * Description: This method checks if the hero or villain is resting.  Heroes and
+     * Villains will go into a resting state after they defeat an opponent.
+     * Returns true if they are in a resting state, false otherwise.
+     */
+    public abstract boolean isResting();
 
+
+    /**
+     * Method: Check if the Hero or Villain is dead.
+     * Inputs: NA
+     * Returns: boolean
+     * Description: This method will give a chance at a critical strike.
+     * Returns true if the move is a critical strike; false otherwise.
+     */
+    public abstract boolean isDead();
+
+
+    /**
+     * Method: Consumes the power of the opponent.
+     * Inputs: NA
+     * Returns: void
+     * Description: This method will consume the power and grow the attribute of the
+     * victor in a battle.
+     */
+    public abstract void consumePower();
 
 
 }

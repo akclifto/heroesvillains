@@ -50,6 +50,12 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void sendMessage(CombatBase caller, int move) {
 
+        if (move == 99) {
+            System.out.println();
+            System.out.println("A new battle begins...");
+            initiateRandom();
+        }
+
         try {
             if (caller == hero) {
                 villainReceive(move);
@@ -95,7 +101,7 @@ public class ConcreteMediator implements MediatorBase {
 
         int firstMove = ThreadLocalRandom.current().nextInt(0, 11);
         firstMove = firstMove % 2;
-
+        System.out.println();
         if (firstMove == 1) {
             System.out.println("The Hero makes the first move.");
             hero.receive(0, false, false);

@@ -21,7 +21,11 @@ public class Villain extends CombatBase {
     private int ice = 0;
     private int shock = 0;
     private int health;
-    private int villainMove = 0;
+    private int strength;
+    boolean resting = false;
+    private int restTick;
+    private int heroSlain;
+    private int villainMove = -1;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
 
 
@@ -35,7 +39,11 @@ public class Villain extends CombatBase {
         super(mediator);
         this.name = name;
         setBaseElements(elementList);
+
         health = 100;
+        heroSlain = 0;
+        restTick = 0;
+        strength = ThreadLocalRandom.current().nextInt(0, 9);
     }
 
     @Override
@@ -43,19 +51,13 @@ public class Villain extends CombatBase {
         return name;
     }
 
+    @Override
     public int getMove() {
         return villainMove;
     }
 
-    @Override
-    public void processMove(int move) {
-        //TODO
-        System.out.println("TODO");
-    }
-
-    @Override
-    public int setRandomMove() {
-        return 0;
+    public int getStrength() {
+        return strength;
     }
 
     @Override
@@ -75,13 +77,111 @@ public class Villain extends CombatBase {
     }
 
     @Override
+    public void processMove(int move) {
+
+        if (move < 0 || move > 3) {
+            throw new NullPointerException("Improper move - not set correctly.");
+        }
+        if (move == 0) {
+            System.out.println("Battle initiated.");
+        }
+        if (move == 1) {
+            System.out.println("The Hero uses a physical attack!");
+        }
+        if (move == 2) {
+            System.out.println("The Hero attacks using the elements!");
+        }
+        if (move == 3) {
+            System.out.println("The Hero take a defensive stance!");
+        }
+        deductDamage(move);
+        villainMove = setRandomMove();
+    }
+
+    @Override
+    public int setRandomMove() {
+
+        return ThreadLocalRandom.current().nextInt(1, 4);
+    }
+
+    @Override
     public void deductDamage(int move) {
 
+        int hit = 0;
+
+        if (move <= 0 || move == 3) {
+            System.out.println(name + " takes no damage.");
+        }
+        if (move == 1) {
+            hit = physicalAttack();
+        }
+        if (move == 2) {
+            hit = elementalAttack();
+        }
+        health = health - hit;
+        if (health < 0) {
+            health = 0;
+        }
+        System.out.println(getName() + " has " + health + " health remaining.");
     }
 
     @Override
     public boolean criticalHitChance() {
+
+        int[] crit = {2, 6, 9};
+        int rand = ThreadLocalRandom.current().nextInt(0, 10);
+        for (int i : crit) {
+            if (i == rand) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    /**
+     * Method: Physical attack calculation.
+     * Inputs: NA
+     * Returns: hit : int
+     * Description: Private helper method to calculate physical attack.
+     */
+    private int physicalAttack() {
+
+        int hit = ThreadLocalRandom.current().nextInt(0, 6);
+        hit = hit + getStrength();
+
+        if (criticalHitChance()) {
+            hit = hit * 2;
+            if (hit == 0) {
+                System.out.println("Hero tries to hit and misses! " + name + " takes "
+                        + hit + " damage.");
+            }
+            System.out.print(name + " takes a critical hit! ");
+        }
+        System.out.println(name + " takes a hit for " + hit + " damage!");
+        return hit;
+    }
+
+    /**
+     * Method: Elemental attack calculation.
+     * Inputs: NA
+     * Returns: hit : int
+     * Description: Private helper method to calculate elemental attack.
+     */
+    private int elementalAttack() {
+
+        int hit = ThreadLocalRandom.current().nextInt(0, 5);
+        hit = (elementList.get(hit) + hit) + 2;
+
+        if (criticalHitChance()) {
+            hit = hit * 2;
+            if (hit == 0) {
+                System.out.println("Hero misses with an elemental attack! " + name + " takes "
+                        + hit + " damage.");
+            }
+            System.out.print(name + " takes a critical hit! ");
+        }
+        System.out.println(name + " takes elemental hit for " + hit + " damage!");
+        return hit;
     }
 
 
@@ -93,14 +193,20 @@ public class Villain extends CombatBase {
      * to combat between villain and hero.
      */
     public void receive(int move, boolean isResting, boolean isDead) {
-        //TODO receive me, deduct damage, check resting/dead, send new move
+
         System.out.println("Villain received message");
         System.out.print("Move: " + move + ". ");
         System.out.print("Is Hero resting? " + isResting + ". ");
         System.out.println("Is Hero dead? " + isDead);
-        //TODO
-        villainMove = 9;
-        send(2, this.isResting(), this.isDead());
+
+        if (isDead || isResting) {
+            System.out.println("The Hero has been defeated!");
+            resting = true;
+            consumePower();
+            send(99);
+        }
+        processMove(move);
+        send(getMove());
     }
 
     /**
@@ -110,20 +216,39 @@ public class Villain extends CombatBase {
      * Description: This method will send information to the mediator related
      * to the combat between villain and hero.
      */
-    public void send(int move, boolean isResting, boolean isDead) {
+    public void send(int move) {
 
-        System.out.println("Villain is sending combat message.");
+        System.out.println(name + " is sending combat message.");
         mediator.sendMessage(this, move);
     }
 
 
     public boolean isResting() {
-        //TODO if just fought, need to rest, will have to use a tick or something
+
+        if (resting) {
+            if (restTick == 0) {
+                restTick = 1;
+                return true;
+            } else if (restTick == 8) {
+                health = 100;
+                restTick = 0;
+                resting = false;
+                return false;
+            } else {
+                restTick = restTick + 1;
+            }
+        }
+        System.out.println(name + "'s time spent in rest: " + restTick);
         return false;
     }
 
     public boolean isDead() {
         return health <= 0;
+    }
+
+    @Override
+    public void consumePower() {
+        //TODO
     }
 
 }

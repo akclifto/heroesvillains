@@ -15,6 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Main {
 
+
     /**
      * Method: Main method to run program simulations.
      * Inputs: args[] : String
@@ -29,11 +30,15 @@ public class Main {
         DecoratorControl c = new DecoratorControl();
         MediatorControl m = new MediatorControl();
 
-//        for (int i = 0; i < 100; i++) {
-//            System.out.println(ThreadLocalRandom.current().nextInt(1, 4));
-//        }
+        for (int i = 0; i < 100; i++) {
+//            if (resting) {
+//                restTick = restTick++;
+//            }
+//            System.out.println(restTick);
+        }
         f.run();
         c.run();
         m.run();
     }
+
 }

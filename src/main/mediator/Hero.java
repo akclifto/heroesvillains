@@ -23,6 +23,9 @@ public class Hero extends CombatBase {
     private int shock = 0;
     private int health;
     private int strength;
+    boolean resting = false;
+    private int restTick;
+    private int villainSlain;
     private int heroMove = -1;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
 
@@ -36,7 +39,10 @@ public class Hero extends CombatBase {
         super(mediator);
         this.name = name;
         setBaseElements(elementList);
+
         health = 100;
+        villainSlain = 0;
+        restTick = 0;
         strength = ThreadLocalRandom.current().nextInt(0, 11);
     }
 
@@ -97,7 +103,6 @@ public class Hero extends CombatBase {
     public int setRandomMove() {
 
         return ThreadLocalRandom.current().nextInt(1, 4);
-
     }
 
     @Override
@@ -106,7 +111,7 @@ public class Hero extends CombatBase {
         int hit = 0;
 
         if (move <= 0 || move == 3) {
-            System.out.println("Hero takes no damage.");
+            System.out.println(name + " takes no damage.");
         }
         if (move == 1) {
             hit = physicalAttack();
@@ -142,18 +147,18 @@ public class Hero extends CombatBase {
      */
     private int physicalAttack() {
 
-        int hit = ThreadLocalRandom.current().nextInt(0, 6);
+        int hit = ThreadLocalRandom.current().nextInt(0, 7);
         hit = hit + getStrength();
 
         if (criticalHitChance()) {
             hit = hit * 2;
             if (hit == 0) {
-                System.out.println("Villain tries to hit and misses! Hero takes "
+                System.out.println("Villain tries to hit and misses! " + name + " takes "
                         + hit + " damage.");
             }
-            System.out.print("Hero takes a critical hit! ");
+            System.out.print(name + " takes a critical hit! ");
         }
-        System.out.println("Hero takes a hit for " + hit + " damage!");
+        System.out.println(name + " takes a hit for " + hit + " damage!");
         return hit;
     }
 
@@ -166,17 +171,17 @@ public class Hero extends CombatBase {
     private int elementalAttack() {
 
         int hit = ThreadLocalRandom.current().nextInt(0, 5);
-        hit = elementList.get(hit) + hit;
+        hit = (elementList.get(hit) + hit) + 3;
 
         if (criticalHitChance()) {
             hit = hit * 2;
             if (hit == 0) {
-                System.out.println("Villain misses with an elemental attack! Hero takes "
+                System.out.println("Villain misses with an elemental attack! " + name + " takes "
                         + hit + " damage.");
             }
-            System.out.print ("Hero takes a critical hit! ");
+            System.out.print(name + " takes a critical hit! ");
         }
-        System.out.println("Hero takes elemental hit for " + hit + " damage!");
+        System.out.println(name + " takes elemental hit for " + hit + " damage!");
         return hit;
     }
 
@@ -190,17 +195,19 @@ public class Hero extends CombatBase {
      */
     public void receive(int move, boolean isResting, boolean isDead) {
 
-        System.out.print("Hero received message. ");
+        System.out.print(name + " received message. ");
         System.out.print("Move chosen: " + move + ". ");
         System.out.print("Is Villain resting? " + isResting + ". ");
         System.out.println("Is Villain dead? " + isDead);
 
-        if (isDead || isResting) {
+        if (isDead) {
             System.out.println("The Villain has been defeated!");
-            //TODO take villains power!
+            resting = true;
+            consumePower();
+            send(99);
         }
         processMove(move);
-        send(getMove(), this.isResting(), this.isDead());
+        send(getMove());
     }
 
     /**
@@ -210,20 +217,40 @@ public class Hero extends CombatBase {
      * Description: This method will send information to the mediator related
      * to the combat between villain and hero.
      */
-    public void send(int move, boolean isResting, boolean isDead) {
+    public void send(int move) {
 
-        System.out.println("Hero is sending combat message.");
+        System.out.println(name + " is sending combat message.");
         mediator.sendMessage(this, move);
     }
 
-
+    @Override
     public boolean isResting() {
-        //TODO if just fought, need to rest, will have to use a tick or something
+
+        if (resting) {
+            if (restTick == 0) {
+                restTick = 1;
+                return true;
+            } else if (restTick == 10) {
+                health = 100;
+                restTick = 0;
+                resting = false;
+                return false;
+            } else {
+                restTick = restTick + 1;
+            }
+            System.out.println(name + "'s time spent in rest: " + restTick);
+        }
         return false;
     }
 
+    @Override
     public boolean isDead() {
         return health <= 0;
+    }
+
+    @Override
+    public void consumePower() {
+        //TODO
     }
 
 
