@@ -100,7 +100,7 @@ public class Villain extends CombatBase {
         System.out.println("Is Hero dead? " + isDead);
         //TODO
         villainMove = 9;
-        send(1, false, false);
+        send(2, this.isResting(), this.isDead());
     }
 
     /**

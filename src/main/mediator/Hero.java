@@ -109,31 +109,10 @@ public class Hero extends CombatBase {
             System.out.println("Hero takes no damage.");
         }
         if (move == 1) {
-            hit = ThreadLocalRandom.current().nextInt(0, 6);
-            hit = hit + getStrength();
-
-            if (criticalHitChance()) {
-                hit = hit * 2;
-                if (hit == 0) {
-                    System.out.println("Villain tries to hit and misses! Hero takes "
-                            + hit + " damage.");
-                }
-                System.out.println("Hero takes critical hit for " + hit + " damage!");
-            }
-            System.out.println("Hero takes a hit for " + hit + " damage!");
+            hit = physicalAttack();
         }
         if (move == 2) {
-            int rand = ThreadLocalRandom.current().nextInt(0, 5);
-            hit = elementList.get(rand) + rand;
-
-            if(criticalHitChance()) {
-                hit = hit * 2;
-                if (hit == 0) {
-                    System.out.println("Villain misses with an elemental attack! Hero takes "
-                            + hit + " damage.");
-                }
-                System.out.println("Hero takes critical elemental hit for " + hit + " damage!");
-            }
+            hit = elementalAttack();
         }
         health = health - hit;
         if (health < 0) {
@@ -155,6 +134,52 @@ public class Hero extends CombatBase {
         return false;
     }
 
+    /**
+     * Method: Physical attack calculation.
+     * Inputs: NA
+     * Returns: hit : int
+     * Description: Private helper method to calculate physical attack.
+     */
+    private int physicalAttack() {
+
+        int hit = ThreadLocalRandom.current().nextInt(0, 6);
+        hit = hit + getStrength();
+
+        if (criticalHitChance()) {
+            hit = hit * 2;
+            if (hit == 0) {
+                System.out.println("Villain tries to hit and misses! Hero takes "
+                        + hit + " damage.");
+            }
+            System.out.print("Hero takes a critical hit! ");
+        }
+        System.out.println("Hero takes a hit for " + hit + " damage!");
+        return hit;
+    }
+
+    /**
+     * Method: Elemental attack calculation.
+     * Inputs: NA
+     * Returns: hit : int
+     * Description: Private helper method to calculate elemental attack.
+     */
+    private int elementalAttack() {
+
+        int hit = ThreadLocalRandom.current().nextInt(0, 5);
+        hit = elementList.get(hit) + hit;
+
+        if (criticalHitChance()) {
+            hit = hit * 2;
+            if (hit == 0) {
+                System.out.println("Villain misses with an elemental attack! Hero takes "
+                        + hit + " damage.");
+            }
+            System.out.print ("Hero takes a critical hit! ");
+        }
+        System.out.println("Hero takes elemental hit for " + hit + " damage!");
+        return hit;
+    }
+
 
     /**
      * Method: Receives Message from mediator
@@ -166,20 +191,15 @@ public class Hero extends CombatBase {
     public void receive(int move, boolean isResting, boolean isDead) {
 
         System.out.print("Hero received message. ");
+        System.out.print("Move chosen: " + move + ". ");
+        System.out.print("Is Villain resting? " + isResting + ". ");
+        System.out.println("Is Villain dead? " + isDead);
+
         if (isDead || isResting) {
             System.out.println("The Villain has been defeated!");
             //TODO take villains power!
         }
         processMove(move);
-
-
-        //TODO send new move
-
-        System.out.print("Move: " + move + ". ");
-        System.out.print("Is Villain resting? " + isResting + ". ");
-        System.out.println("Is Villain dead? " + isDead);
-        //TODO set hero move
-        heroMove = 2;
         send(getMove(), this.isResting(), this.isDead());
     }
 
@@ -197,7 +217,6 @@ public class Hero extends CombatBase {
     }
 
 
-
     public boolean isResting() {
         //TODO if just fought, need to rest, will have to use a tick or something
         return false;
@@ -206,9 +225,6 @@ public class Hero extends CombatBase {
     public boolean isDead() {
         return health <= 0;
     }
-
-
-
 
 
 }

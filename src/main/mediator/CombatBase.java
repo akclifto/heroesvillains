@@ -87,4 +87,6 @@ public abstract class CombatBase {
     public abstract boolean criticalHitChance();
 
 
+
+
 }

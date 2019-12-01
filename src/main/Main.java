@@ -1,7 +1,6 @@
 
 import decorator.DecoratorControl;
 import factory.FactoryControl;
-import mediator.Hero;
 import mediator.MediatorControl;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -30,6 +29,9 @@ public class Main {
         DecoratorControl c = new DecoratorControl();
         MediatorControl m = new MediatorControl();
 
+//        for (int i = 0; i < 100; i++) {
+//            System.out.println(ThreadLocalRandom.current().nextInt(1, 4));
+//        }
         f.run();
         c.run();
         m.run();
