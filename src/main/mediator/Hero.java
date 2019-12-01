@@ -205,9 +205,14 @@ public class Hero extends CombatBase {
             resting = true;
             consumePower();
             send(99);
+        } else if (isResting) {
+            System.out.println("The Villain was defeated while resting!");
+            consumePower();
+            send(99);
+        } else {
+            processMove(move);
+            send(getMove());
         }
-        processMove(move);
-        send(getMove());
     }
 
     /**

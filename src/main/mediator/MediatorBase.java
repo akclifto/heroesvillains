@@ -51,4 +51,6 @@ public interface MediatorBase {
      */
     public void newBattle();
 
+
+
 }

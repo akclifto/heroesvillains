@@ -36,8 +36,8 @@ public class Main {
 //            }
 //            System.out.println(restTick);
         }
-        f.run();
-        c.run();
+//        f.run();
+//        c.run();
         m.run();
     }
 

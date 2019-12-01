@@ -18,6 +18,8 @@ public class ConcreteMediator implements MediatorBase {
     private Villain villain;
     private int heroCount = 0;
     private int villainCount = 0;
+    private int selectedHero;
+    private int selectedVillain;
     private List<Hero> heroList = new ArrayList<>();
     private List<Villain> villainList = new ArrayList<>();
 
@@ -50,22 +52,30 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void sendMessage(CombatBase caller, int move) {
 
-        if (move == 99) {
+        if (move == 99 && caller == hero) {
+
+            removeFromList(villain);
             System.out.println();
             System.out.println("A new battle begins...");
-            initiateRandom();
+            newBattle();
         }
-
-        try {
-            if (caller == hero) {
-                villainReceive(move);
+        if (move == 99 && caller == villain) {
+            removeFromList(hero);
+            System.out.println();
+            System.out.println("A new battle begins...");
+            newBattle();
+        } else {
+            try {
+                if (caller == hero) {
+                    villainReceive(move);
+                }
+                if (caller == villain) {
+                    heroReceive(move);
+                }
+            } catch (Exception e) {
+                System.out.println("Message was not sent properly.");
+                e.printStackTrace();
             }
-            if (caller == villain) {
-                heroReceive(move);
-            }
-        } catch (Exception e) {
-            System.out.println("Message was not sent properly.");
-            e.printStackTrace();
         }
     }
 
@@ -82,11 +92,8 @@ public class ConcreteMediator implements MediatorBase {
             System.out.println("Villain " + villainCount + " created.");
             villainList.add(villain);
         }
-
         System.out.println("Total Heroes: " + heroList.size());
         System.out.println("Total Villains: " + villainList.size());
-
-
     }
 
     /**
@@ -111,6 +118,32 @@ public class ConcreteMediator implements MediatorBase {
         }
     }
 
+    @Override
+    public void newBattle() {
+
+        int randVillain = ThreadLocalRandom.current().nextInt(0, villainList.size());
+        int randHero = ThreadLocalRandom.current().nextInt(0, heroList.size());
+        setHero(heroList.get(randHero));
+        setVillain(villainList.get(randVillain));
+        selectedHero = randHero;
+        selectedVillain = randVillain;
+        initiateRandom();
+    }
+
+
+
+    private void removeFromList(CombatBase caller) {
+
+        if (caller == villain) {
+            villainList.remove(selectedVillain);
+        }
+        if (caller == hero){
+            heroList.remove(selectedHero);
+        }
+        System.out.println("Villains have " + villainList.size() + " remaining.");
+        System.out.println("Heroes have " + heroList.size() + " remaining.");
+
+    }
 
     /**
      * Method: Sends villain message from hero.
