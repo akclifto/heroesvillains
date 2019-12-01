@@ -43,6 +43,29 @@ public class HeroTest {
     }
 
     @Test
+    public void physicalAttack() {
+
+        med = new ConcreteMediator();
+        hero = new Hero(med, "Hero 1");
+        for(int i = 0; i < 10; i++) {
+            hero.processMove(1);
+        }
+        assertNotEquals(100, hero.getHealth());
+    }
+
+    @Test
+    public void ElementalAttack() {
+
+        med = new ConcreteMediator();
+        hero = new Hero(med, "Hero 1");
+        for(int i = 0; i < 10; i++) {
+            hero.processMove(2);
+        }
+        assertNotEquals(100, hero.getHealth());
+    }
+
+
+    @Test
     public void setRandomMove() {
 
         med = new ConcreteMediator();
@@ -119,11 +142,10 @@ public class HeroTest {
 
         med = new ConcreteMediator();
         hero = new Hero(med, "Hero 1");
-        med.setHero(hero);
-        med.getHero().setRandomMove();
         boolean sentMove = false;
-        hero.send(med.getHero().getMove());
-        if (hero.getMove() == 1 || hero.getMove() == 2) {
+        hero.setHeroMove(hero.setRandomMove());
+        hero.send(hero.getMove());
+        if (hero.getMove() == 1 || hero.getMove()== 2) {
             sentMove = true;
         }
         assertTrue(sentMove);
@@ -131,13 +153,56 @@ public class HeroTest {
 
     @Test
     public void isResting() {
+
+        med = new ConcreteMediator();
+        hero = new Hero(med, "Hero 1");
+        hero.setIsResting(true);
+        assertTrue(hero.isResting());
+
+        hero.setResting();
+        assertFalse(hero.isResting());
+
     }
 
     @Test
     public void isDead() {
+
+        med = new ConcreteMediator();
+        hero = new Hero(med, "Hero 1");
+        hero.setHealth(0);
+        assertTrue(hero.isDead());
     }
 
     @Test
     public void consumePower() {
+
+        med = new ConcreteMediator();
+        hero = new Hero(med, "Hero 1");
+        boolean moreStrength = false;
+        boolean moreEle = false;
+
+        for (int i = 0; i < 100; i++) {
+            hero.consumePower();
+            if(hero.getStrength() > 11) {
+                moreStrength = true;
+            }
+            if (hero.getElementList().get(0) > 15) {
+                moreEle = true;
+            }
+            if (hero.getElementList().get(1) > 15) {
+                moreEle = true;
+            }
+            if (hero.getElementList().get(2) > 15) {
+                moreEle = true;
+            }
+            if (hero.getElementList().get(3) > 15) {
+                moreEle = true;
+            }
+            if (hero.getElementList().get(4) > 15) {
+                moreEle = true;
+            }
+        }
+        assertTrue(moreStrength);
+        assertTrue(moreEle);
     }
 }

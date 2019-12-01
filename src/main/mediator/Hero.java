@@ -75,6 +75,10 @@ public class Hero extends CombatBase {
         this.resting = resting;
     }
 
+    public void setHeroMove (int move) {
+        this.heroMove = move;
+    }
+
 
     @Override
     public void setBaseElements(List<Integer> list) {
