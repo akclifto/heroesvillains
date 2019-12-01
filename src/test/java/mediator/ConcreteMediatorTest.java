@@ -1,9 +1,8 @@
 package mediator;
 
-import org.junit.Test;
-
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ConcreteMediatorTest {
@@ -75,7 +74,7 @@ public class ConcreteMediatorTest {
         hero.send(99);
         assertEquals(0, med.getVillainList().size());
 
-        villain =  new Villain(med, "Villain 2");
+        villain = new Villain(med, "Villain 2");
         med.setVillain(villain);
         med.getVillainList().add(villain);
         villain.send(99);
@@ -87,7 +86,7 @@ public class ConcreteMediatorTest {
         boolean isDead = false;
         hero.send(1);
         villain.send(1);
-        if(hero.isDead() || villain.isDead()) {
+        if (hero.isDead() || villain.isDead()) {
             isDead = true;
         }
         assertTrue(isDead);
@@ -106,7 +105,7 @@ public class ConcreteMediatorTest {
         med.getVillainList().add(villain);
         hero.send(2);
         villain.send(2);
-        if(hero.isDead() || villain.isDead()) {
+        if (hero.isDead() || villain.isDead()) {
             isDead = true;
         }
         assertTrue(isDead);

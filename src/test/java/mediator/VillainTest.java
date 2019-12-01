@@ -1,9 +1,8 @@
 package mediator;
 
-import org.junit.Test;
-
 import java.util.List;
 
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class VillainTest {
@@ -55,7 +54,7 @@ public class VillainTest {
     }
 
     @Test
-    public void ElementalAttack() {
+    public void elementalAttack() {
 
         med = new ConcreteMediator();
         villain = new Villain(med, "Villain 1");

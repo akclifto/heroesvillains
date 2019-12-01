@@ -75,7 +75,7 @@ public class Hero extends CombatBase {
         this.resting = resting;
     }
 
-    public void setHeroMove (int move) {
+    public void setHeroMove(int move) {
         this.heroMove = move;
     }
 
