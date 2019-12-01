@@ -23,6 +23,8 @@ repositories {
 // In this section you declare the dependencies for your production and test code
 dependencies {
 
+    compileOnly 'com.google.code.findbugs:annotations:3.0.1'
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.1'
     implementation "junit:junit:4.12"
     implementation "org.hamcrest:hamcrest-core:1.3"
 

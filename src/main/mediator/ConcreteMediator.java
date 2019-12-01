@@ -1,5 +1,7 @@
 package mediator;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
@@ -200,7 +202,7 @@ public class ConcreteMediator implements MediatorBase {
         }
     }
 
-    @SuppressWarnings("DM_EXIT")
+    @SuppressFBWarnings
     private void end() {
 
         System.out.println();
