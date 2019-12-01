@@ -59,6 +59,10 @@ public class Hero extends CombatBase {
         health = 100;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
 
     @Override
     public void setBaseElements(List<Integer> list) {
@@ -79,7 +83,7 @@ public class Hero extends CombatBase {
     @Override
     public void processMove(int move) {
 
-        if (move < 0 || move > 3) {
+        if (move < 0 || move > 2) {
             throw new NullPointerException("Improper move - not set correctly.");
         }
         if (move == 0) {
@@ -91,17 +95,13 @@ public class Hero extends CombatBase {
         if (move == 2) {
             System.out.println("The Villain attacks using the elements!");
         }
-        if (move == 3) {
-            System.out.println("The Villain take a defensive stance!");
-        }
         deductDamage(move);
-        heroMove = setRandomMove();
     }
 
     @Override
     public int setRandomMove() {
 
-        return ThreadLocalRandom.current().nextInt(1, 4);
+        return ThreadLocalRandom.current().nextInt(1, 3);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class Hero extends CombatBase {
 
         int hit = 0;
 
-        if (move <= 0 || move == 3) {
+        if (move <= 0) {
             System.out.println(name + " takes no damage!");
         }
         if (move == 1) {
@@ -194,10 +194,6 @@ public class Hero extends CombatBase {
      */
     public void receive(int move, boolean isResting, boolean isDead) {
 
-//        System.out.print("Move chosen: " + move + ". ");
-//        System.out.print("Is Villain resting? " + isResting + ". ");
-//        System.out.println("Is Villain dead? " + isDead);
-
         if (isDead) {
             System.out.println("The Villain has been defeated! ");
             resting = true;
@@ -211,6 +207,7 @@ public class Hero extends CombatBase {
 
         } else {
             processMove(move);
+            heroMove = setRandomMove();
             send(getMove());
         }
     }

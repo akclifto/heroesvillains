@@ -72,31 +72,102 @@ public class ConcreteMediatorTest {
         med.setHero(hero);
         med.getVillainList().add(villain);
         med.setVillain(villain);
-
         hero.send(99);
         assertEquals(0, med.getVillainList().size());
-        Villain villain2 =  new Villain(med, "Villain 2");
-        med.setVillain(villain2);
-        med.getVillainList().add(villain2);
-        villain2.send(99);
+
+        villain =  new Villain(med, "Villain 2");
+        med.setVillain(villain);
+        med.getVillainList().add(villain);
+        villain.send(99);
         assertEquals(0, med.getHeroList().size());
 
-        Hero hero2 = new Hero(med, "Hero 2");
+        hero = new Hero(med, "Hero 2");
+        med.setHero(hero);
+        med.getHeroList().add(hero);
+        boolean isDead = false;
         hero.send(1);
-        assertEquals();
+        villain.send(1);
+        if(hero.isDead() || villain.isDead()) {
+            isDead = true;
+        }
+        assertTrue(isDead);
+    }
 
+    @Test
+    public void sendMessageElemental() {
 
+        med = new ConcreteMediator();
+        boolean isDead = false;
+        Hero hero = new Hero(med, "Hero 3");
+        Villain villain = new Villain(med, "Villain 3");
+        med.setVillain(villain);
+        med.setHero(hero);
+        med.getHeroList().add(hero);
+        med.getVillainList().add(villain);
+        hero.send(2);
+        villain.send(2);
+        if(hero.isDead() || villain.isDead()) {
+            isDead = true;
+        }
+        assertTrue(isDead);
     }
 
     @Test
     public void initialize() {
+
+        med = new ConcreteMediator();
+        med.initialize();
+        assertEquals(10, med.getHeroList().size());
+        assertEquals(10, med.getVillainList().size());
     }
 
     @Test
     public void initiateRandom() {
+
+        med = new ConcreteMediator();
+        Hero hero = new Hero(med, "Hero 1");
+        Villain villain = new Villain(med, "Villain 1");
+        med.setVillain(villain);
+        med.setHero(hero);
+        med.getHeroList().add(hero);
+        med.getVillainList().add(villain);
+
+        boolean isDead = false;
+        med.initiateRandom();
+        if (med.getVillain().isDead() || med.getHero().isDead()) {
+            isDead = true;
+        }
+        assertTrue(isDead);
+        boolean listEmpty = false;
+        if (med.getVillainList().size() == 0 || med.getHeroList().size() == 0) {
+            listEmpty = true;
+        }
+        assertTrue(listEmpty);
+
     }
 
     @Test
     public void newBattle() {
+
+        med = new ConcreteMediator();
+        Hero hero = new Hero(med, "Hero 1");
+        Villain villain = new Villain(med, "Villain 1");
+        med.setVillain(villain);
+        med.setHero(hero);
+        med.getHeroList().add(hero);
+        med.getVillainList().add(villain);
+        med.newBattle();
+        boolean isDead = false;
+        if (med.getVillain().isDead() || med.getHero().isDead()) {
+            isDead = true;
+        }
+        assertTrue(isDead);
+
+        boolean listEmpty = false;
+        if (med.getVillainList().size() == 0 || med.getHeroList().size() == 0) {
+            listEmpty = true;
+        }
+        assertTrue(listEmpty);
+
     }
 }
