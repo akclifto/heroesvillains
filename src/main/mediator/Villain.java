@@ -232,6 +232,7 @@ public class Villain extends CombatBase {
     }
 
 
+    @Override
     public boolean isResting() {
 
         if (resting) {
@@ -259,14 +260,14 @@ public class Villain extends CombatBase {
     public void consumePower() {
 
         for (int i = 0; i < 4; i++) {
-            int rand = ThreadLocalRandom.current().nextInt(0, elementList.size() );
+            int rand = ThreadLocalRandom.current().nextInt(0, elementList.size());
             elementList.set(rand, elementList.get(rand) + 3);
         }
-        System.out.println(name + " consumed the Heroe's energy and gained elemental power!");
+        System.out.println(name + " consumed the Hero's energy and gained elemental power!");
 
         int bonusStrength = ThreadLocalRandom.current().nextInt(1, 3);
         if (bonusStrength == 1) {
-            strength = strength + 5;
+            strength = strength + 3;
             System.out.println(name + " gained physical strength!");
         }
     }

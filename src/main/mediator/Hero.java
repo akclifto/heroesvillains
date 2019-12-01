@@ -263,7 +263,7 @@ public class Hero extends CombatBase {
     public void consumePower() {
 
         for (int i = 0; i < 3; i++) {
-            int rand = ThreadLocalRandom.current().nextInt(0, elementList.size() );
+            int rand = ThreadLocalRandom.current().nextInt(0, elementList.size());
             elementList.set(rand, elementList.get(rand) + 4);
         }
         System.out.println(name + " consumed the Villain's energy and gained elemental power!");

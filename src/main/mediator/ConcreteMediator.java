@@ -49,7 +49,6 @@ public class ConcreteMediator implements MediatorBase {
         return villainList;
     }
 
-
     @Override
     public void sendMessage(CombatBase caller, int move) {
 
@@ -59,8 +58,7 @@ public class ConcreteMediator implements MediatorBase {
             System.out.println();
             System.out.println("A new battle begins...");
             newBattle();
-        }
-        if (move == 99 && caller == villain) {
+        } else if (move == 99 && caller == villain) {
             removeFromList(hero);
             System.out.println();
             System.out.println("A new battle begins...");
@@ -132,7 +130,12 @@ public class ConcreteMediator implements MediatorBase {
     }
 
 
-
+    /**
+     * Method: Removes villain or hero from list.
+     * Inputs: caller : CombatBase
+     * Returns: NA
+     * Description: Removes a villain or hero from the list, then check if all are defeated.
+     */
     private void removeFromList(CombatBase caller) {
 
         if (caller == villain) {
@@ -143,7 +146,7 @@ public class ConcreteMediator implements MediatorBase {
                 end();
             }
         }
-        if (caller == hero){
+        if (caller == hero) {
             heroList.remove(selectedHero);
             if (heroList.size() == 0) {
                 System.out.println("All of the heroes have been defeated. "
@@ -197,11 +200,13 @@ public class ConcreteMediator implements MediatorBase {
         }
     }
 
+    @SuppressWarnings("DM_EXIT")
     private void end() {
 
         System.out.println();
-        System.out.println("End of Mediator simulation....");
+        System.out.println("End of Mediator Simulation....");
         System.exit(0);
 
     }
+
 }

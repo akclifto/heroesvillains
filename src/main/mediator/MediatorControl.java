@@ -9,7 +9,7 @@ package mediator;
  * <p>Description: This is the control class that will run the Mediator design
  * simulation.
  */
-public class MediatorControl {
+public class MediatorControl implements Runnable {
 
     private ConcreteMediator med = new ConcreteMediator();
 
@@ -25,15 +25,12 @@ public class MediatorControl {
      */
     public void run() {
 
-        //TODO
         System.out.println("----------------------------------------------------");
         System.out.println("Starting the Mediator simulation...");
         System.out.println("----------------------------------------------------");
 
         med.initialize();
         med.initiateRandom();
-
-
     }
-
 }
+

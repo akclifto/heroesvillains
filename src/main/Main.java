@@ -3,8 +3,6 @@ import decorator.DecoratorControl;
 import factory.FactoryControl;
 import mediator.MediatorControl;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 
 /**
  * File: Main.java
@@ -30,12 +28,6 @@ public class Main {
         DecoratorControl c = new DecoratorControl();
         MediatorControl m = new MediatorControl();
 
-        for (int i = 0; i < 100; i++) {
-//            if (resting) {
-//                restTick = restTick++;
-//            }
-//            System.out.println(restTick);
-        }
 //        f.run();
 //        c.run();
         m.run();
