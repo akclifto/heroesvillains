@@ -57,7 +57,6 @@ public class ConcreteMediator implements MediatorBase {
 
         if (move == 99 && caller == hero) {
 
-            inRest = heroList.indexOf(hero);
             removeFromList(villain);
             System.out.println();
             System.out.println("A new battle begins...");
@@ -65,7 +64,6 @@ public class ConcreteMediator implements MediatorBase {
 
         } else if (move == 99 && caller == villain) {
 
-            inRest = villainList.indexOf(villain);
             removeFromList(hero);
             System.out.println();
             System.out.println("A new battle begins...");
@@ -128,8 +126,15 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void newBattle() {
 
-        int randHero = getRandomHero();
-        int randVillain = getRandomVillain();
+        int randHero;
+        int randVillain;
+        randHero = getRandomHero();
+        randVillain = getRandomVillain();
+
+        if (heroList.get(randHero).isResting()
+                && villainList.get(randVillain).isResting()) {
+            newBattle();
+        }
 
         setHero(heroList.get(randHero));
         setVillain(villainList.get(randVillain));
@@ -141,30 +146,24 @@ public class ConcreteMediator implements MediatorBase {
     /**
      * Method: Get a random hero from the list of heroes.
      * Inputs: NA
-     * Returns: void
+     * Returns: int
      * Description: Gets a random hero from the list of heroes.  Checks to make sure
      */
     private int getRandomHero() {
 
         int randHero = ThreadLocalRandom.current().nextInt(0, heroList.size());
-        if (heroList.get(randHero).isResting()) {
-            randHero = ThreadLocalRandom.current().nextInt(0, heroList.size());
-        }
         return randHero;
     }
 
     /**
      * Method: Get a random villain from the list of heroes.
      * Inputs: NA
-     * Returns: void
+     * Returns: int
      * Description: Gets a random villain from the list of villains.  Checks to make sure
      */
     private int getRandomVillain() {
 
         int randVIllain = ThreadLocalRandom.current().nextInt(0, villainList.size());
-        if (villainList.get(randVIllain).isResting()) {
-            randVIllain = ThreadLocalRandom.current().nextInt(0, villainList.size());
-        }
         return randVIllain;
     }
 
@@ -179,15 +178,15 @@ public class ConcreteMediator implements MediatorBase {
 
         if (caller == villain) {
             if (inRest == -1) {
-                inRest = heroList.indexOf(hero);
+                inRest = selectedHero;
                 System.out.println(heroList.get(selectedHero).getName() + " is now resting.");
             } else {
-                Hero hero = heroList.get(inRest);
+                Hero hero = heroList.get(selectedHero);
                 hero.setResting();
-                inRest = heroList.indexOf(hero);
+                inRest = selectedHero;
                 System.out.println(heroList.get(inRest).getName() + " is now resting.");
             }
-
+            System.out.println(villainList.get(selectedVillain).getName() + " removed from the list.");
             villainList.remove(selectedVillain);
             if (villainList.size() == 0) {
                 System.out.println("All of the villains have been defeated. "
@@ -197,14 +196,16 @@ public class ConcreteMediator implements MediatorBase {
         }
         if (caller == hero) {
             if (inRest == -1) {
-                inRest = villainList.indexOf(villain);
+                inRest = selectedVillain;
                 System.out.println(villainList.get(selectedVillain).getName() + " is now resting.");
             } else {
-                Villain villain = villainList.get(inRest);
-                villain.setResting();
-                inRest = villainList.indexOf(villain);
+                Villain vill = villainList.get(selectedVillain);
+                vill.setResting();
+                inRest = selectedVillain;
                 System.out.println(villainList.get(inRest).getName() + " is now resting.");
             }
+
+            System.out.println(heroList.get(selectedHero).getName() + " removed from the list.");
             heroList.remove(selectedHero);
             if (heroList.size() == 0) {
                 System.out.println("All of the heroes have been defeated. "

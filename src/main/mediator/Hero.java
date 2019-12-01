@@ -133,7 +133,7 @@ public class Hero extends CombatBase {
     public boolean criticalHitChance() {
 
         int[] crit = {1, 4, 7};
-        int rand = ThreadLocalRandom.current().nextInt(0, 9);
+        int rand = ThreadLocalRandom.current().nextInt(0, 10);
         for (int i : crit) {
             if (i == rand) {
                 return true;
@@ -150,7 +150,7 @@ public class Hero extends CombatBase {
      */
     private int physicalAttack() {
 
-        int hit = ThreadLocalRandom.current().nextInt(0, 11);
+        int hit = ThreadLocalRandom.current().nextInt(0, 9);
         hit = hit + getStrength();
 
         if (criticalHitChance()) {
