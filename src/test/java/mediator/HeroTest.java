@@ -21,6 +21,7 @@ public class HeroTest {
         for (Integer item : hero.getElementList()) {
             if (item > 0) {
                 notZero = true;
+                break;
             }
         }
         assertTrue(notZero);
