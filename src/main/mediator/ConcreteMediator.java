@@ -60,14 +60,12 @@ public class ConcreteMediator implements MediatorBase {
 
                 removeFromList(villain);
                 System.out.println();
-                System.out.println("A new battle begins...");
                 newBattle();
 
             } else if (move == 99 && caller == villain) {
 
                 removeFromList(hero);
                 System.out.println();
-                System.out.println("A new battle begins...");
                 newBattle();
 
             } else if (move == -1 && caller == hero) {
@@ -81,10 +79,10 @@ public class ConcreteMediator implements MediatorBase {
                         + "THE AGE OF DARKNESS FALLS UPON THE LAND! ");
 
 
-            } else if (caller == hero) {
+            } else if (caller == hero && checkBattleState()) {
 
                 villainReceive(move);
-            } else if (caller == villain) {
+            } else if (caller == villain && checkBattleState()) {
 
                 heroReceive(move);
             }
@@ -136,21 +134,33 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void newBattle() {
 
-        int randHero;
-        int randVillain;
-        randHero = getRandomHero();
-        randVillain = getRandomVillain();
+        if (!checkBattleState()) {
+            return;
 
-        if (heroList.get(randHero).isResting()
-                && villainList.get(randVillain).isResting()) {
-            newBattle();
+        } else if (checkBattleState()) {
+            System.out.println("A new battle begins...");
+            int randHero;
+            int randVillain;
+            randHero = getRandomHero();
+            randVillain = getRandomVillain();
+
+            if (heroList.get(randHero).isResting()
+                    && villainList.get(randVillain).isResting()) {
+                newBattle();
+            }
+
+            setHero(heroList.get(randHero));
+            setVillain(villainList.get(randVillain));
+            selectedHero = randHero;
+            selectedVillain = randVillain;
+            initiateRandom();
         }
+    }
 
-        setHero(heroList.get(randHero));
-        setVillain(villainList.get(randVillain));
-        selectedHero = randHero;
-        selectedVillain = randVillain;
-        initiateRandom();
+    private boolean checkBattleState() {
+
+        return villainList.size() != 0 && heroList.size() != 0;
+
     }
 
     /**
