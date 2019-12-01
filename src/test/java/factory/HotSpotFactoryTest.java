@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class HotSpotFactoryTest {
 
-    HotSpotFactory factory;
+    private HotSpotFactory factory;
 
     @Test
     public void run() {

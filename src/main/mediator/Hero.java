@@ -59,8 +59,20 @@ public class Hero extends CombatBase {
         health = 100;
     }
 
+    public List<Integer> getElementList() {
+        return elementList;
+    }
+
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setIsResting(boolean resting) {
+        this.resting = resting;
     }
 
 
@@ -90,7 +102,7 @@ public class Hero extends CombatBase {
             System.out.println("Battle initiated.");
         }
         if (move == 1) {
-            System.out.println("The villain uses a physical attack!");
+            System.out.println("The Villain uses a physical attack!");
         }
         if (move == 2) {
             System.out.println("The Villain attacks using the elements!");

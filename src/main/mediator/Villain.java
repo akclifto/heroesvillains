@@ -60,8 +60,20 @@ public class Villain extends CombatBase {
         health = 100;
     }
 
+    public List<Integer> getElementList() {
+        return elementList;
+    }
+
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setIsResting(boolean resting) {
+        this.resting = resting;
     }
 
     @Override
