@@ -27,7 +27,7 @@ public class HeroTest {
         assertTrue(notZero);
     }
 
-    @Test (expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void processMove() {
 
         med = new ConcreteMediator();
@@ -47,7 +47,7 @@ public class HeroTest {
 
         med = new ConcreteMediator();
         hero = new Hero(med, "Hero 1");
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             hero.processMove(1);
         }
         assertNotEquals(100, hero.getHealth());
@@ -58,7 +58,7 @@ public class HeroTest {
 
         med = new ConcreteMediator();
         hero = new Hero(med, "Hero 1");
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             hero.processMove(2);
         }
         assertNotEquals(100, hero.getHealth());
@@ -120,9 +120,9 @@ public class HeroTest {
         hero.receive(0, true, false);
         List<Integer> newList = hero.getElementList();
 
-        for (int i = 0 ; i < hero.getElementList().size(); i++) {
+        for (int i = 0; i < hero.getElementList().size(); i++) {
             if (!newList.get(i).equals(oldList.get(i))) {
-                assertNotSame(newList.get(i),oldList.get(i));
+                assertNotSame(newList.get(i), oldList.get(i));
             }
         }
 
@@ -130,9 +130,9 @@ public class HeroTest {
         hero.receive(0, false, true);
         assertTrue(hero.isResting());
         List<Integer> newEleList = hero.getElementList();
-        for (int i = 0 ; i < hero.getElementList().size(); i++) {
+        for (int i = 0; i < hero.getElementList().size(); i++) {
             if (!newEleList.get(i).equals(oldEleList.get(i))) {
-                assertNotSame(newEleList.get(i),oldEleList.get(i));
+                assertNotSame(newEleList.get(i), oldEleList.get(i));
             }
         }
     }
@@ -145,7 +145,7 @@ public class HeroTest {
         boolean sentMove = false;
         hero.setHeroMove(hero.setRandomMove());
         hero.send(hero.getMove());
-        if (hero.getMove() == 1 || hero.getMove()== 2) {
+        if (hero.getMove() == 1 || hero.getMove() == 2) {
             sentMove = true;
         }
         assertTrue(sentMove);
@@ -183,7 +183,7 @@ public class HeroTest {
 
         for (int i = 0; i < 100; i++) {
             hero.consumePower();
-            if(hero.getStrength() > 11) {
+            if (hero.getStrength() > 11) {
                 moreStrength = true;
             }
             if (hero.getElementList().get(0) > 15) {

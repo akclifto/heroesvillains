@@ -76,6 +76,10 @@ public class Villain extends CombatBase {
         this.resting = resting;
     }
 
+    public void setVillainMove(int move) {
+        this.villainMove = move;
+    }
+
     @Override
     public void setBaseElements(List<Integer> list) {
 
@@ -95,7 +99,7 @@ public class Villain extends CombatBase {
     @Override
     public void processMove(int move) {
 
-        if (move < 0 || move > 3) {
+        if (move < 0 || move > 2) {
             throw new NullPointerException("Improper move - not set correctly.");
         }
         if (move == 0) {
