@@ -23,7 +23,6 @@ public class Villain extends CombatBase {
     private int health;
     private int strength;
     private boolean resting = false;
-    private int restTick;
     private int heroSlain;
     private int villainMove = -1;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
@@ -42,7 +41,6 @@ public class Villain extends CombatBase {
 
         health = 100;
         heroSlain = 0;
-        restTick = 0;
         strength = ThreadLocalRandom.current().nextInt(0, 9);
     }
 
@@ -239,7 +237,7 @@ public class Villain extends CombatBase {
 
     @Override
     public boolean isResting() {
-            return resting;
+        return resting;
     }
 
     public boolean isDead() {
@@ -257,8 +255,10 @@ public class Villain extends CombatBase {
 
         int bonusStrength = ThreadLocalRandom.current().nextInt(1, 3);
         if (bonusStrength == 1) {
+            System.out.print(name + " gained physical strength! Current strength: " + getStrength());
+            System.out.print(". 3 strength added. ");
             strength = strength + 3;
-            System.out.println(name + " gained physical strength!");
+            System.out.println(name + "'s strength is now " + getStrength());
         }
     }
 

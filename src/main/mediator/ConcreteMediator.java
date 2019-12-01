@@ -57,7 +57,7 @@ public class ConcreteMediator implements MediatorBase {
 
         if (move == 99 && caller == hero) {
 
-            inRest = heroList.indexOf(selectedHero);
+            inRest = heroList.indexOf(hero);
             removeFromList(villain);
             System.out.println();
             System.out.println("A new battle begins...");
@@ -65,7 +65,7 @@ public class ConcreteMediator implements MediatorBase {
 
         } else if (move == 99 && caller == villain) {
 
-            inRest = villainList.indexOf(selectedVillain);
+            inRest = villainList.indexOf(villain);
             removeFromList(hero);
             System.out.println();
             System.out.println("A new battle begins...");
@@ -143,7 +143,6 @@ public class ConcreteMediator implements MediatorBase {
      * Inputs: NA
      * Returns: void
      * Description: Gets a random hero from the list of heroes.  Checks to make sure
-     *
      */
     private int getRandomHero() {
 
@@ -159,7 +158,6 @@ public class ConcreteMediator implements MediatorBase {
      * Inputs: NA
      * Returns: void
      * Description: Gets a random villain from the list of villains.  Checks to make sure
-     *
      */
     private int getRandomVillain() {
 
@@ -180,12 +178,14 @@ public class ConcreteMediator implements MediatorBase {
     private void removeFromList(CombatBase caller) {
 
         if (caller == villain) {
-            if (inRest == -1){
-                inRest = heroList.indexOf(selectedHero);
+            if (inRest == -1) {
+                inRest = heroList.indexOf(hero);
+                System.out.println(heroList.get(selectedHero).getName() + " is now resting.");
             } else {
                 Hero hero = heroList.get(inRest);
                 hero.setResting();
-                inRest = heroList.indexOf(selectedHero);
+                inRest = heroList.indexOf(hero);
+                System.out.println(heroList.get(inRest).getName() + " is now resting.");
             }
 
             villainList.remove(selectedVillain);
@@ -197,11 +197,13 @@ public class ConcreteMediator implements MediatorBase {
         }
         if (caller == hero) {
             if (inRest == -1) {
-                inRest = villainList.indexOf(selectedVillain);
+                inRest = villainList.indexOf(villain);
+                System.out.println(villainList.get(selectedVillain).getName() + " is now resting.");
             } else {
                 Villain villain = villainList.get(inRest);
                 villain.setResting();
-                inRest = villainList.indexOf(selectedVillain);
+                inRest = villainList.indexOf(villain);
+                System.out.println(villainList.get(inRest).getName() + " is now resting.");
             }
             heroList.remove(selectedHero);
             if (heroList.size() == 0) {

@@ -28,6 +28,12 @@ public class MediatorControl implements Runnable {
         System.out.println("----------------------------------------------------------------");
         System.out.println("Starting the Mediator simulation...");
         System.out.println("----------------------------------------------------------------");
+        System.out.println();
+        System.out.println("Move definitions:");
+        System.out.println("Move 1 = physical attack.");
+        System.out.println("Move 2 = elemental attack.");
+        System.out.println("Move 3 = defensive stance.");
+
 
         med.initialize();
         med.initiateRandom();

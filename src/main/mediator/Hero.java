@@ -24,7 +24,6 @@ public class Hero extends CombatBase {
     private int health;
     private int strength;
     private boolean resting = false;
-    private int restTick;
     private int villainSlain;
     private int heroMove = -1;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
@@ -42,8 +41,7 @@ public class Hero extends CombatBase {
 
         health = 100;
         villainSlain = 0;
-        restTick = 0;
-        strength = ThreadLocalRandom.current().nextInt(0, 11);
+        strength = ThreadLocalRandom.current().nextInt(3, 12);
     }
 
     @Override
@@ -70,7 +68,7 @@ public class Hero extends CombatBase {
     public void setBaseElements(List<Integer> list) {
 
         int min = ThreadLocalRandom.current().nextInt(0, 3);
-        int max = ThreadLocalRandom.current().nextInt(3, 12);
+        int max = ThreadLocalRandom.current().nextInt(3, 16);
 
         try {
             for (int i = 0; i < list.size(); i++) {
@@ -135,7 +133,7 @@ public class Hero extends CombatBase {
     public boolean criticalHitChance() {
 
         int[] crit = {1, 4, 7};
-        int rand = ThreadLocalRandom.current().nextInt(0, 10);
+        int rand = ThreadLocalRandom.current().nextInt(0, 9);
         for (int i : crit) {
             if (i == rand) {
                 return true;
@@ -152,7 +150,7 @@ public class Hero extends CombatBase {
      */
     private int physicalAttack() {
 
-        int hit = ThreadLocalRandom.current().nextInt(0, 7);
+        int hit = ThreadLocalRandom.current().nextInt(0, 11);
         hit = hit + getStrength();
 
         if (criticalHitChance()) {
@@ -176,7 +174,7 @@ public class Hero extends CombatBase {
     private int elementalAttack() {
 
         int hit = ThreadLocalRandom.current().nextInt(0, elementList.size());
-        hit = (elementList.get(hit) + hit) + 3;
+        hit = (elementList.get(hit) + hit) + 5;
 
         if (criticalHitChance()) {
             hit = hit * 2;
@@ -254,14 +252,16 @@ public class Hero extends CombatBase {
 
         for (int i = 0; i < 4; i++) {
             int rand = ThreadLocalRandom.current().nextInt(0, elementList.size());
-            elementList.set(rand, elementList.get(rand) + 4);
+            elementList.set(rand, elementList.get(rand) + 5);
         }
         System.out.println(name + " consumed the Villain's energy and gained elemental power!");
 
         int bonusStrength = ThreadLocalRandom.current().nextInt(1, 3);
         if (bonusStrength == 2) {
-            strength = strength + 5;
-            System.out.println(name + " gained physical strength!");
+            System.out.print(name + " gained physical strength! Current strength: " + getStrength());
+            System.out.print(". 7 strength added. ");
+            strength = strength + 7;
+            System.out.println(name + "'s strength is now " + getStrength());
         }
     }
 

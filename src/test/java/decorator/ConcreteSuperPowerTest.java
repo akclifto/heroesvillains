@@ -54,7 +54,7 @@ public class ConcreteSuperPowerTest {
 
         int spawnedRandomCitizen = 0;
 
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 500; i++) {
             conc.createHero("Name");
         }
         for (Hero name : conc.getSpawnedHeroes()) {
