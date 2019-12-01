@@ -5,6 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+
+
+/**
+ * File: VillainLair.java
+ * Author:  Adam Clifton (akclifto@asu.edu)
+ * Date:  2019.11.29
+ *
+ * <p>Description: This class will contain all of the Villain lairs created during
+ * the simulation and all of its attributes.
+ */
 public class VillainLair implements LairBase {
 
     private String name;

@@ -3,6 +3,14 @@ package factory;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * File: FactoryControl.java
+ * Author:  Adam Clifton (akclifto@asu.edu)
+ * Date:  2019.11.29
+ *
+ * <p>Description: This is the control class that will run the factory simulation.
+ */
 public class FactoryControl {
 
     private HotSpotFactory hot = new HotSpotFactory();
@@ -23,9 +31,9 @@ public class FactoryControl {
      */
     public void run() {
 
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
         System.out.println("Starting the Factory simulation...");
-        System.out.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
         System.out.println();
         System.out.println("The initial hotspot automatically creates a hero base "
                 + "and villain lair!");
