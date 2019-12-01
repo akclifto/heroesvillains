@@ -68,7 +68,23 @@ public abstract class CombatBase {
      */
     public abstract void setBaseElements(List<Integer> list);
 
+    /**
+     * Method: Deduct damage based on the move used.
+     * Inputs:
+     * Returns: NA
+     * Description: This method will calculate the damage received from given move.
+     */
+    public abstract void deductDamage(int move);
 
+
+    /**
+     * Method: Chance to get a critical strike on opponent.
+     * Inputs: NA
+     * Returns: boolean
+     * Description: This method will give a chance at a critical strike.
+     * Returns true if the move is a critical strike; false otherwise.
+     */
+    public abstract boolean criticalHitChance();
 
 
 }

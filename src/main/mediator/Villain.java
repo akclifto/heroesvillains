@@ -74,6 +74,16 @@ public class Villain extends CombatBase {
         }
     }
 
+    @Override
+    public void deductDamage(int move) {
+
+    }
+
+    @Override
+    public boolean criticalHitChance() {
+        return false;
+    }
+
 
     /**
      * Method: Receives Message from mediator
@@ -90,7 +100,7 @@ public class Villain extends CombatBase {
         System.out.println("Is Hero dead? " + isDead);
         //TODO
         villainMove = 9;
-        send(9, false, false);
+        send(1, false, false);
     }
 
     /**

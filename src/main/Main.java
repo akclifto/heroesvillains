@@ -1,7 +1,10 @@
 
 import decorator.DecoratorControl;
 import factory.FactoryControl;
+import mediator.Hero;
 import mediator.MediatorControl;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 
 /**

@@ -30,8 +30,6 @@ public class MediatorControl {
         System.out.println("Starting the Mediator simulation...");
         System.out.println("----------------------------------------------------");
 
-        //TODO need to initiate move
-        //       hero1.send(2, false, false);
         med.initialize();
         med.initiateRandom();
 
