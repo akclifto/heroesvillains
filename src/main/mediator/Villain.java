@@ -149,7 +149,7 @@ public class Villain extends CombatBase {
      */
     private int physicalAttack() {
 
-        int hit = ThreadLocalRandom.current().nextInt(0, 11);
+        int hit = ThreadLocalRandom.current().nextInt(0, 13);
         hit = hit + getStrength();
 
         if (criticalHitChance()) {
@@ -173,7 +173,8 @@ public class Villain extends CombatBase {
     private int elementalAttack() {
 
         int hit = ThreadLocalRandom.current().nextInt(0, elementList.size());
-        hit = (elementList.get(hit) + hit) + 6;
+        int bonus = ThreadLocalRandom.current().nextInt(0, 11);
+        hit = (elementList.get(hit) + hit) + bonus;
 
         if (criticalHitChance()) {
             hit = hit * 2;

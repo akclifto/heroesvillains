@@ -178,7 +178,7 @@ public class ConcreteMediator implements MediatorBase {
 
         if (caller == villain) {
             if (inRest == -1) {
-                inRest = selectedHero;
+                inRest = heroList.indexOf(hero);
                 System.out.println(heroList.get(selectedHero).getName() + " is now resting.");
             } else {
                 Hero hero = heroList.get(selectedHero);
@@ -196,7 +196,7 @@ public class ConcreteMediator implements MediatorBase {
         }
         if (caller == hero) {
             if (inRest == -1) {
-                inRest = selectedVillain;
+                inRest = villainList.indexOf(villain);
                 System.out.println(villainList.get(selectedVillain).getName() + " is now resting.");
             } else {
                 Villain vill = villainList.get(selectedVillain);

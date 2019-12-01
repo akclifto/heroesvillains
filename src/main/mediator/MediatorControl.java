@@ -37,7 +37,7 @@ public class MediatorControl implements Runnable {
 
 
         med.initialize();
-        med.initiateRandom();
+        med.newBattle();
     }
 }
 

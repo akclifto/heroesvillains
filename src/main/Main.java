@@ -28,8 +28,8 @@ public class Main {
         DecoratorControl c = new DecoratorControl();
         MediatorControl m = new MediatorControl();
 
-//        f.run();
-//        c.run();
+        f.run();
+        c.run();
         m.run();
     }
 
