@@ -265,6 +265,4 @@ public class Hero extends CombatBase {
             System.out.println(name + "'s strength is now " + getStrength());
         }
     }
-
-
 }
