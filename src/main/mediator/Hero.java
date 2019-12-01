@@ -170,7 +170,7 @@ public class Hero extends CombatBase {
      */
     private int elementalAttack() {
 
-        int hit = ThreadLocalRandom.current().nextInt(0, 5);
+        int hit = ThreadLocalRandom.current().nextInt(0, elementList.size());
         hit = (elementList.get(hit) + hit) + 3;
 
         if (criticalHitChance()) {
@@ -201,14 +201,20 @@ public class Hero extends CombatBase {
         System.out.println("Is Villain dead? " + isDead);
 
         if (isDead) {
-            System.out.println("The Villain has been defeated!");
+            System.out.println("The Villain has been defeated! ");
             resting = true;
             consumePower();
+            villainSlain = villainSlain + 1;
+            System.out.println(name + " has defeated " + villainSlain + " villains!");
             send(99);
+
         } else if (isResting) {
-            System.out.println("The Villain was defeated while resting!");
+            System.out.println("The Villain was defeated while resting! ");
             consumePower();
+            villainSlain = villainSlain + 1;
+            System.out.println(name + " has defeated " + villainSlain + " villains!");
             send(99);
+
         } else {
             processMove(move);
             send(getMove());
@@ -255,7 +261,18 @@ public class Hero extends CombatBase {
 
     @Override
     public void consumePower() {
-        //TODO
+
+        for (int i = 0; i < 3; i++) {
+            int rand = ThreadLocalRandom.current().nextInt(0, elementList.size() );
+            elementList.set(rand, elementList.get(rand) + 4);
+        }
+        System.out.println(name + " consumed the Villain's energy and gained elemental power!");
+
+        int bonusStrength = ThreadLocalRandom.current().nextInt(1, 3);
+        if (bonusStrength == 2) {
+            strength = strength + 5;
+            System.out.println(name + " gained physical strength!");
+        }
     }
 
 

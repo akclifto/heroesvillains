@@ -199,15 +199,19 @@ public class Villain extends CombatBase {
         System.out.print("Is Hero resting? " + isResting + ". ");
         System.out.println("Is Hero dead? " + isDead);
 
-        if (isDead || isResting) {
-            System.out.println("The Hero has been defeated!");
+        if (isDead) {
+            System.out.print("The Hero has been defeated! ");
             resting = true;
             consumePower();
             send(99);
+            heroSlain = heroSlain + 1;
+            System.out.println(name + " has defeated " + heroSlain + " heroes!");
         } else if (isResting) {
-            System.out.println("The Hero was defeated while resting!");
+            System.out.print("The Hero was defeated while resting! ");
             consumePower();
             send(99);
+            heroSlain = heroSlain + 1;
+            System.out.println(name + " has defeated " + heroSlain + " heroes!");
         } else {
             processMove(move);
             send(getMove());
@@ -253,7 +257,18 @@ public class Villain extends CombatBase {
 
     @Override
     public void consumePower() {
-        //TODO
+
+        for (int i = 0; i < 4; i++) {
+            int rand = ThreadLocalRandom.current().nextInt(0, elementList.size() );
+            elementList.set(rand, elementList.get(rand) + 3);
+        }
+        System.out.println(name + " consumed the Heroe's energy and gained elemental power!");
+
+        int bonusStrength = ThreadLocalRandom.current().nextInt(1, 3);
+        if (bonusStrength == 1) {
+            strength = strength + 5;
+            System.out.println(name + " gained physical strength!");
+        }
     }
 
 }

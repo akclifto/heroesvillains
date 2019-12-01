@@ -1,5 +1,6 @@
 package mediator;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -136,9 +137,19 @@ public class ConcreteMediator implements MediatorBase {
 
         if (caller == villain) {
             villainList.remove(selectedVillain);
+            if (villainList.size() == 0) {
+                System.out.println("All of the villains have been defeated. "
+                        + "THE AGE OF LIGHT GRACES THE LAND! ");
+                end();
+            }
         }
         if (caller == hero){
             heroList.remove(selectedHero);
+            if (heroList.size() == 0) {
+                System.out.println("All of the heroes have been defeated. "
+                        + "THE AGE OF DARKNESS FALLS UPON THE LAND! ");
+                end();
+            }
         }
         System.out.println("Villains have " + villainList.size() + " remaining.");
         System.out.println("Heroes have " + heroList.size() + " remaining.");
@@ -184,5 +195,13 @@ public class ConcreteMediator implements MediatorBase {
             System.out.println("Mediator sends move to Hero.");
             hero.receive(move, false, false);
         }
+    }
+
+    private void end() {
+
+        System.out.println();
+        System.out.println("End of Mediator simulation....");
+        System.exit(0);
+
     }
 }
