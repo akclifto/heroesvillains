@@ -22,13 +22,13 @@ public class Hero extends CombatBase {
     private int ice = 0;
     private int shock = 0;
     private int health = 100;
-    private int heroMove = 0;
-    private List<Integer> ElementList = Arrays.asList(fire, earth, wind, ice, shock);
+    private static int heroMove = 0;
+    private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
 
     public Hero(MediatorBase mediator, String name) {
         super(mediator);
         this.name = name;
-        setBaseElements(ElementList);
+        setBaseElements(elementList);
     }
 
     @Override
@@ -36,12 +36,42 @@ public class Hero extends CombatBase {
         return name;
     }
 
-
+    @Override
     public int getMove() {
-        if (heroMove == 0) {
-            //TODO set random hero move
-        }
         return heroMove;
+    }
+
+
+    @Override
+    public void processMove(int move) {
+
+        if (move < 0 || move > 3) {
+            throw new NullPointerException("Improper move out of bounds.");
+        }
+        if (move == 0) {
+            System.out.println("Battle initiated.");
+            int newMove = setRandomMove();
+        }
+        if (move == 1) {
+            System.out.println("The villain uses a physical attack!");
+
+        }
+        if (move == 2) {
+            System.out.println("The Villain attacks using the elements!");
+
+        }
+        if (move == 3) {
+            System.out.println("The Villain take a defensive stance!");
+
+        }
+
+    }
+
+    @Override
+    public int setRandomMove() {
+
+        return ThreadLocalRandom.current().nextInt(1, 4);
+
     }
 
     @Override
@@ -69,9 +99,11 @@ public class Hero extends CombatBase {
      * to combat between villain and hero.
      */
     public void receive(int move, boolean isResting, boolean isDead) {
-        //TODO receive me, deduct damage, check resting/dead, send new move
 
+        processMove(move);
         System.out.println("Hero received message");
+        //TODO deduct damage, check resting/dead, send new move
+
         System.out.print("Move: " + move + ". ");
         System.out.print("Is Villain resting? " + isResting + ". ");
         System.out.println("Is Villain dead? " + isDead);
@@ -103,6 +135,8 @@ public class Hero extends CombatBase {
     public boolean isDead() {
         return health <= 0;
     }
+
+
 
 
 

@@ -29,6 +29,38 @@ public abstract class CombatBase {
     public abstract String getName();
 
     /**
+     * Method: Gets the move set from the Hero or Villain.
+     * Inputs: NA
+     * Returns: hero's or villain's move : int
+     * Description: This method gets the hero or villain's move set to be sent
+     * to the opposition through the mediator.
+     */
+    public abstract int getMove();
+
+    /**
+     * Method: Processes the move sent from the opposing player through the mediator.
+     * Inputs: move : int
+     * Returns: void
+     * Description: This method will take the move sent from the mediator and apply
+     * the move against the receiving player. The int values of the move correspond to
+     * the following:
+     *      0 = Battle Initiated.
+     *      1 = Physical attack
+     *      2 = Elemental attack
+     *      3 = Defensive stance, no attack
+     */
+    public abstract void processMove(int move);
+
+    /**
+     * Method: Sets a random move to be sent from the hero or villain.
+     * Inputs: NA
+     * Returns: hero's or villain's move : int
+     * Description: This method will set a random move for the hero or villain
+     * to send to the opposition.
+     */
+    public abstract int setRandomMove();
+
+    /**
      * Method: Sets base elements for Heroes and Villains.
      * Inputs: list : List, min : int, max : int
      * Returns: void
@@ -36,5 +68,8 @@ public abstract class CombatBase {
      * and allows the user to set custom min, max options for both.
      */
     public abstract void setBaseElements(List<Integer> list);
+
+
+
 
 }

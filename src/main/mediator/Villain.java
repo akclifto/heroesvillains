@@ -50,6 +50,16 @@ public class Villain extends CombatBase {
     }
 
     @Override
+    public int processMove(int move) {
+        return 0;
+    }
+
+    @Override
+    public int setRandomMove() {
+        return 0;
+    }
+
+    @Override
     public void setBaseElements(List<Integer> list) {
 
         int min = ThreadLocalRandom.current().nextInt(0, 2);
