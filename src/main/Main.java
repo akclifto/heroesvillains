@@ -3,8 +3,6 @@ import decorator.DecoratorControl;
 import factory.FactoryControl;
 import mediator.MediatorControl;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 
 /**
  * File: Main.java
@@ -29,8 +27,8 @@ public class Main {
         DecoratorControl c = new DecoratorControl();
         MediatorControl m = new MediatorControl();
 
-//        f.run();
-//        c.run();
-//        m.run();
+        f.run();
+        c.run();
+        m.run();
     }
 }

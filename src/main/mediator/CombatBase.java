@@ -1,6 +1,5 @@
 package mediator;
 
-
 import java.util.List;
 
 /**

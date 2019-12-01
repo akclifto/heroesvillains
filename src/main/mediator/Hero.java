@@ -21,14 +21,21 @@ public class Hero extends CombatBase {
     private int wind = 0;
     private int ice = 0;
     private int shock = 0;
-    private int health = 100;
-    private static int heroMove = 0;
+    private int health;
+    private int heroMove = -1;
     private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
 
+    /**
+     * Method: Constructor for Hero.
+     * Inputs: mediator : MediatorBase, name : String
+     * Returns: NA
+     * Description: Build the hero objects.
+     */
     public Hero(MediatorBase mediator, String name) {
         super(mediator);
         this.name = name;
         setBaseElements(elementList);
+        health = 100;
     }
 
     @Override
@@ -46,11 +53,11 @@ public class Hero extends CombatBase {
     public void processMove(int move) {
 
         if (move < 0 || move > 3) {
-            throw new NullPointerException("Improper move out of bounds.");
+            throw new NullPointerException("Improper move - not set correctly.");
         }
         if (move == 0) {
             System.out.println("Battle initiated.");
-            int newMove = setRandomMove();
+            heroMove = setRandomMove();
         }
         if (move == 1) {
             System.out.println("The villain uses a physical attack!");

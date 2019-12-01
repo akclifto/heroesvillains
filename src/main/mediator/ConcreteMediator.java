@@ -57,7 +57,7 @@ public class ConcreteMediator implements MediatorBase {
             if (caller == villain) {
                 heroReceive(move);
             }
-        } catch (Exception e)  {
+        } catch (Exception e) {
             System.out.println("Message was not sent properly.");
             e.printStackTrace();
         }
@@ -66,7 +66,7 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void initialize() {
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
 
             hero = new Hero(this, "Hero " + heroCount++);
             System.out.print("Hero " + heroCount + " created. ");
@@ -93,7 +93,7 @@ public class ConcreteMediator implements MediatorBase {
     @Override
     public void initiateRandom() {
 
-        int firstMove = ThreadLocalRandom.current().nextInt(0,11);
+        int firstMove = ThreadLocalRandom.current().nextInt(0, 11);
         firstMove = firstMove % 2;
 
         if (firstMove == 1) {

@@ -1,7 +1,5 @@
 package mediator;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,18 +20,22 @@ public class Villain extends CombatBase {
     private int wind = 0;
     private int ice = 0;
     private int shock = 0;
-    private int health = 100;
+    private int health;
     private int villainMove = 0;
-    private List<Integer> ElementList = Arrays.asList(fire, earth, wind, ice, shock);
-    private List<Villain> villainList = new ArrayList<>();
+    private List<Integer> elementList = Arrays.asList(fire, earth, wind, ice, shock);
 
 
-
+    /**
+     * Method: Constructor for Villain.
+     * Inputs: mediator : MediatorBase, name : String
+     * Returns: NA
+     * Description: Build the villain objects.
+     */
     public Villain(MediatorBase mediator, String name) {
         super(mediator);
         this.name = name;
-        setBaseElements(ElementList);
-        villainList.add(this);
+        setBaseElements(elementList);
+        health = 100;
     }
 
     @Override
@@ -41,17 +43,14 @@ public class Villain extends CombatBase {
         return name;
     }
 
-    public List<Villain> getVillainList() {
-        return villainList;
-    }
-
     public int getMove() {
         return villainMove;
     }
 
     @Override
-    public int processMove(int move) {
-        return 0;
+    public void processMove(int move) {
+        //TODO
+        System.out.println("TODO");
     }
 
     @Override

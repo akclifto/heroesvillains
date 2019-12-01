@@ -18,10 +18,10 @@ public class MediatorControl {
      * Inputs: NA
      * Returns: void
      * Description: This method will run the factory design.  It will:
-     *  - create hotspots of Hero bases and Villain lairs.
-     *  - add elemental attributes to strengthen/weaken hero dwellers or villain dwellers.
-     *  - add dwellers to bases and lairs.
-     *  - create a new bases or lairs if size exceeds 5 dwellers.
+     * - create hotspots of Hero bases and Villain lairs.
+     * - add elemental attributes to strengthen/weaken hero dwellers or villain dwellers.
+     * - add dwellers to bases and lairs.
+     * - create a new bases or lairs if size exceeds 5 dwellers.
      */
     public void run() {
 
@@ -31,7 +31,7 @@ public class MediatorControl {
         System.out.println("----------------------------------------------------");
 
         //TODO need to initiate move
- //       hero1.send(2, false, false);
+        //       hero1.send(2, false, false);
         med.initialize();
         med.initiateRandom();
 
