@@ -116,13 +116,13 @@ public class ConcreteMediator implements MediatorBase {
 
         System.out.print("Mediator received message. ");
         if (hero.isDead()) {
-            System.out.println("Hero has been slain");
+            System.out.println("Hero has been slain!");
             villain.receive(move, false, true);
         } else if (hero.isResting()) {
-            System.out.println("Hero is resting.");
+            System.out.println("Hero is resting!");
             villain.receive(move, true, false);
         } else {
-            System.out.println("Mediator sends move to villain");
+            System.out.println("Mediator sends move to villain.");
             villain.receive(move, false, false);
         }
     }
@@ -136,10 +136,10 @@ public class ConcreteMediator implements MediatorBase {
     private void heroReceive(int move) {
         System.out.print("Mediator received message. ");
         if (villain.isDead()) {
-            System.out.println("Villain has been slain.");
+            System.out.println("Villain has been slain!");
             hero.receive(move, false, true);
         } else if (villain.isResting()) {
-            System.out.println("Villain is resting.");
+            System.out.println("Villain is resting!");
             hero.receive(move, true, false);
         } else {
             System.out.println("Mediator sends move to Hero.");

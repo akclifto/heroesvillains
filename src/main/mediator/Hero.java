@@ -136,6 +136,9 @@ public class Hero extends CombatBase {
             }
         }
         health = health - hit;
+        if (health < 0) {
+            health = 0;
+        }
         System.out.println(getName() + " has " + health + " health remaining.");
     }
 
